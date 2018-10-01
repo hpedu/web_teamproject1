@@ -5,8 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import config.OracleInfo;
+import model.vo.ProductVO;
+import model.vo.RecipeVO;
+import query.ShowQuery;
 
 public class ShowDao {
 
@@ -14,7 +18,10 @@ public class ShowDao {
 	private String user;
 	private String pass;
 	
-	
+	public ShowDao(String name) throws ClassNotFoundException {
+		Class.forName(OracleInfo.DRIVER_NAME);
+		System.out.println("드라이버 로딩 성공");
+	}
 	
 	static private ShowDao dao = new ShowDao();
 	private ShowDao( ) {								
@@ -27,11 +34,8 @@ public class ShowDao {
 		return dao;
 	}
 	
-	
-	
 
 	private Connection getConnect() throws SQLException {
-
 		Connection conn = DriverManager.getConnection(url, user, pass);
 		System.out.println("db connection....");
 		return conn;
@@ -50,12 +54,186 @@ public class ShowDao {
 		closeAll(ps, conn);
 	}
 	
+	public ArrayList<RecipeVO> showRecipeHot() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<RecipeVO> list = new ArrayList<RecipeVO>();
+		try {
+			conn=  getConnect();
+			ps = conn.prepareStatement(ShowQuery.SELECT_SHOWHOTRECIPE);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new RecipeVO(
+						 rs.getInt("no"),
+						 rs.getString("name"),
+						 rs.getString("img_urls"),
+						 rs.getString("main_ingredients"),
+						 rs.getString("sub_ingredients"),
+						 rs.getString("writer"),
+						 rs.getString("register_date"),
+						 rs.getString("type"),
+						 rs.getInt("hits"),
+						 rs.getString("descript"),
+						 rs.getString("content"),
+						 rs.getString("tip"),
+						 rs.getString("recommend")));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	
+	public ArrayList<RecipeVO> showRecipeNew() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<RecipeVO> list = new ArrayList<RecipeVO>();
+		try {
+			conn=  getConnect();
+			ps = conn.prepareStatement(ShowQuery.SELECT_SHOWNEWRECIPE);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new RecipeVO(
+						 rs.getInt("no"),
+						 rs.getString("name"),
+						 rs.getString("img_urls"),
+						 rs.getString("main_ingredients"),
+						 rs.getString("sub_ingredients"),
+						 rs.getString("writer"),
+						 rs.getString("register_date"),
+						 rs.getString("type"),
+						 rs.getInt("hits"),
+						 rs.getString("descript"),
+						 rs.getString("content"),
+						 rs.getString("tip"),
+						 rs.getString("recommend")));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	
+	public ArrayList<RecipeVO> showRecipeRecommend() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<RecipeVO> list = new ArrayList<RecipeVO>();
+		try {
+			conn=  getConnect();
+			ps = conn.prepareStatement(ShowQuery.SELECT_SHOWRECOMMENDRECIPE);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new RecipeVO(
+						 rs.getInt("no"),
+						 rs.getString("name"),
+						 rs.getString("img_urls"),
+						 rs.getString("main_ingredients"),
+						 rs.getString("sub_ingredients"),
+						 rs.getString("writer"),
+						 rs.getString("register_date"),
+						 rs.getString("type"),
+						 rs.getInt("hits"),
+						 rs.getString("descript"),
+						 rs.getString("content"),
+						 rs.getString("tip"),
+						 rs.getString("recommend")));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	
+	public ArrayList<ProductVO> showProductHot() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
+		try {
+			conn=  getConnect();
+			ps = conn.prepareStatement(ShowQuery.SELECT_SHOWHOTPRODUCT);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new ProductVO(rs.getString("name"), 
+						               rs.getInt("price"), 
+						               rs.getString("origin"),
+						               rs.getString("img_urls"),
+						               rs.getString("content"),
+						               rs.getString("type"),
+						               rs.getString("brand"), 
+						               rs.getString("sales_volume"),
+						               rs.getString("recommend")));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	
+	public ArrayList<ProductVO> showProductRecommend() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
+		try {
+			conn=  getConnect();
+			ps = conn.prepareStatement(ShowQuery.SELECT_SHOWRECOMMENDPRODUCT);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new ProductVO(rs.getString("name"), 
+						               rs.getInt("price"), 
+						               rs.getString("origin"),
+						               rs.getString("img_urls"),
+						               rs.getString("content"),
+						               rs.getString("type"),
+						               rs.getString("brand"), 
+						               rs.getString("sales_volume"),
+						               rs.getString("recommend")));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
 	
 	
-	public static void main(String[] args) throws SQLException {
-		Connection conn = ShowDao.getInstance().getConnect();
+	
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+		ShowDao db = new ShowDao("127.0.0.1");
+		System.out.println("hot recipe");
+		ArrayList<RecipeVO> list= ShowDao.getInstance().showRecipeHot();
+		System.out.println(list.size());
+		for(RecipeVO recipes : list) {
+			System.out.println(recipes);
+		}
+		System.out.println("hot product");
+		ArrayList<ProductVO> list2= ShowDao.getInstance().showProductHot();
+		System.out.println(list2.size());
+		for(ProductVO product : list2) {
+			System.out.println(product);
+		}
+		System.out.println("new recipe");
+		ArrayList<RecipeVO> list3= ShowDao.getInstance().showRecipeNew();
+		System.out.println(list3.size());
+		for(RecipeVO recipes : list3) {
+			System.out.println(recipes);
+		}
 		
-		System.out.println("ss");
+		System.out.println("recommend recipe");
+		ArrayList<RecipeVO> list4= ShowDao.getInstance().showRecipeRecommend();
+		System.out.println(list4.size());
+		for(RecipeVO recipes : list4) {
+			System.out.println(recipes);
+		}
+		System.out.println("recommend product");
+		ArrayList<ProductVO> list5= ShowDao.getInstance().showProductRecommend();
+		System.out.println(list5.size());
+		for(ProductVO recipes : list5) {
+			System.out.println(recipes);
+		}
 	}
 	
 	
