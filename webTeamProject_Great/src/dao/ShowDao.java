@@ -17,16 +17,12 @@ public class ShowDao {
 	private String url;
 	private String user;
 	private String pass;
-<<<<<<< HEAD
-
-=======
 	
 	public ShowDao(String name) throws ClassNotFoundException {
 		Class.forName(OracleInfo.DRIVER_NAME);
 		System.out.println("드라이버 로딩 성공");
 	}
 	
->>>>>>> refs/remotes/origin/master
 	static private ShowDao dao = new ShowDao();
 	private ShowDao( ) {								
 				url=OracleInfo.URL;
@@ -38,10 +34,7 @@ public class ShowDao {
 		return dao;
 	}
 	
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/master
 	private Connection getConnect() throws SQLException {
 		Connection conn = DriverManager.getConnection(url, user, pass);
 		System.out.println("db connection....");
@@ -61,35 +54,6 @@ public class ShowDao {
 		closeAll(ps, conn);
 	}
 	
-<<<<<<< HEAD
-	public ArrayList<BoardVo> showNotice throws SQLException {
-			Connection conn = null;
-			PreparedStatement ps = null;
-			ResultSet rs = null;
-			try {
-				conn = getConnection();
-				ps = conn.prepareStatement(StringQuery.INSERT_POSTING);
-				ps.setString(1, vo.getTitle());
-				ps.setString(2, vo.getWriter());
-				ps.setString(3, vo.getPassword());
-				ps.setString(4, vo.getContent());
-
-				int row = ps.executeUpdate();
-				System.out.println(row + " row insert Posting ok...");
-
-				ps = conn.prepareStatement(StringQuery.CURRENT_NO);
-				rs = ps.executeQuery();
-				if (rs.next()) {
-					vo.setNo(rs.getInt(1));
-				}
-				System.out.println("Dao current no? " + vo.getNo());
-			} finally {
-				closeAll(rs, ps, conn);
-			}
-		}
-	}
-	
-=======
 	public ArrayList<RecipeVO> showRecipeHot() throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -234,7 +198,6 @@ public class ShowDao {
 		}
 		return list;
 	}
->>>>>>> refs/remotes/origin/master
 	
 	
 	
