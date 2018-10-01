@@ -1,6 +1,4 @@
-package model;
-
-import java.util.Arrays;
+package model.vo;
 
 public class RecipeVO {
 
