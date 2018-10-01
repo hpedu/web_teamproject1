@@ -8,9 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import config.OracleInfo;
+import model.vo.BoardVO;
 import model.vo.ProductVO;
 import model.vo.RecipeVO;
 import query.ShowQuery;
+import query.StringQuery;
 
 public class ShowDao {
 
@@ -236,5 +238,42 @@ public class ShowDao {
 		}
 	}
 	
+	public ArrayList<BoardVO> showNotice() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
+		try {
+			conn = getConnect();
+			ps = conn.prepareStatement(StringQuery.NOTICE);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new BoardVO(rs.getInt("no"), 
+									 rs.getString("writer"),
+									 rs.getString("img_urls"), 
+									 rs.getString("register_date"),
+									 rs.getString("content")));
+				}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	
+	public int getTotalPostingCount() throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps =null;
+		ResultSet rs=  null;
+		int count=-1;
+		try{
+			conn=  getConnect();
+			ps = conn.prepareStatement(StringQuery.TOTAL_COUNT);
+			rs = ps.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		}finally{
+			closeAll(rs, ps, conn);
+		}
+		return count;
+	}
 	
 }
