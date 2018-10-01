@@ -13,9 +13,7 @@ public class ShowDao {
 	private String url;
 	private String user;
 	private String pass;
-	
-	
-	
+
 	static private ShowDao dao = new ShowDao();
 	private ShowDao( ) {								
 				url=OracleInfo.URL;
@@ -27,9 +25,6 @@ public class ShowDao {
 		return dao;
 	}
 	
-	
-	
-
 	private Connection getConnect() throws SQLException {
 
 		Connection conn = DriverManager.getConnection(url, user, pass);
@@ -48,6 +43,33 @@ public class ShowDao {
 		if (rs != null)
 			rs.close();
 		closeAll(ps, conn);
+	}
+	
+	public ArrayList<BoardVo> showNotice throws SQLException {
+			Connection conn = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			try {
+				conn = getConnection();
+				ps = conn.prepareStatement(StringQuery.INSERT_POSTING);
+				ps.setString(1, vo.getTitle());
+				ps.setString(2, vo.getWriter());
+				ps.setString(3, vo.getPassword());
+				ps.setString(4, vo.getContent());
+
+				int row = ps.executeUpdate();
+				System.out.println(row + " row insert Posting ok...");
+
+				ps = conn.prepareStatement(StringQuery.CURRENT_NO);
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					vo.setNo(rs.getInt(1));
+				}
+				System.out.println("Dao current no? " + vo.getNo());
+			} finally {
+				closeAll(rs, ps, conn);
+			}
+		}
 	}
 	
 	
