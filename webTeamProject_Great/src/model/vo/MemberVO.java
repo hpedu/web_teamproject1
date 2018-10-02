@@ -22,7 +22,7 @@ public class MemberVO {
 		this.email = email;
 		this.birthday = birthday;
 		this.address = address;
-		this.point = point;
+		this.point = point;	
 		this.grade = grade;
 	}
 
