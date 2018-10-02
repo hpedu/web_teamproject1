@@ -1,57 +1,164 @@
-package dao;
+package model.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import config.OracleInfo;
+import javax.sql.DataSource;
 
-public class MemberDao {
+import model.vo.MemberVO;
+import query.StringQuery;
 
-	private String url;
-	private String user;
-	private String pass;
-	
-	
-	
-	static private MemberDao dao = new MemberDao();
-	private MemberDao( ) {								
-				url=OracleInfo.URL;
-				user=OracleInfo.USER;
-				pass=OracleInfo.PASS;
-	};
-	 
-	public static MemberDao getInstance() {
+public class MemberDAO {
+	DataSource ds;
+	private static MemberDAO dao= new MemberDAO();
+	private MemberDAO() {
+		ds=DataSourceManager.getInstance().getConnection();
+	}
+	public static MemberDAO getInstance() {
 		return dao;
 	}
-	
-	
-	
-
-	private Connection getConnect() throws SQLException {
-
-		Connection conn = DriverManager.getConnection(url, user, pass);
-		System.out.println("db connection....");
-		return conn;
+	public Connection getConnection() throws SQLException{
+		return ds.getConnection();
 	}
-
-	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException {
-		if (ps != null)
-			ps.close();
-		if (conn != null)
-			conn.close();
+	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException{
+		if(ps!=null) ps.close();
+		if(conn!=null) conn.close();
 	}
-
-	public void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
-		if (rs != null)
-			rs.close();
+	public void closeAll(ResultSet rs,PreparedStatement ps, Connection conn) throws SQLException{
+		if(rs!=null) rs.close();
 		closeAll(ps, conn);
 	}
-	public static void main(String[] args) throws SQLException {
-		Connection conn = MemberDao.getInstance().getConnect();
+	//중복가입 유무확인
+	public boolean idExist(String id) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		boolean exist = false;
+		try{
+			conn=getConnection();
+			ps = conn.prepareStatement(StringQuery.SELECT_CHECK_ID);
+			ps.setString(1, id);
+			rs=ps.executeQuery();
+			if(rs.next()){
+				if(rs.getInt(1)==1){
+					exist=true;
+				}
+			}
+		}finally{
+			closeAll(rs, ps, conn);
+		}
+		return exist;
+	}
+	//회원가입
+	public void registerMember(MemberVO mvo) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try{
+			//id,password,name,email,birthday,address
+			conn=getConnection();
+			ps = conn.prepareStatement(StringQuery.INSERT_MEMBER);
+			ps.setString(1, mvo.getId());
+			ps.setString(2, mvo.getPassword());
+			ps.setString(3, mvo.getName());
+			ps.setString(4, mvo.getEmail());
+			ps.setString(5, mvo.getBirthday());
+			ps.setString(6, mvo.getAddress());
+			if(ps.executeUpdate()!=0){
+				System.out.println(mvo.getName()+" 님 회원가입 성공");
+			}
+		}finally{
+			closeAll(ps, conn);
+		}
+	}
+	//로그인
+	public MemberVO login(String id, String password) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		MemberVO mvo = null;
+		try{
+			conn=getConnection();
+			ps = conn.prepareStatement(StringQuery.LOGIN_MEMBER);
+			ps.setString(1, id);
+			ps.setString(2, password);
+			rs=ps.executeQuery();
+			if(rs.next()){
+				mvo = new MemberVO(rs.getString("id"),
+									rs.getString("password")); 
+			}
+		}finally{
+			closeAll(rs, ps, conn);
+		}
+		return mvo;
+	}
+	
+	//회원검색
+	public MemberVO searchMember(String id) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		MemberVO vo = null;
 		
-		System.out.println("ss");
+		try{
+			conn=getConnection();
+			ps = conn.prepareStatement(StringQuery.SEARCH_MEMBER);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				vo = new MemberVO(rs.getString("id"),rs.getString("password"));
+			}
+		}finally{
+			closeAll(rs, ps, conn);
+		}
+		return vo;
+	}
+	//아이디 찾기
+	public String searchID(String name, String ssn) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String id = "";
+		try{
+			conn=getConnection();
+			ps = conn.prepareStatement(StringQuery.SELECT_SEARCH_ID);
+			ps.setString(1, name);
+			ps.setString(2, ssn);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				id = rs.getString("id");
+			}
+		}finally{
+			closeAll(rs, ps, conn);
+		}
+		return id;
+	}
+	
+	//비밀번호 검색
+	public String searchPass(String id,String name,String ssn) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String password = null;
+		try{
+			conn=getConnection();
+			ps = conn.prepareStatement(StringQuery.SELECT_SEARCH_PASSWORD);
+			ps.setString(1, id);
+			ps.setString(2, name);
+			ps.setString(3, ssn);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				password = rs.getString("password");
+			}
+		}finally{
+			closeAll(rs, ps, conn);
+		}
+		return password;
+	}
+	public static void main(String[] args) throws Exception {
+		MemberVO vo= new MemberVO();
+		MemberDAO.getInstance().login("kh4331","123456");
+		System.out.println(vo);			 
 	}
 }

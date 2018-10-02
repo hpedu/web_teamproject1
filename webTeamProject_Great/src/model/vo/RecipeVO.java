@@ -1,7 +1,9 @@
 package model.vo;
 
-public class RecipeVO {
+import java.util.Arrays;
 
+public class RecipeVO {
+	private int num;
 	private String name;
 	private String imgurls;
 	private String main_ingredientents;
@@ -19,9 +21,10 @@ public class RecipeVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RecipeVO(String name, String imgurls, String main_ingredientents, String sub_ingredientents, String writer,
-			String date, String type, int hits, String descript, String content, String tip) {
+	public RecipeVO(int num, String name, String imgurls, String main_ingredientents, String sub_ingredientents,
+			String writer, String date, String type, int hits, String descript, String content, String tip) {
 		super();
+		this.num = num;
 		this.name = name;
 		this.imgurls = imgurls;
 		this.main_ingredientents = main_ingredientents;
@@ -33,6 +36,14 @@ public class RecipeVO {
 		this.descript = descript;
 		this.content = content;
 		this.tip = tip;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public String getName() {
@@ -125,10 +136,9 @@ public class RecipeVO {
 
 	@Override
 	public String toString() {
-		return "RecipeVO [name=" + name + ", imgurls=" + imgurls + ", main_ingredientents=" + main_ingredientents
-				+ ", sub_ingredientents=" + sub_ingredientents + ", writer=" + writer + ", date=" + date + ", type="
-				+ type + ", hits=" + hits + ", descript=" + descript + ", content=" + content + ", tip=" + tip + "]";
+		return "RecipeVO [num=" + num + ", name=" + name + ", imgurls=" + imgurls + ", main_ingredientents="
+				+ main_ingredientents + ", sub_ingredientents=" + sub_ingredientents + ", writer=" + writer + ", date="
+				+ date + ", type=" + type + ", hits=" + hits + ", descript=" + descript + ", content=" + content
+				+ ", tip=" + tip + "]";
 	}
-	
-
 }
