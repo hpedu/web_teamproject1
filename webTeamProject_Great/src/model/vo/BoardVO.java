@@ -6,10 +6,10 @@ public class BoardVO {
 	private int no;
 	private String writer;
 	private String img_urls;
-	private Date date;
+	private String date;
 	private String content;
 	public BoardVO() {}
-	public BoardVO(int no, String writer, String img_urls, Date date, String content) {
+	public BoardVO(int no, String writer, String img_urls, String date, String content) {
 		super();
 		this.no = no;
 		this.writer = writer;
@@ -35,10 +35,10 @@ public class BoardVO {
 	public void setImg_urls(String img_urls) {
 		this.img_urls = img_urls;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public String getContent() {

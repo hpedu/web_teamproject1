@@ -67,6 +67,25 @@ public interface StringQuery {
 		String UPDATE_PRODUCT="UPDATE product SET price=? , origin=?, imgurls=?, content=?, type=?, brand=? ,recommend=? ,sales_volume=? WHERE name=?";
 		
 		
-		
+		 String INSERT_MEMBER = "INSERT INTO member(id,password,name,email,birthday,address) "
+		            + "VALUES(?,?,?,?,?,?)";
+
+		   String SELECT_CHECK_ID = "SELECT count(-1) FROM member "
+		              + "WHERE id=?";
+		     String SELECT_SEARCH_ID = "SELECT id FROM member "
+		              + "WHERE name=? AND ssn=?";
+
+		     String SELECT_SEARCH_PASSWORD = "SELECT password FROM member "
+		                     + "WHERE id=? AND name=? AND ssn=?";
+
+		     String UPDATE_MEMBER = "UPDATE member SET password=?, name=?, nickname=? "
+		             + "WHERE id=?";
+
+		     String LOGIN_MEMBER = "SELECT id, password, name FROM member "
+		           + "WHERE id=? AND password=?";
+
+		     String SEARCH_MEMBER = "SELECT id, password FROM member"
+		    + " WHERE id=?";
+
 		
 }

@@ -79,7 +79,7 @@ public class ShowDao {
 						 rs.getString("descript"),
 						 rs.getString("content"),
 						 rs.getString("tip"),
-						 rs.getString("recommend")));
+						 rs.getBoolean("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -110,7 +110,7 @@ public class ShowDao {
 						 rs.getString("descript"),
 						 rs.getString("content"),
 						 rs.getString("tip"),
-						 rs.getString("recommend")));
+						 rs.getBoolean("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -141,7 +141,7 @@ public class ShowDao {
 						 rs.getString("descript"),
 						 rs.getString("content"),
 						 rs.getString("tip"),
-						 rs.getString("recommend")));
+						 rs.getBoolean("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -166,7 +166,7 @@ public class ShowDao {
 						               rs.getString("content"),
 						               rs.getString("type"),
 						               rs.getString("brand"), 
-						               rs.getString("sales_volume"),
+						               rs.getInt("sales_volume"),
 						               rs.getString("recommend")));
 			}
 		}finally {
@@ -192,7 +192,7 @@ public class ShowDao {
 						               rs.getString("content"),
 						               rs.getString("type"),
 						               rs.getString("brand"), 
-						               rs.getString("sales_volume"),
+						               rs.getInt("sales_volume"),
 						               rs.getString("recommend")));
 			}
 		}finally {

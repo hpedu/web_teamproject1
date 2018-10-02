@@ -64,7 +64,7 @@ public class CUDdao {
 			conn = getConnect();
 			ps = conn.prepareStatement(StringQuery.INSERT_RECIPE);
 			
-			ps.setInt(1, vo.getNo());
+			ps.setInt(1, vo.getNum());
 			ps.setString(2, vo.getName());
 			ps.setString(3, vo.getImgurls());
 			ps.setString(4, vo.getMain_ingredientents());
@@ -214,7 +214,7 @@ public class CUDdao {
 			ps.setString(8, vo.getDescript());			
 			ps.setString(9, vo.getContent());
 			ps.setString(10, vo.getTip());
-			ps.setInt(11, vo.getNo());
+			ps.setInt(11, vo.getNum());
 			
 			
 			int row=  ps.executeUpdate();

@@ -11,6 +11,7 @@ public class ProductVO {
 	private String brand;
 	private int sales_volume;
 	private String recommend;
+	private String amount;
 	
 	public ProductVO() {}
 
@@ -27,7 +28,23 @@ public class ProductVO {
 		this.sales_volume = sales_volume;
 		this.recommend = recommend;
 	}
+	
+	public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand,
+			int sales_volume, String recommend, String amount) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.origin = origin;
+		this.img_urls = img_urls;
+		this.content = content;
+		this.type = type;
+		this.brand = brand;
+		this.sales_volume = sales_volume;
+		this.recommend = recommend;
+		this.amount = amount;
+	}
 
+	
 	public String getName() {
 		return name;
 	}

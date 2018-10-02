@@ -15,6 +15,8 @@ public class RecipeVO {
 	private String descript;
 	private String content;
 	private String tip;
+	private boolean recommand;
+	
 	
 	public RecipeVO() {
 		super();
@@ -36,6 +38,25 @@ public class RecipeVO {
 		this.descript = descript;
 		this.content = content;
 		this.tip = tip;
+	}
+	
+	public RecipeVO(int num, String name, String imgurls, String main_ingredientents, String sub_ingredientents,
+			String writer, String date, String type, int hits, String descript, String content, String tip,
+			boolean recommand) {
+		super();
+		this.num = num;
+		this.name = name;
+		this.imgurls = imgurls;
+		this.main_ingredientents = main_ingredientents;
+		this.sub_ingredientents = sub_ingredientents;
+		this.writer = writer;
+		this.date = date;
+		this.type = type;
+		this.hits = hits;
+		this.descript = descript;
+		this.content = content;
+		this.tip = tip;
+		this.recommand = recommand;
 	}
 
 	public int getNum() {
