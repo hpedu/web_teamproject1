@@ -39,4 +39,53 @@ public interface StringQuery {
 		//추천 상품 관리자가 지정해서 추천 레서피 2개
 		String SELECT_SHOWRECOMMENDPRODUCT = "SELECT name, price ,origin ,img_urls, content, type,\r\n" + 
 				"brand, sales_volume,recommend from product WHERE recommend='chu' AND ROWNUM<=2";
+		
+		
+		String INSERT_RECIPE = 
+				"INSERT INTO RECIPE (no ,name ,img_urls ,main_ingredients ,sub_ingredients ,writer ,register_date ,type ,hits ,descript ,content ,tip)"
+				+ " VALUES(?,?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?, ? )";
+		
+		String INSERT_REVIEW = 
+				"INSERT INTO REVIEW (no ,writer ,img_urls ,register_date ,content)"
+				+ " VALUES(?, ?, ?, sysdate, ?)";
+		
+		String INSERT_PRODUCT = 
+				"INSERT INTO PRODUCT (name ,price ,origin ,imgurls ,content ,type ,brand, sales_volume , recommend )"
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?,?,?)";
+		
+	
+		String DELETE_RECIPE="DELETE FROM recipe WHERE no=?";
+		
+		String DELETE_REVIEW="DELETE FROM review WHERE no=?";
+		
+		String DELETE_PRODUCT="DELETE FROM product WHERE name=?";
+		
+		String UPDATE_RECIPE="UPDATE recipe SET name=?, img_urls=? , main_ingredients=?, sub_ingredients=?, writer=?, type=?, hits=?, descript=?, content=?, tip=? WHERE no=?";
+		
+		String UPDATE_REVIEW="UPDATE review SET writer=? , img_urls=?, content=? WHERE no=?";
+			
+		String UPDATE_PRODUCT="UPDATE product SET price=? , origin=?, imgurls=?, content=?, type=?, brand=? ,recommend=? ,sales_volume=? WHERE name=?";
+		
+		
+		 String INSERT_MEMBER = "INSERT INTO member(id,password,name,email,birthday,address) "
+		            + "VALUES(?,?,?,?,?,?)";
+
+		   String SELECT_CHECK_ID = "SELECT count(-1) FROM member "
+		              + "WHERE id=?";
+		     String SELECT_SEARCH_ID = "SELECT id FROM member "
+		              + "WHERE name=? AND ssn=?";
+
+		     String SELECT_SEARCH_PASSWORD = "SELECT password FROM member "
+		                     + "WHERE id=? AND name=? AND ssn=?";
+
+		     String UPDATE_MEMBER = "UPDATE member SET password=?, name=?, nickname=? "
+		             + "WHERE id=?";
+
+		     String LOGIN_MEMBER = "SELECT id, password, name FROM member "
+		           + "WHERE id=? AND password=?";
+
+		     String SEARCH_MEMBER = "SELECT id, password FROM member"
+		    + " WHERE id=?";
+
+		
 }

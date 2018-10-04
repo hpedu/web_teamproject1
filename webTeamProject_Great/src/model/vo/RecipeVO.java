@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class RecipeVO {
 
-	private int no;
+	private int num;
 	private String name;
 	private String imgurls;
 	private String main_ingredientents;

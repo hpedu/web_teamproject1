@@ -1,4 +1,4 @@
-package model.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import model.dao.DataSourceManager;
 import model.vo.MemberVO;
 import query.StringQuery;
 
