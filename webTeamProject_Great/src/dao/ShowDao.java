@@ -79,7 +79,7 @@ public class ShowDao {
 						 rs.getString("descript"),
 						 rs.getString("content"),
 						 rs.getString("tip"),
-						 rs.getString("recommend")));
+						 rs.getBoolean("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -110,7 +110,7 @@ public class ShowDao {
 						 rs.getString("descript"),
 						 rs.getString("content"),
 						 rs.getString("tip"),
-						 rs.getString("recommend")));
+						 rs.getBoolean("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -141,7 +141,7 @@ public class ShowDao {
 						 rs.getString("descript"),
 						 rs.getString("content"),
 						 rs.getString("tip"),
-						 rs.getString("recommend")));
+						 rs.getBoolean("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -166,8 +166,8 @@ public class ShowDao {
 						               rs.getString("content"),
 						               rs.getString("type"),
 						               rs.getString("brand"), 
-						               rs.getString("sales_volume"),
-						               rs.getString("recommend")));
+						               rs.getInt("sales_volume"),
+						               rs.getBoolean("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -192,8 +192,8 @@ public class ShowDao {
 						               rs.getString("content"),
 						               rs.getString("type"),
 						               rs.getString("brand"), 
-						               rs.getString("sales_volume"),
-						               rs.getString("recommend")));
+						               rs.getInt("sales_volume"),
+						               rs.getBoolean("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -201,27 +201,7 @@ public class ShowDao {
 		return list;
 	}
 	
-	public ArrayList<BoardVO> showReview() throws SQLException {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
-		try {
-			conn = getConnect();
-			ps = conn.prepareStatement(StringQuery.REVIEW);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				list.add(new BoardVO(rs.getInt("no"), 
-									 rs.getString("writer"),
-									 rs.getString("img_urls"), 
-									 rs.getString("register_date"),
-									 rs.getString("content")));
-				}
-		} finally {
-			closeAll(rs, ps, conn);
-		}
-		return list;
-	}
+	
 	
 	public ArrayList<BoardVO> showNotice() throws SQLException {
 		Connection conn = null;
@@ -296,6 +276,27 @@ public class ShowDao {
 			closeAll(rs, ps, conn);
 		}
 		return count;
+	}
+	
+	public ArrayList<ProductVO> showIngredientsProduct(int no) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
+		try {
+			conn = getConnect();
+			ps = conn.prepareStatement(ShowQuery.SELECT_SHOWINGREDIENTSPRODUCT);
+			ps.setInt(1, no);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new ProductVO(rs.getString("name"), rs.getInt("price"), rs.getString("origin"),
+						rs.getString("img_urls"), rs.getString("content"), rs.getString("type"), rs.getString("brand"),
+						rs.getInt("sales_volume"), rs.getString("recommend"), rs.getString("amount")));
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
 	}
 	
 	
