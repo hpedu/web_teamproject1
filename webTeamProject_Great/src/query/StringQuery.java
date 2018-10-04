@@ -4,20 +4,6 @@ import model.dao.CommonConstants;
 
 public interface StringQuery {
 
-	String REVIEW = "SELECT no, writer, img_urls, register_date, content, category FROM notice WHERE category = ?";
-
-	String PAGE_LIST = "SELECT no, writer, img_urls,register_date, content"
-			+ "(SELECT no, writer, img_urls,register_date, content, ceil(rownum/"
-			+ CommonConstants.CONTENT_NUMBER_PER_PAGE + ") AS page FROM"
-			+ "(SELECT no, writer, img_urls,to_char(time_posted, 'YYYY.MM.DD') register_date, content FROM board order by no desc)) where page=?";
-
-	String TOTAL_COUNT = "select count(-1) from board";
-}=======package query;
-
-import model.dao.CommonConstants;
-
-public interface StringQuery {
-
 	String NOTICE = "SELECT no, writer, img_urls, register_date, content FROM notice";
 	
 	String PAGE_LIST = "SELECT no, writer, img_urls,register_date, content" +
@@ -41,7 +27,7 @@ public interface StringQuery {
 		
 		//추천레서피 관리자가 지정해서 추천레서피 2개
 		String SELECT_SHOWRECOMMENDRECIPE = "SELECT no, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n" + 
-				"hits, descript, content, tip,recommend from recipe where recommend='chu' AND ROWNUM<=2";
+				"hits, descript, content, tip,recommend from recipe where recommend='true' AND ROWNUM<=2";
 		
 		//판매량 순 내림차순 정렬후 상위 4개 상품 검색
 		String SELECT_SHOWHOTPRODUCT = "SELECT name, price ,origin ,img_urls, content, type,\r\n" + 
@@ -52,8 +38,12 @@ public interface StringQuery {
 		
 		//추천 상품 관리자가 지정해서 추천 레서피 2개
 		String SELECT_SHOWRECOMMENDPRODUCT = "SELECT name, price ,origin ,img_urls, content, type,\r\n" + 
-				"brand, sales_volume,recommend from product WHERE recommend='chu' AND ROWNUM<=2";
+				"brand, sales_volume,recommend from product WHERE recommend='true' AND ROWNUM<=2";
 		
+		//no번호 상품의 서브재료들의 상품을 전부 검색 하는 쿼리 ( 서브재료 등록시 ,로 구분해서 등록해야한다)
+		String SELECT_SHOWINGREDIENTSPRODUCT ="SELECT * FROM product where name in(select distinct TRIM(REGEXP_SUBSTR(ORG_DATA, '[^,]+', 1, LEVEL)) AS SPLIT_DATA\r\n" + 
+				"from (SELECT sub_ingredients AS ORG_DATA FROM recipe where no = ? )\r\n" + 
+				"CONNECT BY  INSTR(ORG_DATA, ',', 1, LEVEL - 1) > 0)";
 		
 		String INSERT_RECIPE = 
 				"INSERT INTO RECIPE (no ,name ,img_urls ,main_ingredients ,sub_ingredients ,writer ,register_date ,type ,hits ,descript ,content ,tip)"
