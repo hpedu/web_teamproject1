@@ -4,7 +4,7 @@ import model.dao.CommonConstants;
 
 public interface StringQuery {
 
-	String NOTICE = "SELECT no, writer, img_urls, register_date, content FROM notice";
+	String REVIEW = "SELECT no, writer, img_urls, register_date, content, category FROM notice WHERE category = ?";
 	
 	String PAGE_LIST = "SELECT no, writer, img_urls,register_date, content" +
             "(SELECT no, writer, img_urls,register_date, content, ceil(rownum/"+CommonConstants.CONTENT_NUMBER_PER_PAGE+") AS page FROM" +

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:import url="header.jsp"></c:import>
+
 
 
 	<div class="container" style="padding:100px">
