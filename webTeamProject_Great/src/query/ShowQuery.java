@@ -1,5 +1,7 @@
 package query;
 
+import model.dao.CommonConstants;
+
 public interface ShowQuery {
 	//조회수 순으로 내림차순 정렬후 상위 4개의 레서피를 검색합니다.
 	String SELECT_SHOWHOTRECIPE = "SELECT no, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n" + 
@@ -44,6 +46,5 @@ public interface ShowQuery {
 	String REVIEW_TOTAL_COUNT = "select count(-1) from review";
 	
 	String NOTICE_TOTAL_COUNT = "select count(-1) from notice";
-			"brand, sales_volume,recommend, amount from product WHERE recommend='chu' AND ROWNUM<=2";
 
 }

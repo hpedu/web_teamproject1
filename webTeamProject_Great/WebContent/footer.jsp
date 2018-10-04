@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +10,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
-<body >
-	<div class="bg-dark">
+<body>
+<div class="bg-dark">
 		<div class="container">
 				<a class="text-light" style="color:gray" href="#">개인정보 취급방침</a> |
 				<a class="text-light" style="color:gray" href="#">이용약관</a> |
@@ -38,6 +40,7 @@
 			
 		</div>
 	</div>
+
 
 
 </body>

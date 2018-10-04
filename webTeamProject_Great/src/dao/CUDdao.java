@@ -138,7 +138,7 @@ public class CUDdao {
 			ps.setString(6, vo.getType());
 			ps.setString(7, vo.getBrand());
 			ps.setInt(8, vo.getSales_volume());
-			ps.setString(9, vo.getRecommend());
+			ps.setBoolean(9, vo.getRecommend());
 			
 		
 						
@@ -259,7 +259,7 @@ public class CUDdao {
 			ps.setString(4, vo.getContent());
 			ps.setString(5, vo.getType());
 			ps.setString(6, vo.getBrand());
-			ps.setString(7, vo.getRecommend());
+			ps.setBoolean(7, vo.getRecommend());
 			ps.setInt(8, vo.getSales_volume());
 			ps.setString(9, vo.getName());
 			
