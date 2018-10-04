@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,20 +22,20 @@
   <!-- Links -->
   <ul class="navbar-nav nav-pills">
     <li class="nav-item">
-      <a class="nav-link" href="#" style="color:white">ë ˆì‹œí”¼</a>
+      <a class="nav-link" href="#" style="color:white">·¹½ÃÇÇ</a>
        
     </li>
     
     <li><a class="nav-link" href="#">|</a></li>
     
     <li class="nav-item">
-      <a class="nav-link" href="#" style="color:white">ë‚˜ë§Œì˜ ë ˆì‹œí”¼</a>
+      <a class="nav-link" href="#" style="color:white">³ª¸¸ÀÇ ·¹½ÃÇÇ</a>
     </li>
     
     <li><a class="nav-link" href="#">|</a></li>
     
     <li class="nav-item">
-      <a class="nav-link" href="#" style="color:white">ë ˆì‹œí”¼ Talk</a>
+      <a class="nav-link" href="#" style="color:white">·¹½ÃÇÇ Talk</a>
     </li>
     
     <li><a class="nav-link" href="#">|</a></li>
@@ -55,10 +55,10 @@
     <img src="./img/member.png" alt="logo" style="width:20px;">
   </button>
 	<div class="dropdown-menu">
-    <a class="dropdown-item" href="login.jsp">ë¡œê·¸ì¸</a>
-    <a class="dropdown-item" href="register.jsp">íšŒì›ê°€ìž…</a>
+    <a class="dropdown-item" href="login.jsp">·Î±×ÀÎ</a>
+    <a class="dropdown-item" href="register.jsp">È¸¿ø°¡ÀÔ</a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#" onclick="alert('ì¤€ë¹„ì¤‘ìž…ë‹ˆë‹¤.')">ID/PW ì°¾ê¸°</a>
+    <a class="dropdown-item" href="#" onclick="alert('ÁØºñÁßÀÔ´Ï´Ù.')">ID/PW Ã£±â</a>
   </div>
   </div>
   </div>

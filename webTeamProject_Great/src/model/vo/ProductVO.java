@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/master
 package model.vo;
 
 public class ProductVO {
@@ -10,13 +13,13 @@ public class ProductVO {
 	private String type;
 	private String brand;
 	private int sales_volume;
-	private Boolean recommend;
+	private String recommend;
 	private String amount;
 	
 	public ProductVO() {}
 
 	public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand,
-			int sales_volume, Boolean recommend) {
+			int sales_volume, String recommend) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -30,7 +33,7 @@ public class ProductVO {
 	}
 	
 	public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand,
-			int sales_volume, Boolean recommend, String amount) {
+			int sales_volume, String recommend, String amount) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -109,11 +112,11 @@ public class ProductVO {
 		this.sales_volume = sales_volume;
 	}
 
-	public Boolean getRecommend() {
+	public String getRecommend() {
 		return recommend;
 	}
 
-	public void setRecommend(Boolean recommend) {
+	public void setRecommend(String recommend) {
 		this.recommend = recommend;
 	}
 

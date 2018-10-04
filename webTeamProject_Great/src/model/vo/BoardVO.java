@@ -15,15 +15,6 @@ public class BoardVO {
 		this.img_urls = img_urls;
 		this.content = content;
 	}
-	
-	public BoardVO(int no, String writer, String register_date, String content) {
-		super();
-		this.no = no;
-		this.writer = writer;
-		this.register_date = register_date;
-		
-		this.content = content;
-	}
 	public int getNo() {
 		return no;
 	}
