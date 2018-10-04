@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/master
 package model.vo;
 
 public class ProductVO {

@@ -79,7 +79,7 @@ public class ShowDao {
 						 rs.getString("descript"),
 						 rs.getString("content"),
 						 rs.getString("tip"),
-						 rs.getBoolean("recommend")));
+						 rs.getString("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -110,7 +110,7 @@ public class ShowDao {
 						 rs.getString("descript"),
 						 rs.getString("content"),
 						 rs.getString("tip"),
-						 rs.getBoolean("recommend")));
+						 rs.getString("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -141,7 +141,7 @@ public class ShowDao {
 						 rs.getString("descript"),
 						 rs.getString("content"),
 						 rs.getString("tip"),
-						 rs.getBoolean("recommend")));
+						 rs.getString("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -166,7 +166,7 @@ public class ShowDao {
 						               rs.getString("content"),
 						               rs.getString("type"),
 						               rs.getString("brand"), 
-						               rs.getInt("sales_volume"),
+						               rs.getString("sales_volume"),
 						               rs.getString("recommend")));
 			}
 		}finally {
@@ -192,7 +192,7 @@ public class ShowDao {
 						               rs.getString("content"),
 						               rs.getString("type"),
 						               rs.getString("brand"), 
-						               rs.getInt("sales_volume"),
+						               rs.getString("sales_volume"),
 						               rs.getString("recommend")));
 			}
 		}finally {
@@ -201,6 +201,102 @@ public class ShowDao {
 		return list;
 	}
 	
+	public ArrayList<BoardVO> showReview() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
+		try {
+			conn = getConnect();
+			ps = conn.prepareStatement(StringQuery.REVIEW);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new BoardVO(rs.getInt("no"), 
+									 rs.getString("writer"),
+									 rs.getString("img_urls"), 
+									 rs.getString("register_date"),
+									 rs.getString("content")));
+				}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	
+	public ArrayList<BoardVO> showNotice() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
+		try {
+			conn = getConnect();
+			ps = conn.prepareStatement(StringQuery.REVIEW);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new BoardVO(rs.getInt("no"), 
+									 rs.getString("writer"), 
+									 rs.getString("register_date"),
+									 rs.getString("content")));
+				}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	
+	public ArrayList<BoardVO> showReview() throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
+		try {
+			conn = getConnect();
+			ps = conn.prepareStatement(StringQuery.REVIEW);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(new BoardVO(rs.getInt("no"), 
+									 rs.getString("writer"),
+									 rs.getString("img_urls"), 
+									 rs.getString("register_date"),
+									 rs.getString("content")));
+				}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	
+	public int getReviewTotalPostingCount() throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps =null;
+		ResultSet rs=  null;
+		int count=-1;
+		try{
+			conn=  getConnect();
+			ps = conn.prepareStatement(StringQuery.TOTAL_COUNT);
+			rs = ps.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		}finally{
+			closeAll(rs, ps, conn);
+		}
+		return count;
+	}
+	
+	public int getNoticeTotalPostingCount() throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps =null;
+		ResultSet rs=  null;
+		int count=-1;
+		try{
+			conn=  getConnect();
+			ps = conn.prepareStatement(StringQuery.TOTAL_COUNT);
+			rs = ps.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		}finally{
+			closeAll(rs, ps, conn);
+		}
+		return count;
+	}
 	
 	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
@@ -237,43 +333,4 @@ public class ShowDao {
 			System.out.println(recipes);
 		}
 	}
-	
-	public ArrayList<BoardVO> showNotice() throws SQLException {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
-		try {
-			conn = getConnect();
-			ps = conn.prepareStatement(StringQuery.NOTICE);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				list.add(new BoardVO(rs.getInt("no"), 
-									 rs.getString("writer"),
-									 rs.getString("img_urls"), 
-									 rs.getString("register_date"),
-									 rs.getString("content")));
-				}
-		} finally {
-			closeAll(rs, ps, conn);
-		}
-		return list;
-	}
-	
-	public int getTotalPostingCount() throws SQLException{
-		Connection conn = null;
-		PreparedStatement ps =null;
-		ResultSet rs=  null;
-		int count=-1;
-		try{
-			conn=  getConnect();
-			ps = conn.prepareStatement(StringQuery.TOTAL_COUNT);
-			rs = ps.executeQuery();
-			if(rs.next()) count = rs.getInt(1);
-		}finally{
-			closeAll(rs, ps, conn);
-		}
-		return count;
-	}
-	
 }
