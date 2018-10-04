@@ -109,10 +109,3 @@ public class PagingBean {
 		return flag;
 	}	
 }
-
-
-
-
-
-
-

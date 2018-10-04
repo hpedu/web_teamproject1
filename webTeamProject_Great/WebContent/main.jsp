@@ -32,6 +32,6 @@
 			</form>
 		</div>
 	</div>
-
+	<c:import url="header.jsp"></c:import>
 </body>
 </html>

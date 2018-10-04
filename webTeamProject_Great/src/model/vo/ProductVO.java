@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
 package model.vo;
 
 public class ProductVO {
@@ -8,10 +12,14 @@ public class ProductVO {
 	private String content;
 	private String type;
 	private String brand;
+	private int sales_volume;
+	private String recommend;
+	private String amount;
 	
 	public ProductVO() {}
 
-	public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand) {
+	public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand,
+			int sales_volume, String recommend) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -20,8 +28,26 @@ public class ProductVO {
 		this.content = content;
 		this.type = type;
 		this.brand = brand;
+		this.sales_volume = sales_volume;
+		this.recommend = recommend;
+	}
+	
+	public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand,
+			int sales_volume, String recommend, String amount) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.origin = origin;
+		this.img_urls = img_urls;
+		this.content = content;
+		this.type = type;
+		this.brand = brand;
+		this.sales_volume = sales_volume;
+		this.recommend = recommend;
+		this.amount = amount;
 	}
 
+	
 	public String getName() {
 		return name;
 	}
@@ -78,9 +104,26 @@ public class ProductVO {
 		this.brand = brand;
 	}
 
+	public int getSales_volume() {
+		return sales_volume;
+	}
+
+	public void setSales_volume(int sales_volume) {
+		this.sales_volume = sales_volume;
+	}
+
+	public String getRecommend() {
+		return recommend;
+	}
+
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
+	}
+
 	@Override
 	public String toString() {
-		return "ProductVO [name=" + name + ", price=" + price + ", origin=" + origin + ", imgurls=" + img_urls
-				+ ", content=" + content + ", type=" + type + ", brand=" + brand + "]";
+		return "ProductVO [name=" + name + ", price=" + price + ", origin=" + origin + ", img_urls=" + img_urls
+				+ ", content=" + content + ", type=" + type + ", brand=" + brand + ", sales_volume=" + sales_volume
+				+ ", recommend=" + recommend + "]";
 	}
 }
