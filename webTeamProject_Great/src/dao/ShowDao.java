@@ -299,7 +299,6 @@ public class ShowDao {
 	}
 	
 	
-	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		ShowDao db = new ShowDao("127.0.0.1");
 		System.out.println("hot recipe");
