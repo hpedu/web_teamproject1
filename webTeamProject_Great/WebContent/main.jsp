@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@
 				<div class="col-md-10">
 				
 				<div class="input-group mb-2" width="50%">
-  				<input type="text" class="form-control" placeholder="±×·¹ÀÕ!" aria-label="Recipient's username" aria-describedby="button-addon2">
+  				<input type="text" class="form-control" placeholder="ê·¸ë ˆìž‡!" aria-label="Recipient's username" aria-describedby="button-addon2">
   					<div class="input-group-append">
    					 <button class="btn" style="background-color: orange" type="button" id="button-addon2">Search</button>
  				</div>
