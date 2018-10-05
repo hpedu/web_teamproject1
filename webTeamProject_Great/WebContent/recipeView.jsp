@@ -17,7 +17,7 @@
 	<div class="container">
 		<div>
 			<br><br>
-			<h1 align="center">레시피 등록</h1><br><br>
+			<h1 align="center">Recipe enroll</h1><br><br>
 			<h5>음식이름</h5>
 			<input type="text" class="form-control" placeholder="ex)김치볶음밥"	><br><br>
 		</div>	
@@ -26,33 +26,27 @@
 			<div class="input-group mb-3">
 			<input type="file" class="form-control" placeholder="음식사진1" style="width=50%">
 			<div class="input-group-append">
-			<button type="button" class="btn btn-enroll">등록하기</button></div></div>
+			<button type="button" class="btn btn-enroll">upload</button></div></div>
 			<div class="input-group mb-3">
 			<input type="file" class="form-control" placeholder="음식사진2" style="width=50%">
 			<div class="input-group-append">
-			<button type="button" class="btn btn-enroll">등록하기</button></div></div>
+			<button type="button" class="btn btn-enroll">upload</button></div></div>
 			<div class="input-group mb-3">
 			<input type="file" class="form-control" placeholder="음식사진3" style="width=50%">
 			<div class="input-group-append">
-			<button type="button" class="btn btn-enroll">등록하기</button></div></div><br><br>
+			<button type="button" class="btn btn-enroll">upload</button></div></div><br><br>
 		</div>
 	</div>
 	
 	<div class="container">
-	<div>
- 	 <h5>음식 분류</h5>
-  		<div class="dropdown">
-  		  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-   			선택해주세요
-   		  </button>
-   			 <div class="dropdown-menu">
-   		  	 	<a class="dropdown-item" href="#">찌개류</a>
-   		  	 	<a class="dropdown-item" href="#">볶음류</a>
-   		 		<a class="dropdown-item" href="#">구이류</a>
-  		 	 </div>
- 		</div>
- 		
-	</div>
+	<h5>음식 분류</h5>
+		<select name="category">
+	  		<option value="구이" selected="selected">구이</option>
+	  		<option value="면류">면류</option>
+	  		<option value="밥류">밥류</option>
+	  		<option value="샐러드">샐러드</option>
+	  		<option value="국류">국류</option>
+		</select>
 	</div>
 	<br><br>
 	<div class="container">
@@ -93,7 +87,7 @@
 			</div>
 		</div>
 		<div>
-			<h5><span class="badge badge-secondary">Tip</span></h5>
+			<h5><span class="badge badge-warning">Tip</span></h5>
 			
 			
 			<div class="container">
@@ -104,7 +98,7 @@
 			    </div>
 			  </form>
 			 <button type="submit" class="btn btn-default">취소하기</button>
-			 <button type="submit" class="btn btn-primary">등록하기</button>
+			 <button type="submit" class="btn btn-info">등록하기</button>
 			</div>
 		</div>
 	</div>
