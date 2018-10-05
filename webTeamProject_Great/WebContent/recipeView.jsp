@@ -97,10 +97,13 @@
 			      <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
 			    </div>
 			  </form>
+			 <div align="right">  
 			 <button type="submit" class="btn btn-default">취소하기</button>
 			 <button type="submit" class="btn btn-info">등록하기</button>
+			 </div>
 			</div>
 		</div>
-	</div>
+	</div><br><br><br>
+	<c:import url="footer.jsp"></c:import>
 </body>
 </html>
