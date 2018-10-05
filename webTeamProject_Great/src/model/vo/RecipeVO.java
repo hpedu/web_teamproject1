@@ -1,7 +1,6 @@
 package model.vo;
 
 public class RecipeVO {
-
 	private int num;
 	private String name;
 	private String imgurls;
@@ -14,7 +13,7 @@ public class RecipeVO {
 	private String descript;
 	private String content;
 	private String tip;
-	private boolean recommend;
+	private String recommend;
 	public String getName() {
 		return name;
 	}
@@ -82,10 +81,11 @@ public class RecipeVO {
 		this.tip = tip;
 	}
 	
-	public boolean isRecommend() {
+	
+	public String getRecommend() {
 		return recommend;
 	}
-	public void setRecommend(boolean recommend) {
+	public void setRecommend(String recommend) {
 		this.recommend = recommend;
 	}
 	public int getNum() {
@@ -99,7 +99,7 @@ public class RecipeVO {
 	}
 	public RecipeVO(int num, String name, String imgurls, String main_ingredientents, String sub_ingredientents,
 			String writer, String register_date, String type, int hits, String descript, String content, String tip,
-			boolean recommend) {
+			String recommend) {
 		super();
 		this.num = num;
 		this.name = name;
@@ -122,6 +122,7 @@ public class RecipeVO {
 				+ ", register_date=" + register_date + ", type=" + type + ", hits=" + hits + ", descript=" + descript
 				+ ", content=" + content + ", tip=" + tip + ", recommend=" + recommend + "]";
 	}
+	
 	
 	
 	

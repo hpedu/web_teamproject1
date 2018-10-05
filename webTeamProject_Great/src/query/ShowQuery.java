@@ -4,6 +4,7 @@ import model.dao.CommonConstants;
 
 public interface ShowQuery {
 	// 조회수 순으로 내림차순 정렬후 상위 4개의 레서피를 검색합니다.
+	// 조회수 순으로 내림차순 정렬후 상위 4개의 레서피를 검색합니다.
 		String SELECT_SHOWHOTRECIPE = "SELECT num, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n"
 				+ "hits, descript, content, tip,recommend from \r\n"
 				+ "(SELECT num, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n"
