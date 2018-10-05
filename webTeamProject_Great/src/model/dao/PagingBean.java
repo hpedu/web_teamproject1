@@ -1,7 +1,4 @@
 package model.dao;
-
-import model.dao.CommonConstants;
-
 /**
  * 페이징 처리를 위한 비즈니스 클래스 
  * @author kosta-00-kangsa-001
@@ -112,10 +109,3 @@ public class PagingBean {
 		return flag;
 	}	
 }
-
-
-
-
-
-
-

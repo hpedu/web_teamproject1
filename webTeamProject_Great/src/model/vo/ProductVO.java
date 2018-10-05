@@ -10,13 +10,13 @@ public class ProductVO {
 	private String type;
 	private String brand;
 	private int sales_volume;
-	private String recommend;
+	private boolean recommend;
 	private String amount;
 	
 	public ProductVO() {}
 
 	public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand,
-			int sales_volume, String recommend) {
+			int sales_volume, boolean recommend) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -30,7 +30,7 @@ public class ProductVO {
 	}
 	
 	public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand,
-			int sales_volume, String recommend, String amount) {
+			int sales_volume, boolean recommend, String amount) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -109,11 +109,11 @@ public class ProductVO {
 		this.sales_volume = sales_volume;
 	}
 
-	public String getRecommend() {
+	public boolean getRecommend() {
 		return recommend;
 	}
 
-	public void setRecommend(String recommend) {
+	public void setRecommend(boolean recommend) {
 		this.recommend = recommend;
 	}
 

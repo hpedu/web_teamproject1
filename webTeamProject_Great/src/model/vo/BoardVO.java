@@ -1,20 +1,25 @@
 package model.vo;
 
-import java.sql.Date;
-
 public class BoardVO {
 	private int no;
 	private String writer;
+	private String register_date;
 	private String img_urls;
-	private String date;
 	private String content;
 	public BoardVO() {}
-	public BoardVO(int no, String writer, String img_urls, String date, String content) {
+	public BoardVO(int no, String writer, String register_date, String img_urls, String content) {
 		super();
 		this.no = no;
 		this.writer = writer;
+		this.register_date = register_date;
 		this.img_urls = img_urls;
-		this.date = date;
+		this.content = content;
+	}
+	public BoardVO(int no, String writer, String register_date, String content) {
+		super();
+		this.no = no;
+		this.writer = writer;
+		this.register_date = register_date;
 		this.content = content;
 	}
 	public int getNo() {
@@ -29,17 +34,14 @@ public class BoardVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getImg_urls() {
-		return img_urls;
+	public String getRegister_date() {
+		return register_date;
+	}
+	public void setRegister_date(String register_date) {
+		this.register_date = register_date;
 	}
 	public void setImg_urls(String img_urls) {
 		this.img_urls = img_urls;
-	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
 	}
 	public String getContent() {
 		return content;
@@ -49,7 +51,7 @@ public class BoardVO {
 	}
 	@Override
 	public String toString() {
-		return "BoardVO [no=" + no + ", writer=" + writer + ", img_urls=" + img_urls + ", date=" + date + ", content=" + content
+		return "BoardVO [no=" + no + ", writer=" + writer + ", register_date=" + register_date + ", img_urls" + img_urls + ", content=" + content
 				+ "]";
 	}
 	
