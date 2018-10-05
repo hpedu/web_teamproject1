@@ -17,9 +17,11 @@ public class ShowRecipeController implements Controller {
 		System.out.println("왜안대"+num);
 		RecipeVO rvo = ShowDao.getInstance().showRecipe(num);
 		System.out.println("여긴가");
+		String[] contents =  rvo.getContent().split("/");
 		request.setAttribute("rvo", rvo);
-		
-		
+		request.setAttribute("contents", contents);
+		System.out.println(contents[0]);
+		request.setAttribute("contentindex",contents.length);
 		ModelAndView mv = new ModelAndView();
 		System.out.println("ModelAndView...생성...");
 		mv.setPath("recipedetail.jsp");

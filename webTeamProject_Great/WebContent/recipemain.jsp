@@ -275,24 +275,10 @@
             <div class="hotMenu1">
             <c:forEach var="rvo" items="${RecommendRlist}">
                <div class="hotMenu2">
-                  <img alt="" src="${rvo.imgurls}"><br><br>
+                 <a href="DispatcherServlet?command=showrecipedetail&num=${rvo.num}"> <img alt="" src="${rvo.imgurls}"></a><br><br>
                   <p>${rvo.name}</p>
                </div>
 
-               <div class="hotMenu2">
-                  <img alt="" src="img/김치찌개.jpg"><br><br>
-                  <p>이름 : 김치찌개</p>
-               </div>
-
-               <div class="hotMenu2">
-                  <img alt="" src="img/부대찌개.jpg"><br><br>
-                  <p>이름 : 부대찌개</p>
-               </div>
-
-               <div class="hotMenu2">
-                  <img alt="" src="img/c2.PNG"><br><br>
-                  <p>이름 : 냉동딸기</p>
-               </div>
                </c:forEach>
             </div>
          </div>
