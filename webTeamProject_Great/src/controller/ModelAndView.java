@@ -1,34 +1,43 @@
 package controller;
 
-import java.util.HashMap;
-
 public class ModelAndView {
-	String viewName="";
-	String view="";
-	boolean redirect=false;
-	public HashMap<String, Object> map = new HashMap<String, Object>();
+	private String path;
+	private boolean isRedirect; //false
 	
-	public void setObject(String str ,Object object) {
-		map.put(str, object);
-		
+	public ModelAndView(String path, boolean isRedirect) {
+		super();
+		this.path = path;
+		this.isRedirect = isRedirect;
 	}
-	public void setViewName(String viewName) {
-		this.viewName=viewName;
-		this.view=viewName+".jsp";
-	}
+	public ModelAndView() {	}
 	
-	public HashMap<String,Object> getModelMap() {
-		return map;
+	public ModelAndView(String path) {		
+		this.path = path;		
 	}
-	
-	public String getView() {
-		return view;
+	public String getPath() {
+		return path;
 	}
-	public void isRedirect(boolean redirect) {
-		this.redirect = redirect;
+	public void setPath(String path) {
+		this.path = path;
 	}
-	
 	public boolean isRedirect() {
-		return redirect;
+		return isRedirect;
 	}
+	public void setRedirect(boolean isRedirect) {
+		this.isRedirect = isRedirect;
+	}	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

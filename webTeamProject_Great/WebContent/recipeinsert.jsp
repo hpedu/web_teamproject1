@@ -273,9 +273,10 @@
 			<div id="hotMenu">
 				<h3 align="left">오늘의 추천메뉴</h3><br>
 				<div class="hotMenu1">
+				<c:forEach var="rvo" items="${RecommendRlist}">
 					<div class="hotMenu2">
-						<img alt="" src="img/감자탕.jpg"><br><br>
-						<p>이름 : 감자탕</p>
+						<img alt="" src="${rvo.imgurls}"><br><br>
+						<p>${hvo.name}</p>
 					</div>
 
 					<div class="hotMenu2">
@@ -292,6 +293,7 @@
 						<img alt="" src="img/c2.PNG"><br><br>
 						<p>이름 : 냉동딸기</p>
 					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -336,9 +338,10 @@
 			<div id="hotMenu1">
 				<h3 align="left">HOT 메뉴</h3><br>
 				<div class="hotMenu1">
+				<c:forEach var="hvo" items="${hotRlist}">
 					<div class="hotMenu2">
-						<img alt="" src="img/감자탕.jpg"><br><br>
-						<p>이름 : 감자탕</p>
+						<img alt="" src="${hvo.imgurls}"><br><br>
+						<p>${hvo.name}</p>
 					</div>
 
 					<div class="hotMenu2">
@@ -355,6 +358,7 @@
 						<img alt="" src="img/c2.PNG"><br><br>
 						<p>이름 : 냉동딸기</p>
 					</div>
+					</c:forEach>
 				</div>
 			</div>
 
