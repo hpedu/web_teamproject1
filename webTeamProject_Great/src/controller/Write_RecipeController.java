@@ -8,8 +8,9 @@ import model.vo.RecipeVO;
 
 public class Write_RecipeController implements Controller {
 
+
 	@Override
-	public ModelAndView handleReqeust(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int num=Integer.parseInt(request.getParameter("num"));
 		System.out.println("Write_RecipeController"+num);
 		RecipeVO rvo = ShowDao.getInstance().showRecipe(num);
