@@ -14,6 +14,9 @@ public class HandlerMapping {
 		if(command.equals("search")) {
 			controller = new SearchController();
 			System.out.println("SearchController 持失...");
+		}else if(command.equals("showmain")) {
+			controller=  new ShowMainController();
+			System.out.println("ShowMainController 持失....");
 		}else if(command.equals("showrecipedetail")) {
 			controller=  new ShowRecipeController();
 			System.out.println("ShowRecipeController 持失....");

@@ -6,9 +6,9 @@ import model.dao.CommonConstants;
 public interface ShowQuery {
 	// 조회수 순으로 내림차순 정렬후 상위 4개의 레서피를 검색합니다.
 	// 조회수 순으로 내림차순 정렬후 상위 4개의 레서피를 검색합니다.
-		String SELECT_SHOWHOTRECIPE = "SELECT num, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n"
+		String SELECT_SHOWHOTRECIPE = "SELECT no, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n"
 				+ "hits, descript, content, tip,recommend from \r\n"
-				+ "(SELECT num, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n"
+				+ "(SELECT no, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n"
 				+ "hits, descript, content, tip,recommend from recipe order by hits desc)\r\n" + "where ROWNUM<=4";
 		// 시퀀스 넘버에따른 제일 새로등록된 레서피 4개
 		String SELECT_SHOWNEWRECIPE = "SELECT no, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n"
@@ -17,7 +17,7 @@ public interface ShowQuery {
 				+ "hits, descript, content, tip,recommend from recipe order by no desc)\r\n" + "where ROWNUM<=4";
 
 		// 추천레서피 관리자가 지정해서 추천레서피 2개
-		String SELECT_SHOWRECOMMENDRECIPE = "SELECT num, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n"
+		String SELECT_SHOWRECOMMENDRECIPE = "SELECT no, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n"
 				+ "hits, descript, content, tip, recommend from recipe where recommend='true' AND ROWNUM<=4";
 
 		// 판매량 순 내림차순 정렬후 상위 4개 상품 검색
@@ -38,7 +38,7 @@ public interface ShowQuery {
 		// 관련 레시피 메소드 같은 타입인 레시피들이 나열된다.
 		String SELECT_SHOWRELATEDRECIPE = "select*from recipe where type =(select type from recipe where no = ?)";
 		
-		String SELECT_SHOWRECIPE = "select*from recipe where num=?";
+		String SELECT_SHOWRECIPE = "select*from recipe where no=?";
 	
 	String REVIEW = "SELECT no, writer, img_urls, register_date, content FROM review";
 	

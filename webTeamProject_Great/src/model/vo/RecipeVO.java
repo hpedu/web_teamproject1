@@ -14,7 +14,7 @@ public class RecipeVO {
 	private String content;
 	private String tip;
 
-	private boolean recommend;
+	private String recommend;
 
 	
 	public RecipeVO() {
@@ -41,10 +41,10 @@ public class RecipeVO {
 	}
 
 	
-	public boolean getRecommend() {
+	public String getRecommend() {
 		return recommend;
 	}
-	public void setRecommend(boolean recommend) {
+	public void setRecommend(String recommend) {
 		this.recommend = recommend;}
 
 
@@ -52,7 +52,7 @@ public class RecipeVO {
 
 			String writer, String register_date, String type, int hits, String descript, String content, String tip,
 
-			boolean recommend) {
+			String recommend) {
 
 		super();
 		this.num = num;
