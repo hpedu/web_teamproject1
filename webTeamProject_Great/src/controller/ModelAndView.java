@@ -3,32 +3,38 @@ package controller;
 import java.util.HashMap;
 
 public class ModelAndView {
-	String viewName="";
-	String view="";
-	boolean redirect=false;
+	private String path;
+	private boolean isRedirect = false;
 	public HashMap<String, Object> map = new HashMap<String, Object>();
 	
+	public ModelAndView(String path, boolean isRedirect) {
+		super();
+		this.path = path;
+		this.isRedirect = isRedirect;
+	}
+	public ModelAndView() {}
+	public ModelAndView(String path) {
+		this.path = path;
+	}
+	
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
 	public void setObject(String str ,Object object) {
 		map.put(str, object);
 		
 	}
-	public void setViewName(String viewName) {
-		this.viewName=viewName;
-		this.view=viewName+".jsp";
-	}
-	
 	public HashMap<String,Object> getModelMap() {
 		return map;
 	}
 	
-	public String getView() {
-		return view;
-	}
-	public void isRedirect(boolean redirect) {
-		this.redirect = redirect;
-	}
-	
 	public boolean isRedirect() {
-		return redirect;
+		return isRedirect;
+	}
+	public void setRedirect(boolean isRedirect) {
+		this.isRedirect = isRedirect;
 	}
 }

@@ -167,7 +167,7 @@ public class ShowDao {
 						               rs.getString("type"),
 						               rs.getString("brand"), 
 						               rs.getInt("sales_volume"),
-						               rs.getBoolean("recommend")));
+						               rs.getString("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -193,7 +193,7 @@ public class ShowDao {
 						               rs.getString("type"),
 						               rs.getString("brand"), 
 						               rs.getInt("sales_volume"),
-						               rs.getBoolean("recommend")));
+						               rs.getString("recommend")));
 			}
 		}finally {
 			closeAll(rs, ps, conn);
@@ -201,14 +201,15 @@ public class ShowDao {
 		return list;
 	}
 	
-	public ArrayList<BoardVO> showReview() throws SQLException {
+	
+	public ArrayList<BoardVO> showNotice() throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
 		try {
 			conn = getConnect();
-			ps = conn.prepareStatement(StringQuery.REVIEW);
+			ps = conn.prepareStatement(StringQuery.NOTICE);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				list.add(new BoardVO(rs.getInt("no"), 
@@ -223,29 +224,7 @@ public class ShowDao {
 		return list;
 	}
 	
-	public ArrayList<BoardVO> showNotice() throws SQLException {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
-		try {
-			conn = getConnect();
-			ps = conn.prepareStatement(StringQuery.REVIEW);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				list.add(new BoardVO(rs.getInt("no"), 
-									 rs.getString("writer"), 
-									 rs.getString("register_date"),
-									 rs.getString("content")));
-				}
-		} finally {
-			closeAll(rs, ps, conn);
-		}
-		return list;
-	}
-	
-	
-	public int getReviewTotalPostingCount() throws SQLException{
+	public int getTotalPostingCount() throws SQLException{
 		Connection conn = null;
 		PreparedStatement ps =null;
 		ResultSet rs=  null;
@@ -260,26 +239,9 @@ public class ShowDao {
 		}
 		return count;
 	}
-	
-	public int getNoticeTotalPostingCount() throws SQLException{
-		Connection conn = null;
-		PreparedStatement ps =null;
-		ResultSet rs=  null;
-		int count=-1;
-		try{
-			conn=  getConnect();
-			ps = conn.prepareStatement(StringQuery.TOTAL_COUNT);
-			rs = ps.executeQuery();
-			if(rs.next()) count = rs.getInt(1);
-		}finally{
-			closeAll(rs, ps, conn);
-		}
-		return count;
-	}
-	
 	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
-		ShowDao db = new ShowDao("127.0.0.1");
+
 		System.out.println("hot recipe");
 		ArrayList<RecipeVO> list= ShowDao.getInstance().showRecipeHot();
 		System.out.println(list.size());
@@ -312,4 +274,5 @@ public class ShowDao {
 			System.out.println(recipes);
 		}
 	}
+	
 }

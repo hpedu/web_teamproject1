@@ -9,10 +9,11 @@ public class HandlerMapping {
 	}
 	
 	public Controller createFactory(String command) {
-		
 		Controller controller= null;
-		if(command.equals("itemlist.do")) {
 		
+		if(command.equals("search")) {
+			controller = new SearchController();
+			System.out.println("SearchController »ý¼º...");
 		}
 		
 		return controller;

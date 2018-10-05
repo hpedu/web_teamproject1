@@ -96,19 +96,19 @@
 		<div id ="div1">
 			<img alt="logo" src="img/logo.png" id="logo">
 					
-			<form action="#">
+			<form action="DispatcherServlet">
 				<div class="input-group mb-3">
 				    <span id="home" class="btn btn-outline-secondary">
 				    	<!-- home 페이지 연결 -->
 			        	<a href="recipeinsert.jsp"><input type="button" id="homeBtn"></a>
 			        </span>
 			        
-				    <input type="text" placeholder="Search.." id="myInput">
-	
+				    <input type="text" placeholder="Search..." id="myInput" name="search">
+					<input type="hidden" name="command" value="search">
 			        <span id="search" class="btn btn-outline-secondary">
 			        	<input type="submit" value="" id="searchBtn">
 			        </span>		        	
-				</div>	
+				</div>
 			</form>
 		</div>	
 	</div>
