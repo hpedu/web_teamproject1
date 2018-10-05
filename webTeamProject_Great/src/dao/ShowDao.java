@@ -56,6 +56,29 @@ public class ShowDao {
 		closeAll(ps, conn);
 	}
 	
+	public RecipeVO showRecipe(int num) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		RecipeVO vo = null;
+		try {
+			conn = getConnection();
+			ps = conn.prepareStatement(ShowQuery.SELECT_SHOWRECIPE);
+			ps.setInt(1, num);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				vo =new RecipeVO(rs.getInt("num"), rs.getString("name"), rs.getString("img_urls"),
+						rs.getString("main_ingredients"), rs.getString("sub_ingredients"), rs.getString("writer"),
+						rs.getString("register_date"), rs.getString("type"), rs.getInt("hits"),
+						rs.getString("descript"), rs.getString("content"), rs.getString("tip"),
+						rs.getString("recommend"));
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		return vo;
+	}
+	
 	public ArrayList<RecipeVO> showRecipeHot() throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;

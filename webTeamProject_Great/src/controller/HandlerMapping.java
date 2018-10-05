@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package controller;
 
 public class HandlerMapping {
@@ -14,9 +15,14 @@ public class HandlerMapping {
 		if(command.equals("search")) {
 			controller = new SearchController();
 			System.out.println("SearchController 持失...");
+		}else if(command.equals("showrecipedetail")) {
+			controller=  new ShowRecipeController();
+			System.out.println("ShowRecipeController 持失....");
 		}
 		
 		return controller;
 	}
 	
 }
+
+
