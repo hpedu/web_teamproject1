@@ -13,7 +13,7 @@ public class RecipeVO {
 	private String descript;
 	private String content;
 	private String tip;
-	private String recommend;
+	private boolean recommend;
 	public String getName() {
 		return name;
 	}
@@ -82,10 +82,10 @@ public class RecipeVO {
 	}
 	
 	
-	public String getRecommend() {
+	public boolean getRecommend() {
 		return recommend;
 	}
-	public void setRecommend(String recommend) {
+	public void setRecommend(boolean recommend) {
 		this.recommend = recommend;
 	}
 	public int getNum() {
@@ -99,7 +99,7 @@ public class RecipeVO {
 	}
 	public RecipeVO(int num, String name, String imgurls, String main_ingredientents, String sub_ingredientents,
 			String writer, String register_date, String type, int hits, String descript, String content, String tip,
-			String recommend) {
+			boolean recommend) {
 		super();
 		this.num = num;
 		this.name = name;

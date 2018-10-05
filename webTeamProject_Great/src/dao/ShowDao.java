@@ -62,7 +62,7 @@ public class ShowDao {
 		ResultSet rs = null;
 		RecipeVO vo = null;
 		try {
-			conn = getConnection();
+			conn = getConnect();
 			ps = conn.prepareStatement(ShowQuery.SELECT_SHOWRECIPE);
 			ps.setInt(1, num);
 			rs = ps.executeQuery();
@@ -71,7 +71,7 @@ public class ShowDao {
 						rs.getString("main_ingredients"), rs.getString("sub_ingredients"), rs.getString("writer"),
 						rs.getString("register_date"), rs.getString("type"), rs.getInt("hits"),
 						rs.getString("descript"), rs.getString("content"), rs.getString("tip"),
-						rs.getString("recommend"));
+						rs.getBoolean("recommend"));
 			}
 		} finally {
 			closeAll(rs, ps, conn);
