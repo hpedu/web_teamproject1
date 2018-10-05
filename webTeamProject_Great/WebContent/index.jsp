@@ -26,52 +26,28 @@ background-size: 100% ;
 </style>
 </head>
 <body>
-	<p>
-  <br>
-    <br>
-    <br>
-    <br>
-  
-    <br>
-    <br>
-    <br>
-    </p>
-    <p>
-  <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    </p>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-<div class="container">
-  
-   <div class="row justify-content-center">
-                        <div class="col-12 col-md-10 col-lg-8">
-                        <a href="DispatcherServlet?command=showrecipedetail&&num=1">가즈아</a>
-                        <a href="DispatcherServlet?command=showmainviw">간다아아 메인</a>
-                            <form class="card card-sm">
-                                <div class="card-body row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                        <i class="fas fa-search h4 text-body"></i>
-                                    </div>
-                                    <!--end of col-->
-                                    <div class="col">
-                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
-                                    </div>
-                                    <!--end of col-->
-                                    <div class="col-auto">
-                                        <button class="btn btn-lg btn-success" type="submit">Search</button>
-                                    </div>
-                                    <!--end of col-->
-                                </div>
-                            </form>
-                        </div>
-                        <!--end of col-->
-                    </div>
-</div>
-
+<<<<<<< HEAD
+	<img alt="index_image" src="img/index_image.JPG" id="index_image">
+	<div align="center">
+		<div id ="div1">
+			<img alt="logo" src="img/logo.png" id="logo">
+					
+			<form action="DispatcherServlet">
+				<div class="input-group mb-3">
+				    <span id="home" class="btn btn-outline-secondary">
+				    	<!-- home 페이지 연결 -->
+			        	<a href="recipeinsert.jsp"><input type="button" id="homeBtn"></a>
+			        </span>
+			        
+				    <input type="text" placeholder="Search..." id="myInput" name="search">
+					<input type="hidden" name="command" value="search">
+			        <span id="search" class="btn btn-outline-secondary">
+			        	<input type="submit" value="" id="searchBtn">
+			        </span>		        	
+				</div>
+			</form>
+		</div>	
+	</div>
 
 </body>
 </html>

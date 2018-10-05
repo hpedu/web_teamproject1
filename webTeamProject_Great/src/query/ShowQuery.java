@@ -1,3 +1,4 @@
+
 package query;
 
 import model.dao.CommonConstants;
@@ -54,4 +55,10 @@ public interface ShowQuery {
 	String REVIEW_TOTAL_COUNT = "select count(-1) from review";
 	
 	String NOTICE_TOTAL_COUNT = "select count(-1) from notice";
+	
+	String RECOMMEND_RECIPE = "SELECT no, title, writer, content, hits FROM "
+			+ "(SELECT no, title, writer, content, hits, CEIL(rownum/5) as page FROM "
+			+ "(SELECT no, title, writer, content, hits FROM board ORDER BY hits DESC)) "
+			+ "WHERE page=1";
 }
+

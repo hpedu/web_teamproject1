@@ -190,38 +190,19 @@
 
 </head>
 <body>
-<!-- 	<nav id="nav" class="navbar navbar">
-		<div id="navDiv" class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">
-					<img alt="logo" src="img/logo_white.png" id="logo">
-				</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">레시피</a></li>
-				<li><a href="#">나만의 레시피</a></li>
-				<li><a href="#">레시피 토크</a></li>
-				<li><a href="#">쇼핑몰</a></li>
-				<li><a href="#">이벤트</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-			</ul>
-		</div>
-	</nav> -->
-<c:import url="header.jsp"></c:import>
+
+<c:import url="header.jsp"/>
 	<div align="center">
 		<div id ="div1">
 			<!-- text값 가지고 -->
-			<form action="#">
+			<form action="DispatcherServlet">
 				<div class="input-group mb-3">
 				    <span>
 				    	<img alt="" src="img/cap.PNG" width="45px">
 			        </span>
 			        
-				    <input type="text" placeholder="Search.." id="myInput">
-	
+				    <input type="text" placeholder="Search..." id="myInput" name="search">
+					<input type="hidden" name="command" value="search">
 			        <span id="search" class="btn btn-outline-secondary">
 			        	<input type="submit" value="" id="searchBtn">
 			        </span>		        	
@@ -273,27 +254,25 @@
 			<div id="hotMenu">
 				<h3 align="left">오늘의 추천메뉴</h3><br>
 				<div class="hotMenu1">
-				<c:forEach var="rvo" items="${RecommendRlist}">
 					<div class="hotMenu2">
-						<img alt="" src="${rvo.imgurls}"><br><br>
-						<p>${hvo.name}</p>
+						<img alt="" src="img/product_main/0000007175432_i1_1200.jpg"><br><br>
+						<p>이름 : 감자탕</p>
 					</div>
 
 					<div class="hotMenu2">
-						<img alt="" src="img/김치찌개.jpg"><br><br>
+						<img alt="" src="img/product_main/0000007175432_i1_1200.jpg"><br><br>
 						<p>이름 : 김치찌개</p>
 					</div>
 
 					<div class="hotMenu2">
-						<img alt="" src="img/부대찌개.jpg"><br><br>
+						<img alt="" src="img/product_main/0000007175432_i1_1200.jpg"><br><br>
 						<p>이름 : 부대찌개</p>
 					</div>
 
 					<div class="hotMenu2">
-						<img alt="" src="img/c2.PNG"><br><br>
+						<img alt="" src="img/product_main/0000007175432_i1_1200.jpg"><br><br>
 						<p>이름 : 냉동딸기</p>
 					</div>
-					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -338,27 +317,25 @@
 			<div id="hotMenu1">
 				<h3 align="left">HOT 메뉴</h3><br>
 				<div class="hotMenu1">
-				<c:forEach var="hvo" items="${hotRlist}">
 					<div class="hotMenu2">
-						<img alt="" src="${hvo.imgurls}"><br><br>
-						<p>${hvo.name}</p>
+						<img alt="" src="img/recipe_main/KakaoTalk_20181001_102059583.jpg"><br><br>
+						<p>이름 : 감자탕</p>
 					</div>
 
 					<div class="hotMenu2">
-						<img alt="" src="img/김치찌개.jpg"><br><br>
+						<img alt="" src="img/recipe_main/KakaoTalk_20181001_102059583.jpg"><br><br>
 						<p>이름 : 김치찌개</p>
 					</div>
 
 					<div class="hotMenu2">
-						<img alt="" src="img/부대찌개.jpg"><br><br>
+						<img alt="" src="img/recipe_main/KakaoTalk_20181001_102059583.jpg"><br><br>
 						<p>이름 : 부대찌개</p>
 					</div>
 
 					<div class="hotMenu2">
-						<img alt="" src="img/c2.PNG"><br><br>
+						<img alt="" src="img/recipe_main/KakaoTalk_20181001_102059583.jpg"><br><br>
 						<p>이름 : 냉동딸기</p>
 					</div>
-					</c:forEach>
 				</div>
 			</div>
 

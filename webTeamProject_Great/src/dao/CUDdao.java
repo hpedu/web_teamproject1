@@ -18,9 +18,7 @@ public class CUDdao {
 	private String url;
 	private String user;
 	private String pass;
-	
-	
-	
+
 	static private CUDdao dao = new CUDdao();
 	private CUDdao( ) {								
 				url=OracleInfo.URL;
@@ -31,11 +29,8 @@ public class CUDdao {
 	public static CUDdao getInstance() {
 		return dao;
 	}
-	
-	
 
 	private Connection getConnect() throws SQLException {
-
 		Connection conn = DriverManager.getConnection(url, user, pass);
 		System.out.println("db connection....");
 		return conn;
@@ -53,13 +48,11 @@ public class CUDdao {
 			rs.close();
 		closeAll(ps, conn);
 	}
-	
 
-	
 	public void recipeWrite(RecipeVO vo) throws SQLException{
 		Connection conn = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
+
 		try {
 			conn = getConnect();
 			ps = conn.prepareStatement(StringQuery.INSERT_RECIPE);
@@ -89,11 +82,10 @@ public class CUDdao {
 		}
 	}	
 	
-	
 	public void reviewWrite(ReviewVO vo) throws SQLException{
 		Connection conn = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
+
 		try {
 			conn = getConnect();
 			ps = conn.prepareStatement(StringQuery.INSERT_REVIEW);
@@ -109,15 +101,7 @@ public class CUDdao {
 			int row = ps.executeUpdate();
 			System.out.println(row+" row insert review ok....");
 			
-			System.out.println("dao CURRENT_NO...before...."+vo.getWriter());//x
-			
-		/*	ps = conn.prepareStatement(StringQuery.CURRENT_NO);
-			rs = ps.executeQuery();
-			if(rs.next()) 
-				vo.setNo(rs.getInt(1));
-			
-			System.out.println("dao CURRENT_NO...after...."+vo.getWriter());//o
-*/		}finally{
+		}finally{
 			closeAll(ps, conn);
 		}
 	}	
@@ -125,7 +109,7 @@ public class CUDdao {
 	public void productWrite(ProductVO vo) throws SQLException{
 		Connection conn = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
+
 		try {
 			conn = getConnect();
 			ps = conn.prepareStatement(StringQuery.INSERT_PRODUCT);
@@ -138,15 +122,11 @@ public class CUDdao {
 			ps.setString(6, vo.getType());
 			ps.setString(7, vo.getBrand());
 			ps.setInt(8, vo.getSales_volume());
-			ps.setBoolean(9, vo.getRecommend());
+			ps.setString(9, vo.getRecommend());
 			
-		
-						
 			int row = ps.executeUpdate();
 			System.out.println(row+" row insert product ok....");
-			
-			System.out.println("dao CURRENT_NO...before...."+vo.getName());//x
-			
+				
 			
 		}finally{
 			closeAll(ps, conn);
@@ -202,7 +182,6 @@ public class CUDdao {
 			conn = getConnect();
 			ps = conn.prepareStatement(StringQuery.UPDATE_RECIPE);			
 			
-			//String UPDATE_RECIPE="UPDATE recipe SET name=?, img_urls=? , main_ingredients=?, sub_ingredients=?, writer=?, type=?, hits=?, descript=?, content=?, tip=? WHERE no=?";
 			ps.setString(1, vo.getName());
 			ps.setString(2, vo.getImgurls());
 			ps.setString(3, vo.getMain_ingredientents());
@@ -250,16 +229,14 @@ public class CUDdao {
 		try {
 			conn = getConnect();
 			ps = conn.prepareStatement(StringQuery.UPDATE_PRODUCT);			
-			
-			
-			
+	
 			ps.setInt(1, vo.getPrice());
 			ps.setString(2, vo.getOrigin());
 			ps.setString(3, vo.getImg_urls());
 			ps.setString(4, vo.getContent());
 			ps.setString(5, vo.getType());
 			ps.setString(6, vo.getBrand());
-			ps.setBoolean(7, vo.getRecommend());
+			ps.setString(7, vo.getRecommend());
 			ps.setInt(8, vo.getSales_volume());
 			ps.setString(9, vo.getName());
 			
@@ -271,37 +248,7 @@ public class CUDdao {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		Connection conn = CUDdao.getInstance().getConnect();
-		
-		/*RecipeVO rvo = new RecipeVO(0, "aaa","aaa","aaa","aaa","aaa","aaa",1,"aaa","aaa","aaa");
-		CUDdao.getInstance().recipeWrite(rvo);*/
-		
-		
-		
-		/*ReviewVO rvo = new ReviewVO(1, "bbb", "bbb", "bbb");
-		CUDdao.getInstance().reviewWrite(rvo);*/
-		
-				
-	/*	ProductVO rvo =new ProductVO("ccc",1,"ccc","ccc","ccc","ccc","ccc",2,"ccc");
-		CUDdao.getInstance().productWrite(rvo);*/
-		
-		//CUDdao.getInstance().deleteRecipe(0);
-		
-		/*CUDdao.getInstance().deleteReview(1);*/
-		
-		/*CUDdao.getInstance().deleteProduct("ccc");*/
-		
-		/*RecipeVO rvo = new RecipeVO(0, "ddd", "ddd", "ddd", "ddd", "ddd", "ddd", 0, "ddd", "ddd", "ddd");
-		CUDdao.getInstance().updateRecipe(rvo);*/
-		
-		/*ReviewVO rvo = new ReviewVO(0, "ccc", "ccc", "ccc");
-		CUDdao.getInstance().updateReview(rvo);*/
-		
-		/*ProductVO rvo = new ProductVO("ccc", 2, "aaa", "aaa", "aaa", "aaa", "aaa", 2, "aaa");
-		CUDdao.getInstance().updateProduct(rvo);*/
-		
-		
-		System.out.println("rvo");
+
 	}
 
 }

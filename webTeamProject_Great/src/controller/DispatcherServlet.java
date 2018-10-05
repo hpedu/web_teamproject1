@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +21,7 @@ public class DispatcherServlet extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String command = request.getParameter("command");
-		Controller controller=HandlerMapping.getInstance().createController(command);
+		Controller controller=HandlerMapping.getInstance().createFactory(command);
 		
 		String path= "index.jsp";
 		ModelAndView mv = null;
@@ -37,16 +40,4 @@ public class DispatcherServlet extends HttpServlet {
 		else request.getRequestDispatcher(path).forward(request, response);		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
