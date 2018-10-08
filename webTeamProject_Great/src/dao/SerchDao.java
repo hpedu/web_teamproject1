@@ -5,8 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import config.OracleInfo;
+import model.vo.BoardVO;
 
 public class SerchDao {
 
@@ -48,10 +50,30 @@ public class SerchDao {
 			rs.close();
 		closeAll(ps, conn);
 	}
+	public ArrayList<BoardVO> searchRe(String writer) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
+		try {
+			conn= getConnect();
+			String query = "SELECT no, title, writer, password, content, hits, time_posted FROM board WHERE writer LIKE '%"+writer+"%'";
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+					}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	
 	public static void main(String[] args) throws SQLException {
-		Connection conn = SerchDao.getInstance().getConnect();
-		
-		System.out.println("ss");
+
+		ArrayList<BoardVO> list = SerchDao.getInstance().searchRe("1");
+		for(BoardVO b : list)
+			System.out.println(b);
 	}
 }
 

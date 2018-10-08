@@ -21,18 +21,7 @@ public class BoardService {
 		if(pageNo !=null) pn = Integer.parseInt(pageNo);
 		
 		ArrayList<BoardVO> list = dao.showNotice();
-		int total = dao.getReviewTotalPostingCount();
-		PagingBean pb = new PagingBean(total,pn);
-		
-		return new ListVO(pb,list);
-	}
-	
-	public ListVO showReview(String pageNo) throws Exception {
-		int pn =1;
-		if(pageNo !=null) pn = Integer.parseInt(pageNo);
-		
-		ArrayList<BoardVO> list = dao.showReview();
-		int total = dao.getNoticeTotalPostingCount();
+		int total = dao.getTotalPostingCount();
 		PagingBean pb = new PagingBean(total,pn);
 		
 		return new ListVO(pb,list);

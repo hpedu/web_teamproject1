@@ -14,6 +14,15 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<style type="text/css">
+ #mainimg:hover{
+  -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.2);
+ }
+</style>
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>
@@ -23,36 +32,35 @@
 		<div class="row">
 			<div class="col-sm-4">
 				<!--${recipe.img_urls}에서 이미지 따와야함.-->
-				<img src="img/kimchijjige.jpg" class="rounded" alt="recipeimg"
+				<img id="mainimg" src="${rvo.imgurls}" class="rounded" alt="recipeimg"
 					style="height: 350px; width: 100%; margin: auto; border: 5px solid orange">
 			</div>
 			<div class="col-sm-8" style="padding: 20px;">
 				<H3>
-					레서피 이름 : &nbsp;&nbsp;&nbsp; <b>김치찌개<%-- ${recipe.name} --%></b>
+					레서피 이름 : &nbsp;&nbsp;&nbsp; <b>${rvo.name}<%-- ${recipe.name} --%></b>
 				</H3>
 				<hr color="orange">
 				<table style="width: 100%; height: 250px">
 					<tr>
 						<td width="100px" height="5px"><b>주 재료 :</b></td>
-						<td>김치, 두부, 돼지고기 <%-- ${recipe.main_ingredients} --%></td>
+						<td>${rvo.main_ingredientents} <%-- ${recipe.main_ingredients} --%></td>
 					</tr>
 					<tr>
 						<td><b>재료 :</b></td>
-						<td>배추김치 1/2포기, 돼지고기 100g, 대파 1뿌리, 다진 마늘 1큰술, 참기름 1큰술, 식용유
-							2큰술, 설탕 1큰술, 고춧가루 <%-- ${recipe.sub_ingredients} --%>
+						<td>${rvo.sub_ingredientents} <%-- ${recipe.sub_ingredients} --%>
 						</td>
 					</tr>
 					<tr>
 						<td><b>작성자 :</b></td>
-						<td>전진수 <%-- ${recipe.writer} --%></td>
+						<td>${rvo.writer} <%-- ${recipe.writer} --%></td>
 					</tr>
 					<tr>
 						<td><b>타입 :</b></td>
-						<td>찌개 <%-- ${recipe.type} --%></td>
+						<td>${rvo.type} <%-- ${recipe.type} --%></td>
 					</tr>
 					<tr>
 						<td><b>설명 :</b></td>
-						<td>요리 장인 전진수가 만든 팔아도 될 정도의 맛인 김치찌개입니다. 앙 배불띠 <%-- ${recipe.descript} --%></td>
+						<td>${rvo.descript } <%-- ${recipe.descript} --%></td>
 					</tr>
 				</table>
 			</div>
@@ -87,7 +95,7 @@
 			<!-- 일단 틀만 잡아놓습니다. -->
 			<div style="padding-top: 50px;">
 			<table style="margin: auto;">
-			<tr><td>1.</td><td>고기를 볶아주세요.</td></tr>
+			<tr><td>1.</td><td>고기를 볶아주세요.</td></tr> 
 			<tr><td colspan="2"><img src="img/1.jpg" width="600" height="300"></td></tr>
 			</table>
 			</div>
@@ -100,7 +108,6 @@
 			</div>
 
 		</div>
-		
 		
 		<!-- 레시피 재료  -->
 		<div style="padding-top: 80px;">
