@@ -60,7 +60,7 @@ public class RecipeDAO {
 				ps.setString(4, mvo.getMain_ingredientents());
 				ps.setString(5, mvo.getSub_ingredientents());
 				ps.setString(6, mvo.getWriter());
-				ps.setString(7, mvo.getRegister_date());
+				ps.setString(7, mvo.getDate());
 				ps.setString(8, mvo.getType());
 				ps.setInt(9, mvo.getHits());
 				ps.setString(10, mvo.getDescript());

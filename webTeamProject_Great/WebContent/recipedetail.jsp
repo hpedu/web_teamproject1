@@ -71,41 +71,30 @@
 		<div style="text-align: center">
 			<h4> <b>- 조리 방법 -</b> </h4>
 		</div>
-
+		
 		<!-- 조리방법이 나타날 공간입니다.  -->
 		<div class="" style="">
-			<!-- 폼값 어캐되는지 몰르겟다 원래는 이렇게해야겟죠?? -->
-			<%-- <c:forEach var="list" items="" varStatus="status">
+		
+			<c:forEach var="list" items="${contents}" varStatus="status">
 				<div>
 					<table>
 						<tr>
 							<td>
-								${status.count}
+								${status.count} .
 							</td>
 							<td>
-								${list.content}
+								${list}
 							</td>
 						</tr>
 						<tr>
-							${list.img_urls}
+							<td colspan="2"><img src="img/1.jpg" width="600" height="300"></td>
+							<%-- ${list.img_urls} --%>
 						</tr>
 					</table>
 				</div>
-			</c:forEach> --%>
+			</c:forEach> 
 			<!-- 일단 틀만 잡아놓습니다. -->
-			<div style="padding-top: 50px;">
-			<table style="margin: auto;">
-			<tr><td>1.</td><td>고기를 볶아주세요.</td></tr> 
-			<tr><td colspan="2"><img src="img/1.jpg" width="600" height="300"></td></tr>
-			</table>
-			</div>
 			
-			<div style="padding-top: 50px;">
-			<table style="margin: auto;">
-			<tr><td>1.</td><td>고기를 볶아주세요.</td></tr>
-			<tr><td colspan="2"><img src="img/1.jpg" width="600" height="300"></td></tr>
-			</table>
-			</div>
 
 		</div>
 		

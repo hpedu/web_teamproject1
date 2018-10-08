@@ -13,19 +13,15 @@ public class RecipeVO {
 	private String descript;
 	private String content;
 	private String tip;
-<<<<<<< HEAD
-	private boolean recommend;
-	
+
+	private String recommend;
+
 	
 	public RecipeVO() {
-		super();
+		super();}
 		// TODO Auto-generated constructor stub
-=======
-	private String recommend;
-	public String getName() {
-		return name;
->>>>>>> refs/remotes/origin/master
-	}
+
+
 
 	public RecipeVO(int num, String name, String imgurls, String main_ingredientents, String sub_ingredientents,
 			String writer, String date, String type, int hits, String descript, String content, String tip) {
@@ -43,34 +39,21 @@ public class RecipeVO {
 		this.content = content;
 		this.tip = tip;
 	}
-	
-<<<<<<< HEAD
-=======
+
 	
 	public String getRecommend() {
 		return recommend;
 	}
 	public void setRecommend(String recommend) {
-		this.recommend = recommend;
-	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
-	public RecipeVO() {
-		super();
-	}
->>>>>>> refs/remotes/origin/master
+		this.recommend = recommend;}
+
+
 	public RecipeVO(int num, String name, String imgurls, String main_ingredientents, String sub_ingredientents,
-<<<<<<< HEAD
-			String writer, String date, String type, int hits, String descript, String content, String tip,
-			boolean recommend) {
-=======
+
 			String writer, String register_date, String type, int hits, String descript, String content, String tip,
+
 			String recommend) {
->>>>>>> refs/remotes/origin/master
+
 		super();
 		this.num = num;
 		this.name = name;
@@ -190,12 +173,5 @@ public class RecipeVO {
 				+ date + ", type=" + type + ", hits=" + hits + ", descript=" + descript + ", content=" + content
 				+ ", tip=" + tip + "]";
 	}
-<<<<<<< HEAD
 
-=======
-	
-	
-	
-	
->>>>>>> refs/remotes/origin/master
 }
