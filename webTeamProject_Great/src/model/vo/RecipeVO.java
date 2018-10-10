@@ -4,8 +4,8 @@ public class RecipeVO {
 	private int num;
 	private String name;
 	private String imgurls;
-	private String main_ingredientents;
-	private String sub_ingredientents;
+	private String main_ingredients;
+	private String sub_ingredients;
 	private String writer;
 	private String date;
 	private String type;
@@ -29,8 +29,8 @@ public class RecipeVO {
 		this.num = num;
 		this.name = name;
 		this.imgurls = imgurls;
-		this.main_ingredientents = main_ingredientents;
-		this.sub_ingredientents = sub_ingredientents;
+		this.main_ingredients = main_ingredientents;
+		this.sub_ingredients = sub_ingredientents;
 		this.writer = writer;
 		this.date = date;
 		this.type = type;
@@ -41,6 +41,17 @@ public class RecipeVO {
 	}
 
 	
+	public RecipeVO(int num, String name, String imgurls, String writer, String recommend) {
+		super();
+		this.num = num;
+		this.name = name;
+		this.imgurls = imgurls;
+		this.writer = writer;
+		this.recommend = recommend;
+	}
+
+
+
 	public String getRecommend() {
 		return recommend;
 	}
@@ -58,8 +69,8 @@ public class RecipeVO {
 		this.num = num;
 		this.name = name;
 		this.imgurls = imgurls;
-		this.main_ingredientents = main_ingredientents;
-		this.sub_ingredientents = sub_ingredientents;
+		this.main_ingredients = main_ingredientents;
+		this.sub_ingredients = sub_ingredientents;
 		this.writer = writer;
 		this.date = date;
 		this.type = type;
@@ -95,19 +106,19 @@ public class RecipeVO {
 	}
 
 	public String getMain_ingredientents() {
-		return main_ingredientents;
+		return main_ingredients;
 	}
 
-	public void setMain_ingredientents(String main_ingredientents) {
-		this.main_ingredientents = main_ingredientents;
+	public void setMain_ingredientents(String main_ingredients) {
+		this.main_ingredients = main_ingredients;
 	}
 
 	public String getSub_ingredientents() {
-		return sub_ingredientents;
+		return sub_ingredients;
 	}
 
-	public void setSub_ingredientents(String sub_ingredientents) {
-		this.sub_ingredientents = sub_ingredientents;
+	public void setSub_ingredientents(String sub_ingredients) {
+		this.sub_ingredients = sub_ingredients;
 	}
 
 	public String getWriter() {
@@ -168,8 +179,8 @@ public class RecipeVO {
 
 	@Override
 	public String toString() {
-		return "RecipeVO [num=" + num + ", name=" + name + ", imgurls=" + imgurls + ", main_ingredientents="
-				+ main_ingredientents + ", sub_ingredientents=" + sub_ingredientents + ", writer=" + writer + ", date="
+		return "RecipeVO [num=" + num + ", name=" + name + ", imgurls=" + imgurls + ", main_ingredients="
+				+ main_ingredients + ", sub_ingredients=" + sub_ingredients + ", writer=" + writer + ", date="
 				+ date + ", type=" + type + ", hits=" + hits + ", descript=" + descript + ", content=" + content
 				+ ", tip=" + tip + "]";
 	}

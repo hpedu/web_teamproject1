@@ -11,6 +11,7 @@ import model.vo.MemberVO;
 import query.StringQuery;
 
 public class MemberDAO {
+	
 	DataSource ds;
 	private static MemberDAO dao= new MemberDAO();
 	private MemberDAO() {
@@ -22,6 +23,8 @@ public class MemberDAO {
 	public Connection getConnection() throws SQLException{
 		return ds.getConnection();
 	}
+	
+	
 	public void closeAll(PreparedStatement ps, Connection conn) throws SQLException{
 		if(ps!=null) ps.close();
 		if(conn!=null) conn.close();
@@ -156,9 +159,5 @@ public class MemberDAO {
 		}
 		return password;
 	}
-	public static void main(String[] args) throws Exception {
-		MemberVO vo= new MemberVO();
-		MemberDAO.getInstance().login("kh4331","123456");
-		System.out.println(vo);			 
-	}
+
 }
