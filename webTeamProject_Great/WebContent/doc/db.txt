@@ -27,15 +27,16 @@ create table review (no number,
                      register_date date,
                      content varchar2(200));
 
-create table product (name varchar2(50),
+create table product (name varchar2(100),
                       price number,
-                      origin varchar2(50),
-                      imgurls varchar2(50),
-                      content varchar2(200),
+                      origin varchar2(100),
+                      img_urls varchar2(1000),
+                      content varchar2(4000),
                       type varchar2(50),
                       brand varchar2(50),
                       sales_volume number,
-                      recommend varchar2(30));
+                      recommend varchar2(50),
+                      amount varchar2(50));
 
 CREATE SEQUENCE recipe_seq;
 CREATE SEQUENCE review_seq;

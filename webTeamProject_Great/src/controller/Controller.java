@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 package controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,3 +9,17 @@ public interface Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 																		throws Exception;
 }
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/master
+package controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public interface Controller {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+																		throws Exception;
+}
+=======
+>>>>>>> branch 'master' of https://github.com/hpedu/web_teamproject1.git

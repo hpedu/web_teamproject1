@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
 	<Resource name="jdbc/oracleDB"
@@ -24,3 +25,31 @@
 
 
 
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource name="jdbc/oracleDB"
+			  auth="container"
+			  type="javax.sql.DataSource"
+			  username="scott"
+			  password="tiger"
+			  driverClassName="oracle.jdbc.driver.OracleDriver"
+			  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"
+			  url="jdbc:oracle:thin:@127.0.0.1:1521:xe"
+			  maxActive="500"
+			  maxIdle="100" />
+</Context>
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/hpedu/web_teamproject1.git
