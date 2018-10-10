@@ -1,39 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-package controller;
 
-public class HandlerMapping {
-	private static HandlerMapping handler = new HandlerMapping();
-	private HandlerMapping() {}
-	public static HandlerMapping getInstance() {
-		return handler;		
-	}
-	
-	public Controller createController(String command) {
-		Controller controller = null;
-		
-		return controller;
-	}
-}
-
-//updateView
-//updatePosting
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-<<<<<<< HEAD
-=======
->>>>>>> branch 'master' of https://github.com/hpedu/web_teamproject1.git
 package controller;
 
 public class HandlerMapping {
@@ -72,6 +37,3 @@ public class HandlerMapping {
 	}
 	
 }
-
-
->>>>>>> refs/remotes/origin/master
