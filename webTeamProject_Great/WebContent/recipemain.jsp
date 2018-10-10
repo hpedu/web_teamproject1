@@ -143,6 +143,7 @@
    #ingredient_ad{
       margin: 0px auto 50px auto;
    }
+  
    ul.ultable{ 
       display: table; 
       clear: both;
@@ -273,12 +274,11 @@
          <div id="hotMenu">
             <h3 align="left">오늘의 추천메뉴</h3><br>
             <div class="hotMenu1">
-            <c:forEach var="rvo" items="${RecommendRlist}">
+            <c:forEach var="rrvo" items="${RecommendRlist}">
                <div class="hotMenu2">
-                 <a href="DispatcherServlet?command=showrecipedetail&num=${rvo.num}"> <img alt="" src="${rvo.imgurls}"></a><br><br>
-                  <p>${rvo.name}</p>
+                  <a href="DispatcherServlet?command=showrecipedetail&&num=${rrvo.num}"><img alt="" src="${rrvo.imgurls}"></a><br><br>
+                  <p>${rrvo.name}</p>
                </div>
-
                </c:forEach>
             </div>
          </div>
@@ -324,10 +324,10 @@
          <div id="hotMenu1">
             <h3 align="left">HOT 메뉴</h3><br>
             <div class="hotMenu1">
-            <c:forEach var="hvo" items="${HotRlist}">
+            <c:forEach var="hrvo" items="${HotRlist}">
                <div class="hotMenu2">
-                  <img alt="" src="${hvo.imgurls}"><br><br>
-                  <p>${hvo.name}</p>
+                  <a href="DispatcherServlet?command=showrecipedetail&&num=${hrvo.num}"><img alt="" src="${hrvo.imgurls}"></a><br><br>
+                  <p>${hrvo.name}</p>
                </div>
                </c:forEach>
             </div>
@@ -345,42 +345,26 @@
          <div id="inMenu추천">
             <h3 align="left">추천 상품</h3><br>
             <div id="inMenu2">
+            <c:forEach var="rpvo" items="${RecommendPlist}">
                <div class="hotMenu2">
-                  <img alt="" src="img/c1.PNG"><br><br>
-                  <p>이름 : 천연사이다</p>
-                  <p>가격 : 1500원</p>
+                  <a href="DispatcherServlet?command=showproductdetail&&name=${rpvo.name}"><img alt="" src="${rpvo.img_urls}"></a><br><br>
+                  <p>이름 : ${rpvo.name}</p>
+                  <p>가격 : ${rpvo.price}</p>
                </div>
-
-               <div class="hotMenu2">
-                  <img alt="" src="img/c2.PNG"><br><br>
-                  <p>이름 : 냉동딸기</p>
-                  <p>가격 : 9000원</p>
-               </div>
-
+               </c:forEach>
             </div>
          </div>
          
          <div id="hotMenu2">
             <h3 align="left">HOT 상품</h3><br>
             <div id="inMenu1">
+            <c:forEach var="hpvo" items="${HotPlist}">
                <div class="hotMenu2">
-                  <img alt="" src="img/c1.PNG"><br><br>
-                  <p>이름 : 천연사이다</p>
-                  <p>가격 : 1500원</p>
+                  <a href="DispatcherServlet?command=showproductdetail&&name=${hpvo.name}"><img alt="" src="${hpvo.img_urls}"></a><br><br>
+                  <p>이름 : ${hpvo.name}</p>
+                  <p>가격 : ${hpvo.price}</p>
                </div>
-
-               <div class="hotMenu2">
-                  <img alt="" src="img/c2.PNG"><br><br>
-                  <p>이름 : 냉동딸기</p>
-                  <p>가격 : 9000원</p>
-               </div>
-
-               <div class="hotMenu2">
-                  <img alt="" src="img/참깨흑임자.jpg"><br><br>
-                  <p>이름 : 참깨흑임자</p>
-                  <p>가격 : 2600원</p>
-               </div>
-
+               </c:forEach>
             </div>
          </div>
 

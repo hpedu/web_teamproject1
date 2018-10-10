@@ -9,6 +9,7 @@ public class HandlerMapping {
 		return factory;
 	}
 	
+	//showproductdetail
 	public Controller createFactory(String command) {
 		Controller controller= null;
 		
@@ -21,9 +22,15 @@ public class HandlerMapping {
 		}else if(command.equals("showrecipedetail")) {
 			controller=  new ShowRecipeController();
 			System.out.println("ShowRecipeController 持失....");
-		}else if(command.equals("write_form.do")) {
+		}else if(command.equals("showproductdetail")) {
+			controller= new SerchRecipeController();
+		System.out.println("SerchRecipeController 持失....");
+		}else if(command.equals("reciperegist")) {
 			controller= new Write_RecipeController();
 		System.out.println("WriteController 持失....");
+		}else if(command.equals("SerchRecipe")) {
+			controller= new SerchRecipeController();
+		System.out.println("SerchRecipeController 持失....");
 		}
 		
 		return controller;

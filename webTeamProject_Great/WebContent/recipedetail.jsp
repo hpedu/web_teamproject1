@@ -114,64 +114,40 @@
 		
 		<!-- tip -->
 		<div class="row" style="background: lightgray; margin-top: 40px;">
-		<div class="col-sm-2">
+		<div class="col-sm-2" style="margin:auto">
 		<h2 style="padding: 15px; text-align: center;"><b>Tip</b></h2>
 		</div>
-		<div class="col-sm-10">
-		<p style="padding: 10px">시제품을 사다 먹으면 더 맛있습니다. 아래 완제품 김치찌개 상품을 구매하세요.</p><!--${recipe.tip}-->
+		<div class="col-sm-10" style="margin:auto; padding : 15px">
+		<p>${rvo.tip}<br><br><br>f<br>d<br>s<br>a</p><!--${recipe.tip}-->
 		</div>
 		</div>
 		
 		<!-- 레시피 관련 상품들 주재료나 재료에서 따오는?? -->
+		
 		<h6 style="margin-top: 40px"><b>레시피 상품</b></h6>
 		<div class="row">
+		<c:forEach var="list" items="${plist }">
 		<div class="col-sm-3" style="text-align: center;">
-		<a href="#"><img src="img/kim.jpg" width="100%" height="200px"></a>
-		<h6>제품명 : 우리집김치</h6>
-		<h6>가격 : 39600원</h6>
+		<a href="#"><img src="${list.img_urls }" width="100%" height="200px"></a>
+		<h6>제품명 : ${list.name }</h6>
+		<h6>가격 : ${list.price }</h6>
 		</div>
-		<div class="col-sm-3" style="text-align: center;">
-		<a href="#"><img src="img/kim.jpg" width="100%" height="200px"></a>
-		<h6>제품명 : 우리집김치</h6>
-		<h6>가격 : 39600원</h6>
+				
+		</c:forEach>
 		</div>
-		<div class="col-sm-3" style="text-align: center;">
-		<a href="#"><img src="img/kim.jpg" width="100%" height="200px"></a>
-		<h6>제품명 : 우리집김치</h6>
-		<h6>가격 : 39600원</h6>
-		</div>
-		<div class="col-sm-3" style="text-align: center;">
-		<a href="#"><img src="img/kim.jpg" width="100%" height="200px"></a>
-		<h6>제품명 : 우리집김치</h6>
-		<h6>가격 : 39600원</h6>
-		</div>
-		</div>
-		
 		
 		<!-- 관련 레서피 -->
 		
 		<h6 style="margin-top: 40px"><b>관련 레서피</b></h6>
 		<div class="row">
+		<c:forEach var="list2" items="${llist }">
 		<div class="col-sm-3" style="text-align: center;">
-		<a href="#"><img src="img/kim.jpg" width="100%" height="200px"></a>
-		<h6>제품명 : 우리집김치</h6>
-		<h6>가격 : 39600원</h6>
+		
+		<a href="#"><img src="${list2.imgurls }" width="100%" height="200px"></a>
+		<h6>${list2.name }</h6>
 		</div>
-		<div class="col-sm-3" style="text-align: center;">
-		<a href="#"><img src="img/kim.jpg" width="100%" height="200px"></a>
-		<h6>제품명 : 우리집김치</h6>
-		<h6>가격 : 39600원</h6>
-		</div>
-		<div class="col-sm-3" style="text-align: center;">
-		<a href="#"><img src="img/kim.jpg" width="100%" height="200px"></a>
-		<h6>제품명 : 우리집김치</h6>
-		<h6>가격 : 39600원</h6>
-		</div>
-		<div class="col-sm-3" style="text-align: center;">
-		<a href="#"><img src="img/kim.jpg" width="100%" height="200px"></a>
-		<h6>제품명 : 우리집김치</h6>
-		<h6>가격 : 39600원</h6>
-		</div>
+				
+		</c:forEach>
 		</div>
 	
 

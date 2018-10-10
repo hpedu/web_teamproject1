@@ -13,6 +13,14 @@ public class ProductVO {
 	private String recommend;
 	private String amount;
 	
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+
 	public ProductVO() {}
 
 	public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand,
@@ -43,8 +51,16 @@ public class ProductVO {
 		this.recommend = recommend;
 		this.amount = amount;
 	}
-
 	
+	
+	public ProductVO(String name, int price, String img_urls, String type) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.img_urls = img_urls;
+		this.type = type;
+	}
+
 	public String getName() {
 		return name;
 	}

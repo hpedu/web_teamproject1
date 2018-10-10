@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import config.OracleInfo;
 import model.vo.BoardVO1;
+import model.vo.ProductVO;
 import query.ShowQuery;
 
 public class SearchDao {
@@ -77,6 +78,29 @@ public class SearchDao {
 		return list;
 	}
 	
+	public ArrayList<ProductVO> serchRecipeProduct(String word) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
+		String[] words = word.split(",");
+		try {
+			conn= getConnect();
+			for(int i=0; i <= words.length-1;i++) {
+				String query = "SELECT name, price, imgurls, type FROM product WHERE name LIKE '%"+words[i]+"%'"
+						+ " OR content LIKE '%"+words[i]+"%' ";
+				ps = conn.prepareStatement(query);
+				
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					list.add(new ProductVO(rs.getString("name"), rs.getInt("price"), rs.getString("imgurls"), rs.getString("type")));
+				}
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
 	// hits순 상위 5개만 보여지게
 	public ArrayList<BoardVO1> searchRecommand() throws SQLException {
 		Connection conn = null;

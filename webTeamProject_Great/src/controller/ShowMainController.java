@@ -16,11 +16,18 @@ public class ShowMainController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("show hotP 뭐가 안됬을까?");
 		ArrayList<RecipeVO> list1 = ShowDao.getInstance().showRecipeRecommend();
+		System.out.println("1");
 		ArrayList<RecipeVO> list2 = ShowDao.getInstance().showRecipeHot();
-		System.out.println(list1);
+		System.out.println("2");
+		ArrayList<ProductVO> list3 = ShowDao.getInstance().showProductHot();
+		System.out.println("3");
+		ArrayList<ProductVO> list4 = ShowDao.getInstance().showProductRecommend();
+		System.out.println("4");
 		System.out.println(list2);
 		request.setAttribute("RecommendRlist", list1);
-		request.setAttribute("HotPlist", list2);
+		request.setAttribute("HotRlist", list2);
+		request.setAttribute("HotPlist", list3);
+		request.setAttribute("RecommendPlist", list4);
 		
 		ModelAndView mv = new ModelAndView();
 		System.out.println("ModelAndView...생성...");

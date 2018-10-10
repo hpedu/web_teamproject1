@@ -96,7 +96,7 @@
       <div id ="div1">
          <img alt="logo" src="img/logo.png" id="logo">
                
-         <form action="DispatcherServlet">
+         <form action="DispatcherServlet?command=SerchRecipe">
             <div class="input-group mb-3">
                 <span id="home" class="btn btn-outline-secondary">
                    <!-- home 페이지 연결 -->
