@@ -1,5 +1,5 @@
 create table member (id varchar2(50),
-                     pw varchar2(50),
+                     password varchar2(50),
                      name varchar2(50),
                      email varchar2(100),
                      birthday varchar2(50),
