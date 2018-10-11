@@ -22,12 +22,12 @@ public interface ShowQuery {
 				+ "hits, descript, content, tip, recommend from recipe where recommend='true' AND ROWNUM<=4";
 
 		// 판매량 순 내림차순 정렬후 상위 4개 상품 검색
-		String SELECT_SHOWHOTPRODUCT = "SELECT name, price ,origin ,imgurls, content, type,"
+		String SELECT_SHOWHOTPRODUCT = "SELECT name, price ,origin ,img_urls, content, type,"
 				+ "brand, sales_volume,recommend, amount from product "
 				+ "WHERE ROWNUM<=3";
 
 		// 추천 상품 관리자가 지정해서 추천 레서피 2개
-		String SELECT_SHOWRECOMMENDPRODUCT = "SELECT name, price ,origin ,imgurls, content, type,"
+		String SELECT_SHOWRECOMMENDPRODUCT = "SELECT name, price ,origin ,img_urls, content, type,"
 				+ "brand, sales_volume,recommend, amount from product WHERE recommend='true' AND ROWNUM<=2";
 
 		// 레시피의 상품들 :: no번호 상품의 서브재료들의 상품을 전부 검색 하는 쿼리 ( 서브재료 등록시 , 로 구분해서 등록해야 하고 부재료 이름과 제품이름이 동일해야함.)
@@ -56,7 +56,7 @@ public interface ShowQuery {
 	
 	String NOTICE_TOTAL_COUNT = "select count(-1) from notice";
 	
-	String RECOMMEND_RECIPE = "SELECT no, title, writer, content, hits FROM "
+	String RECOMMEND_RECIPE = "SELECT no, name, writer,register_date, content, hits FROM "
 			+ "(SELECT no, title, writer, content, hits, CEIL(rownum/5) as page FROM "
 			+ "(SELECT no, title, writer, content, hits FROM board ORDER BY hits DESC)) "
 			+ "WHERE page=1";

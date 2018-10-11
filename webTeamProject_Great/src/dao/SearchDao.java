@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import config.OracleInfo;
 import model.vo.BoardVO1;
 import model.vo.ProductVO;
+import model.vo.RecipeVO;
 import query.ShowQuery;
 
 public class SearchDao {
@@ -53,23 +54,22 @@ public class SearchDao {
 		closeAll(ps, conn);
 	}
 	
-	public ArrayList<BoardVO1> searchRecipe(String[] words) throws SQLException {
+	public ArrayList<RecipeVO> searchRecipe(String[] words) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		ArrayList<BoardVO1> list = new ArrayList<BoardVO1>();
+		ArrayList<RecipeVO> list = new ArrayList<RecipeVO>();
 		try {
 			conn= getConnect();
 			for(int i=0; i <= words.length-1;i++) {
-				String query = "SELECT no, title, writer, password, content, hits, time_posted FROM board WHERE title LIKE '%"+words[i]+"%'"
+				String query = "SELECT no, name, writer,name,imgurls, writer,register_date, type, hits FROM recipe WHERE name LIKE '%"+words[i]+"%'"
 						+ " OR content LIKE '%"+words[i]+"%' ORDER BY hits DESC";
 				ps = conn.prepareStatement(query);
 				
 				rs = ps.executeQuery();
 				while(rs.next()) {
-					list.add(new BoardVO1(rs.getInt("no"),rs.getString("title"),
-							rs.getString("writer"),rs.getString("password"),rs.getString("content"),
-							rs.getInt("hits"), rs.getString("time_posted")));
+					list.add(new RecipeVO(rs.getInt("no"),rs.getString("name"),rs.getString("imgurls"),
+							rs.getString("writer"), rs.getString("register_date"),rs.getString("type"),rs.getInt("hits")));
 				}
 			}
 		}finally {
@@ -88,7 +88,7 @@ public class SearchDao {
 			conn= getConnect();
 			for(int i=0; i <= words.length-1;i++) {
 				String query = "SELECT name, price, imgurls, type FROM product WHERE name LIKE '%"+words[i]+"%'"
-						+ " OR content LIKE '%"+words[i]+"%' ";
+						+ " OR content LIKE '%"+words[i]+"%' order by hits desc ";
 				ps = conn.prepareStatement(query);
 				
 				rs = ps.executeQuery();
@@ -102,7 +102,7 @@ public class SearchDao {
 		return list;
 	}
 	// hits순 상위 5개만 보여지게
-	public ArrayList<BoardVO1> searchRecommand() throws SQLException {
+	public ArrayList<BoardVO1> showRecommandRecipe() throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -115,7 +115,7 @@ public class SearchDao {
 			while(rs.next()) {
 				list.add(new BoardVO1(rs.getInt("no"),rs.getString("title"),
 						rs.getString("writer"),rs.getString("content"),
-						rs.getInt("hits")));
+						rs.getString("hits")));
 			}
 			
 		}finally {
@@ -127,10 +127,10 @@ public class SearchDao {
 	
 	public static void main(String[] args) throws SQLException {
 
-		String[] str= {"소","아리","김"};
-		ArrayList<BoardVO1> list = SearchDao.getInstance().searchRecipe(str);
+		/*String[] str= {"소","아리","김"};
+		ArrayList<RecipeVO> list = SearchDao.getInstance().searchRecipe(str);
 		for(BoardVO1 b : list)
-			System.out.println(b);
+			System.out.println(b);*/
 		
 
 /*		ArrayList<BoardVO1> list = SearchDao.getInstance().searchRecommand();

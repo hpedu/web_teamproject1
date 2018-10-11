@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ShowDao;
+import model.dao.ProductDAO;
+import model.dao.RecipeDAO;
 import model.vo.ProductVO;
 import model.vo.RecipeVO;
 
@@ -15,13 +17,13 @@ public class ShowMainController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("show hotP ¹¹°¡ ¾È‰çÀ»±î?");
-		ArrayList<RecipeVO> list1 = ShowDao.getInstance().showRecipeRecommend();
+		ArrayList<RecipeVO> list1 = RecipeDAO.getInstance().showRecipeRecommend();
 		System.out.println("1");
-		ArrayList<RecipeVO> list2 = ShowDao.getInstance().showRecipeHot();
+		ArrayList<RecipeVO> list2 = RecipeDAO.getInstance().showRecipeHot();
 		System.out.println("2");
-		ArrayList<ProductVO> list3 = ShowDao.getInstance().showProductHot();
+		ArrayList<ProductVO> list3 = ProductDAO.getInstance().showProductHot();
 		System.out.println("3");
-		ArrayList<ProductVO> list4 = ShowDao.getInstance().showProductRecommend();
+		ArrayList<ProductVO> list4 = ProductDAO.getInstance().showProductRecommend();
 		System.out.println("4");
 		System.out.println(list2);
 		request.setAttribute("RecommendRlist", list1);

@@ -21,7 +21,18 @@ public class DispatcherServlet extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String command = request.getParameter("command");
+		System.out.println("dispatcher : "+command);
+		if(command.equals(null)) {
+		String requestURI = request.getRequestURI();
+		
+		System.out.println(requestURI);
+		String contextpath = request.getContextPath();
+		System.out.println(contextpath);
+		command = requestURI.substring(contextpath.length()+1);
+		}
 		Controller controller=HandlerMapping.getInstance().createFactory(command);
+		
+		
 		
 		String path= "index.jsp";
 		ModelAndView mv = null;

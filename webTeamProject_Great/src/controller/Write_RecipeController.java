@@ -1,48 +1,120 @@
 package controller;
 
-import java.text.Normalizer.Form;
+import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import dao.ShowDao;
+import model.dao.RecipeDAO;
 import model.vo.RecipeVO;
 
 public class Write_RecipeController implements Controller {
 
    @Override
    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-      int num=Integer.parseInt(request.getParameter("num"));
-      String name=request.getParameter("name.value");
-      System.out.println(name);
-      /*String type=request.getParameter();
-      String main_ingredientent=request.getParameter();*/
-      String sub_ingredientents;
-      String writer;
-      String date;
+        
+	   String realFolder = "";
+	   String filename1 = "";
+	   int maxSize = 1024*1024*5;
+	   String encType = "utf-8";
+	   String savefile = "img";
+	   ServletContext scontext = request.getServletContext();
+	   realFolder = scontext.getRealPath(savefile);
+	   MultipartRequest multi=new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
+
+	   try{
+	    
+	    Enumeration<?> files = multi.getFileNames();
+	       String file1 = (String)files.nextElement();
+	       filename1 = multi.getFilesystemName(file1);
+	   } catch(Exception e) {
+	    e.printStackTrace();
+	   }
+	   
+	   String fullpath = ".\\"+savefile + "\\" + filename1;
+	   
+	   
+      String name=multi.getParameter("name");
+      System.out.println("name:"+name);
+      String imgurls="./";
+      if(!multi.getParameter("imgurls").equals(null))
+    	  	imgurls=multi.getParameter("imgurls");
       
-      int hits;
-      String descript;
-      String content;
-      String tip;
-      String recommend;
-       
-       
-      System.out.println("Write_RecipeController"+num);
-      RecipeVO rvo = ShowDao.getInstance().showRecipe(num);
-      System.out.println("Write_RecipeController.....窍绰吝");
+      System.out.println(name+"/"+imgurls);
+      String main_ingredientent=multi.getParameter("ingredient1");
+      for(int i=2; i<=3; i++) {
+    	  if(!multi.getParameter("ingredient"+i).equals("")) {
+    		  main_ingredientent+=",";
+    	 	  main_ingredientent+=multi.getParameter("ingredient"+i);
+    	  }else {break;}
+      }
       
-      ModelAndView mv= new ModelAndView();
-      System.out.println("ModelAndView 积己....");
-      mv.setPath("recipedetail.jsp");
-      return mv;
+      String sub_ingredientent=multi.getParameter("sub_ingredient1");
+      for(int i=2; i<=3; i++) {
+    	  if(!multi.getParameter("sub_ingredient"+i).equals("")) {
+    		  sub_ingredientent+=",";
+    		  sub_ingredientent+=multi.getParameter("sub_ingredient"+i);
+    	  }else {break;}
+      }
+      System.out.println("main : "+main_ingredientent+"/sub : "+sub_ingredientent);
       
+      //HttpSession session = request.getSession();
+      String type=multi.getParameter("type");
       
+      String writer = "包府磊"; //(String) session.getAttribute("id");
+      //if(writer.equals(null)) writer="包府磊";
+      System.out.println(writer);
+      String discript = request.getParameter("discript");
+      System.out.println(discript);
+      int count = Integer.parseInt((String)multi.getParameter("count"));
+      System.out.println("count : "+count);
+      String content = multi.getParameter("way_1");
+      if(!multi.getParameter("way_1_url").equals(null)) 
+    	  content +="/_/"+multi.getParameter("way_1_url");
+      else
+    	  content +="/_/"+"null";
       
+      for(int i=2; i<count; i++) {
+    	  if(!multi.getParameter("way_"+i).equals("")) {
+    		  content+="///"+multi.getParameter("way_"+i)+"/_/";
+    	  
+    	  if(!request.getParameter("way_"+i+"_url").equals(null))
+    		  content+=multi.getParameter("way_"+i+"_url");
+    	  else content+="null";
+    	  
+    	  }else if(!multi.getParameter("way_"+i+"_url").equals(null))
+    		  content+="///null/_/"+multi.getParameter("way_"+i+"_url");
+    	  }
+      System.out.println(content);
+     String tip = request.getParameter("tip");
+     
+     
+     
+     
+     RecipeVO rvo = new RecipeVO(name, imgurls, main_ingredientent, sub_ingredientent, writer, type, discript, content, tip);
+     System.out.println(rvo);
+     int num= RecipeDAO.getInstance().recipeWrite(rvo);
+     System.out.println("Write_RecipeController"+num);
+     
+     RecipeVO svo=ShowDao.getInstance().showRecipe(num);
+     System.out.println("Write_RecipeController.....窍绰吝");
+     
+     request.setAttribute("rvo", svo);
+     ModelAndView mv= new ModelAndView();
+     System.out.println("ModelAndView 积己....");
+     mv.setPath("recipedetail.jsp");
+     return mv;
+     
+   	}
       
+  
       
-      
-   }
+}
    
    /*
        @Override
@@ -63,4 +135,3 @@ public class Write_RecipeController implements Controller {
       return mv;
    }
     */
-}

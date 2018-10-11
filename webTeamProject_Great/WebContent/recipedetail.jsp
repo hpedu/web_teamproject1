@@ -67,46 +67,57 @@
 		</div>
 		<br>
 		<br>
-		
+		<br>
+		<br><br>
+		<br>
 		<div style="text-align: center">
 			<h4> <b>- 조리 방법 -</b> </h4>
 		</div>
 		
 		<!-- 조리방법이 나타날 공간입니다.  -->
 		<div class="" style="">
-		
-			<c:forEach var="list" items="${contents}" varStatus="status">
-				<div>
-					<table>
+			<div>
+					<table align="center" >
+			<c:forEach var="list" items="${dlist}" varStatus="status">
+				
 						<tr>
 							<td>
+							<br>
+							<br>
 								${status.count} .
 							</td>
 							<td>
-								${list}
+							<br>
+							<br>
+								${list.discript}
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><img src="img/1.jpg" width="600" height="300"></td>
+							<td colspan="2" align="center">
+							<br>
+							<img src="${list.urls}" width="600" align="center"></td>
+							
 							<%-- ${list.img_urls} --%>
 						</tr>
-					</table>
-				</div>
+					
 			</c:forEach> 
 			<!-- 일단 틀만 잡아놓습니다. -->
-			
+			</table>
+			</div>
 
 		</div>
 		
 		<!-- 레시피 재료  -->
-		<div style="padding-top: 80px;">
+		<div style="padding-top: 80px; text-align: center">
 		    <div>
 			<h5> <b>레시피 재료</b> </h5>
 		    </div>
-			<table style="margin: auto;">
+		    ${rvo.main_ingredientents}<br>
+		    ${rvo.sub_ingredientents}
+			<!-- <table style="margin: auto;">
 			<tr><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td></tr>
 			<tr><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td></tr>
-			</table>
+			</table> -->
 			</div>
 		
 		
@@ -152,7 +163,7 @@
 	
 
 	</div>
-
+	<c:import url="footer.jsp"></c:import>
 
 
 </body>

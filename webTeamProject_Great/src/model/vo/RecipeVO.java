@@ -21,8 +21,8 @@ public class RecipeVO {
 		super();}
 		// TODO Auto-generated constructor stub
 
-
-
+		
+	
 	public RecipeVO(int num, String name, String imgurls, String main_ingredientents, String sub_ingredientents,
 			String writer, String date, String type, int hits, String descript, String content, String tip) {
 		super();
@@ -40,6 +40,17 @@ public class RecipeVO {
 		this.tip = tip;
 	}
 
+	
+	public RecipeVO(int num, String name, String imgurls, String writer, String date, String type, int hits) {
+			super();
+			this.num = num;
+			this.name = name;
+			this.imgurls = imgurls;
+			this.writer = writer;
+			this.date = date;
+			this.type = type;
+			this.hits = hits;
+		}
 	
 	public RecipeVO(int num, String name, String imgurls, String writer, String recommend) {
 		super();
@@ -80,6 +91,26 @@ public class RecipeVO {
 		this.tip = tip;
 		this.recommend = recommend;
 	}
+
+	public RecipeVO(String name, String imgurls, String main_ingredientents, String sub_ingredientents, String writer,
+			String type, String descript, String content, String tip) {
+		super();
+		
+		this.name = name;
+		this.imgurls = imgurls;
+		this.main_ingredients = main_ingredientents;
+		this.sub_ingredients = sub_ingredientents;
+		this.writer = writer;
+		
+		this.type = type;
+		
+		this.descript = descript;
+		this.content = content;
+		this.tip = tip;
+		
+	}
+
+
 
 	public int getNum() {
 		return num;

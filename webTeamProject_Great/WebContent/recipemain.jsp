@@ -144,7 +144,7 @@
       margin: 0px auto 50px auto;
    }
   
-   ul.ultable{ 
+   /* ul.ultable{ 
       display: table; 
       clear: both;
       width: 300px;
@@ -185,7 +185,7 @@
    ul.ultable-striped li ul:nth-child(2n) { background-color: #f9f9f9; }
    ul.ultable-bordered { border: 1px solid #ddd; }
    ul.ultable-bordered li ul li { border: 1px solid #ddd; }
-   ul.ultable-hover li:last-child ul:hover { background-color: #f5f5f5}
+   ul.ultable-hover li:last-child ul:hover { background-color: #f5f5f5} */
 
 </style>
 

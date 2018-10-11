@@ -32,6 +32,15 @@ public class MemberVO {
 		this.password = password;
 	}
 
+	public MemberVO(String id, String password, String name, String email, String birthday, String address) {
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.email = email;
+		this.birthday = birthday;
+		this.address = address;
+	}
+
 	public String getId() {
 		return id;
 	}

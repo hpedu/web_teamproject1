@@ -1,108 +1,136 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+     var count = 2;
+    function add_item(){
+        // pre_set ì— ìˆëŠ” ë‚´ìš©ì„ ì½ì–´ì™€ì„œ ì²˜ë¦¬..
+        
+        var addedFormDiv = document.getElementById('field');//í¼ ìƒì„±
+        
+        /* div.innerHTML = document.getElementById('pre_set').innerHTML;
+        document.getElementById('field').appendChild(div); */
+        
+       /*  <div class="form-group" id="pre_set" style="display:ture">
+      <input type="text" class="form-control" name="way2" placeholder="ìš”ë¦¬ë°©ë²• ì„¤ëª…" style="width=50%">
+      <input type="button" value="ì‚­ì œ" onclick="remove_item(this)">
+      <input type="file" class="form-control" name="way2_url" placeholder="ì‚¬ì§„ ì—…ë¡œë“œ" name="way2_url">
+   </div> */
+        var str = "";
+     
+        str+="<br><input type='text' class='form-control' name=way_"+count+" placeholder='ìš”ë¦¬ë°©ë²• ì„¤ëª…' style='width=50%'>"
+        str+="<input type='button' value='ì‚­ì œ' onclick='remove_item(this)'>"
+        str+="<input type='file' class='form-control' name='way_"+count+"_url' placeholder='ì‚¬ì§„ ì—…ë¡œë“œ'><br>"
+        
+        var addedDiv = document.createElement("div"); // í¼ ìƒì„±
+
+        addedDiv.id = "added_"+count; // í¼ Divì— ID ë¶€ì—¬ (ì‚­ì œë¥¼ ìœ„í•´)
+
+        addedDiv.innerHTML  = str; // í¼ Divì•ˆì— HTMLì‚½ì…
+
+        addedFormDiv.appendChild(addedDiv); // ì‚½ì…í•  DIVì— ìƒì„±í•œ í¼ ì‚½ì…
+        
+        count++;   
+        document.recipe.count.value=count;
+    }
+ 
+    function remove_item(obj){
+        // obj.parentNode ë¥¼ ì´ìš©í•˜ì—¬ ì‚­ì œ
+        document.getElementById('field').removeChild(obj.parentNode);
+    }
+</script>
 </head>
 <body>
    <c:import url="header.jsp"></c:import>
-   <form name="recipe" action="DispatcherServlet?command=reciperegist">
-   <input type="submit" value ="send">
-   <div class="container">
-      <div>
-         <br><br>
-         <h1 align="center">Recipe enroll</h1><br><br>
-         <h5>À½½ÄÀÌ¸§</h5>
-         <input type="text" class="form-control" name="name" placeholder="ex)±èÄ¡ººÀ½¹ä"   ><br><br>
-      </div>   
-      <div>
-         <h5>À½½Ä»çÁø (ÃÖ¼Ò ÇÑÀåÀº µî·ÏÇÏ¼Å¾ß ÇÕ´Ï´Ù)</h5>
-         <div class="input-group mb-3">
-         <input type="file" class="form-control" placeholder="À½½Ä»çÁø1" style="width=50%">
-         <div class="input-group-append">
-         <button type="button" class="btn btn-enroll">upload</button></div></div>
-         <div class="input-group mb-3">
-         <input type="file" class="form-control" placeholder="À½½Ä»çÁø2" style="width=50%">
-         <div class="input-group-append">
-         <button type="button" class="btn btn-enroll">upload</button></div></div>
-         <div class="input-group mb-3">
-         <input type="file" class="form-control" placeholder="À½½Ä»çÁø3" style="width=50%">
-         <div class="input-group-append">
-         <button type="button" class="btn btn-enroll">upload</button></div></div><br><br>
-      </div>
-   </div>
-   
-   <div class="container">
-   <h5>À½½Ä ºĞ·ù</h5>
-   <!-- Ä«Å×°í¸®. ¹ë·ù°ª ÇØ¼­ ºÒ·¯¿ÀÀÚ -->
-      <select id="type" name="category">
-           <option value="±¸ÀÌ" selected="selected">±¸ÀÌ</option>
-           <option value="¸é·ù">¸é·ù</option>
-           <option value="¹ä·ù">¹ä·ù</option>
-           <option value="»ø·¯µå">»ø·¯µå</option>
-           <option value="±¹·ù">±¹·ù</option>
-      </select>
-   </div>
-   <br><br>
-   <div class="container">
-   <div class="row">
-      <div class="col-sm-4" style="margin-right:20px;">
-         <h5>ÁÖÀç·á</h5>
-         <input type="text" name="ingredient1" placeholder="ÁÖÀç·á 1"><br><br>
-         <input type="text" name="ingredient2" placeholder="ÁÖÀç·á 2"><br><br>
-         <input type="text" name="ingredient3" placeholder="ÁÖÀç·á 3"><br><br>
-      </div>
-      <div  class="col-sm-4" >
-         <h5>ºÎÀç·á</h5>
-         <input type="text" name="sub_ingredient1" placeholder="ºÎÀç·á 1"><br><br>
-         <input type="text" name="sub_ingredient2" placeholder="ºÎÀç·á 2"><br><br>
-         <input type="text" name="sub_ingredient3" placeholder="ºÎÀç·á 3"><br><br>
-      </div>
-      </div>
-   </div>
-   <br>
-   <br>
-   <div class="container">
-      <div>
-      <h5>¿ä¸®¹æ¹ı</h5>
-         <div class="form-group">
-            <label for="email">1¹ø:</label> 
-            <input type="text" class="form-control" id="way1" placeholder="¿ä¸®¹æ¹ı ¼³¸í" name="way1">
-            <input type="file" align="left" class="form-control" id="way1_url" placeholder="»çÁø ¾÷·Îµå" name="way1_url">
-         </div>
-         <div class="form-group">
-            <label for="email">2¹ø:</label> 
-            <input type="text" class="form-control" id="way2" placeholder="¿ä¸®¹æ¹ı ¼³¸í" name="way2">
-            <input type="file" class="form-control" id="way2_url" placeholder="»çÁø ¾÷·Îµå" name="way2_url">
-         </div>
-         <div class="form-group">
-            <label for="email">3¹ø:</label> 
-            <input type="text" class="form-control" id="way3" placeholder="¿ä¸®¹æ¹ı ¼³¸í" name="way3">
-            <input type="file" class="form-control" id="way3_url" placeholder="»çÁø ¾÷·Îµå" name="way3_url">
+   <form action="insertrecipe.do" name="recipe" method="post" enctype="multipart/form-data">
+      <div class="container">
+         <div>
+            <br><br>
+            <h1 align="center">Recipe enroll</h1><br><br>
+            <h5>ìŒì‹ì´ë¦„</h5>
+            <input type="text" class="form-control" name="name" placeholder="ex)ê¹€ì¹˜ë³¶ìŒë°¥"   ><br><br>
+            <h5>ìŒì‹ì„¤ëª…</h5>
+            <input type="text" class="form-control" name="discript" placeholder="ìŒì‹ì— ëŒ€í•œ ì„¤ëª…ì„ ê°„ë‹¨í•˜ê²Œ ì ì–´ì£¼ì„¸ìš”"   ><br><br>
+         </div>   
+         <div>
+            <h5>ìŒì‹ì‚¬ì§„</h5>
+            <div class="input-group">
+            <input type="file" class="form-control" name="imgurls" placeholder="ìŒì‹ì‚¬ì§„1" style="width=80%">
+            <div class="input-group-btn">
+            <button type="button" class="btn btn-enroll">upload</button></div></div>
+            
          </div>
       </div>
-      <div>
-         <h5><span class="badge badge-warning">Tip</span></h5>
-         <div class="container">
-             <div class="form-group">
-               <label for="comment">Comment</label>
-               <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+      
+      <div class="container">
+      <h5>ìŒì‹ ë¶„ë¥˜</h5>
+      <!-- ì¹´í…Œê³ ë¦¬. ë°¸ë¥˜ê°’ í•´ì„œ ë¶ˆëŸ¬ì˜¤ì -->
+         <select id="type" name="type">
+              <option value="êµ¬ì´ë¥˜" selected="selected">êµ¬ì´</option>
+              <option value="ë©´ë¥˜">ë©´ë¥˜</option>
+              <option value="ë°¥ë¥˜">ë°¥ë¥˜</option>
+              <option value="ìƒëŸ¬ë“œ">ìƒëŸ¬ë“œ</option>
+              <option value="êµ­ë¥˜">êµ­ë¥˜</option>
+         </select>
+      </div>
+      <br><br>
+      <div class="container">
+      <div class="row">
+         <div class="col-sm-4" style="margin-right:20px;">
+            <h5>ì£¼ì¬ë£Œ</h5>
+            <input type="text" name="ingredient1" placeholder="ì£¼ì¬ë£Œ 1" required="required"><br><br>
+            <input type="text" name="ingredient2" placeholder="ì£¼ì¬ë£Œ 2"><br><br>
+            <input type="text" name="ingredient3" placeholder="ì£¼ì¬ë£Œ 3"><br><br>
+         </div>
+         <div  class="col-sm-4" >
+            <h5>ë¶€ì¬ë£Œ</h5>
+            <input type="text" name="sub_ingredient1" placeholder="ë¶€ì¬ë£Œ 1" required="required"><br><br>
+            <input type="text" name="sub_ingredient2" placeholder="ë¶€ì¬ë£Œ 2"><br><br>
+            <input type="text" name="sub_ingredient3" placeholder="ë¶€ì¬ë£Œ 3"><br><br>
+         </div>
+         </div>
+      </div>
+      <br>
+      <br>
+      <div class="container">
+         <div>
+         <h5>ìš”ë¦¬ë°©ë²•</h5>
+            <div class="form-group" >
+            	<br>
+               <input type="text" class="form-control" name="way_1" placeholder="ìš”ë¦¬ë°©ë²• ì„¤ëª…" style="width=40%" required="required">
+               <input type="file" align="left" class="form-control" name="way_1_url" placeholder="ì‚¬ì§„ ì—…ë¡œë“œ" name="way1_url"><br>
+            </div>
+             
+            <div id="field"></div>
+            <input type="hidden" name="count" value="0">
+            
+            <div align="center">
+                <input type="button" value="ì¶”ê°€" class="btn btn-primary"  onclick="add_item()">
+            </div> 
+         </div>
+         <div>
+            <h5><span class="badge badge-warning">Tip</span></h5>
+            <div class="container">
+                <div class="form-group">
+                  <label for="tip">Comment</label>
+                  <textarea class="form-control" rows="5" id="tip" name="tip"></textarea>
+                </div>
+             <div align="right">     
+             <button type="button" class="btn btn-secondary" onclick="location.href='index.jsp'">ì·¨ì†Œí•˜ê¸°</button>
+             <input type="hidden" name="command" value="InsertRecipe">
+             <button type="submit" class="btn btn-info">ì œì¶œí•˜ê¸°</button>
              </div>
-          <div align="right">     
-          <button type="button" class="btn btn-default" onclick="location.href=url('index.jsp')">Ãë¼ÒÇÏ±â</button>
-          <button type="submit" class="btn btn-info">µî·ÏÇÏ±â</button>
-          </div>
+            </div>
          </div>
-      </div>
-   </div><br><br><br>
+      </div><br><br><br>
    </form>
    <c:import url="footer.jsp"></c:import>
 </body>

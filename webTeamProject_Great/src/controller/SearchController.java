@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.SearchDao;
 import model.vo.BoardVO1;
+import model.vo.RecipeVO;
 
 public class SearchController implements Controller{
 
@@ -23,8 +24,8 @@ public class SearchController implements Controller{
 		}
 
 		
-		ArrayList<BoardVO1> list = SearchDao.getInstance().searchRecipe(array);
-		for(BoardVO1 b : list)
+		ArrayList<RecipeVO> list = SearchDao.getInstance().searchRecipe(array);
+		for(RecipeVO b : list)
 		System.out.println(b);
 		request.setAttribute("list", list);
 				

@@ -42,9 +42,10 @@ public interface StringQuery {
 		
 		
 	String INSERT_RECIPE = 
-				"INSERT INTO RECIPE (no ,name ,img_urls ,main_ingredients ,sub_ingredients ,writer ,register_date ,type ,hits ,descript ,content ,tip)"
-				+ " VALUES(?,?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?, ? )";
-		
+				"INSERT INTO RECIPE (no ,name ,img_urls ,main_ingredients ,sub_ingredients ,writer ,register_date ,type ,hits ,descript ,content ,tip,recommend)"
+				+ " VALUES(recipe_seq.nextVal,?, ?, ?, ?, ?, sysdate, ?, 1000, ?, ?, ?,'true' )";
+	
+	String CURRENT_RECIPE="select recipe_seq.currVal from dual";	
 	String INSERT_REVIEW = 
 				"INSERT INTO REVIEW (no ,writer ,img_urls ,register_date ,content)"
 				+ " VALUES(?, ?, ?, sysdate, ?)";

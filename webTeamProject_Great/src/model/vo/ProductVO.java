@@ -13,6 +13,15 @@ public class ProductVO {
 	private String recommend;
 	private String amount;
 	
+	
+	
+	
+	public ProductVO(String name, String img_urls) {
+		super();
+		this.name = name;
+		this.img_urls = img_urls;
+	}
+
 	public String getAmount() {
 		return amount;
 	}

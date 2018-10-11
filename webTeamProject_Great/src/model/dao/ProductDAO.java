@@ -15,13 +15,13 @@ import query.StringQuery;
 public class ProductDAO {
 	DataSource ds;
 	
-	private static ProductDAO dao= ProductDAO();
+	private static ProductDAO dao= new ProductDAO();
 	
 	private ProductDAO() {
 		ds=DataSourceManager.getInstance().getConnection();
 	}
 	
-	public static ProductDAO ProductDAO() {
+	public static ProductDAO getInstance() {
 		
 		return dao;
 	}
