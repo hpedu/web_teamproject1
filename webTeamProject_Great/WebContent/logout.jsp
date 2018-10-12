@@ -9,7 +9,7 @@
 <body>
 <script type="text/javascript">
 	alert("로그아웃 하셨습니다.");
-	location.href="recipemain.jsp";
+	location.href="showmain.do";
 </script>
 </body>
 </html>

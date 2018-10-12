@@ -89,7 +89,7 @@
 	   <img alt="" src="img/main_2.PNG" width="1024px" height="500px">
 	</div>
 	
-	<form action="DispatcherServlet">
+	<form action="login.do">
 		<div class="imgcontainer">
 			<img src="img/logo.png" alt="logo">
 		</div>

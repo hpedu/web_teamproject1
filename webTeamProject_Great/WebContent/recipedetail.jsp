@@ -6,8 +6,8 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -38,6 +38,9 @@
 			<div class="col-sm-8" style="padding: 20px;">
 				<H3>
 					레서피 이름 : &nbsp;&nbsp;&nbsp; <b>${rvo.name}<%-- ${recipe.name} --%></b>
+					<c:if test="${login.id ==rvo.writer }">
+						<a class="btn btn-primary" href="deleterecipe.do?no=${rvo.num}" onclick="if(!confirm('정말 삭제하시겠습니까?')){return false}">삭제하기</a>
+					</c:if>
 				</H3>
 				<hr color="orange">
 				<table style="width: 100%; height: 250px">

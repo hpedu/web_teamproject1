@@ -11,7 +11,7 @@
 <body>
 	<c:if test="${login != null}">
 		${login.name} 님 로그인 성공!!<br>
-		<a href="recipemain.jsp">Main 가기</a>
+		<a href="showmain.do">Main 가기</a>
 	</c:if>
 </body>
 </html>

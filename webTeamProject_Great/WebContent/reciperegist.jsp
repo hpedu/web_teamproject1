@@ -6,29 +6,32 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript">
-     var count = 2;
+  
+  	$(function() {
+  		var login = "<c:out value='${login}'/>";
+  		if(login==""){
+  			alert('잘못된 접근입니다. 로그인하고 이용해 주세요');
+  			location.href = "loginForm.jsp";
+  		}
+  		
+	}) 
+     
+  	var count = 2; 
     function add_item(){
         // pre_set 에 있는 내용을 읽어와서 처리..
         
         var addedFormDiv = document.getElementById('field');//폼 생성
-        
-        /* div.innerHTML = document.getElementById('pre_set').innerHTML;
-        document.getElementById('field').appendChild(div); */
-        
-       /*  <div class="form-group" id="pre_set" style="display:ture">
-      <input type="text" class="form-control" name="way2" placeholder="요리방법 설명" style="width=50%">
-      <input type="button" value="삭제" onclick="remove_item(this)">
-      <input type="file" class="form-control" name="way2_url" placeholder="사진 업로드" name="way2_url">
-   </div> */
+      
         var str = "";
      
-        str+="<br><input type='text' class='form-control' name=way_"+count+" placeholder='요리방법 설명' style='width=50%'>"
-        str+="<input type='button' value='삭제' onclick='remove_item(this)'>"
-        str+="<input type='file' class='form-control' name='way_"+count+"_url' placeholder='사진 업로드'><br>"
+        str+="<br><div class='input-group'><input type='text' class='form-control' name=way_"+count+" placeholder='요리방법 설명' style='width=50%'>";
+        str+="<div class='input-group-btn'><input type='button' value='삭제' class='btn btn-default' target=added_"+count+" onclick='remove_item(this)'></div></div>";
+        str+="<div class='input-group'><input type='text' id= 'way_"+count+"_filename' class='form-control' readonly='readonly'>";
+        str+="<div class='input-group-btn'><label class='btn btn-default'>찾아보기";
+        str+="<input type='file' onchange=\"javascript:document.getElementById(\'way_"+count+"_filename\').value=this.value\" id='uploadBtn' class='uploadBtn'  name='way_"+count+"_url' ></label></label></div></div><br>";
+       
         
         var addedDiv = document.createElement("div"); // 폼 생성
 
@@ -37,16 +40,33 @@
         addedDiv.innerHTML  = str; // 폼 Div안에 HTML삽입
 
         addedFormDiv.appendChild(addedDiv); // 삽입할 DIV에 생성한 폼 삽입
-        
+        document.getElementById('count').value=count;
         count++;   
-        document.recipe.count.value=count;
+        
     }
  
     function remove_item(obj){
         // obj.parentNode 를 이용하여 삭제
-        document.getElementById('field').removeChild(obj.parentNode);
+      /*   document.getElementById('field').removeChild(obj.parentNode); */
+    	var target = obj.getAttribute('target');
+    	   // 삭제할 element 찾기
+    	   var field = document.getElementById(target);
+    	   // #field 에서 삭제할 element 제거하기
+    	    document.getElementById('field').removeChild(field);
     }
+    
+
+   
+    
+   
 </script>
+ 
+<style type="text/css">
+
+input[type="file"] {position:absolute;padding:0;margin:-1px;overflow:hidden;border:0; width:0; height:0}
+</style>
+
+
 </head>
 <body>
    <c:import url="header.jsp"></c:import>
@@ -54,7 +74,7 @@
       <div class="container">
          <div>
             <br><br>
-            <h1 align="center">Recipe enroll</h1><br><br>
+            <h1 align="center">Recipe 등록하기</h1><br><br>
             <h5>음식이름</h5>
             <input type="text" class="form-control" name="name" placeholder="ex)김치볶음밥"   ><br><br>
             <h5>음식설명</h5>
@@ -62,23 +82,29 @@
          </div>   
          <div>
             <h5>음식사진</h5>
-            <div class="input-group">
-            <input type="file" class="form-control" name="imgurls" placeholder="음식사진1" style="width=80%">
-            <div class="input-group-btn">
-            <button type="button" class="btn btn-enroll">upload</button></div></div>
-            
-         </div>
-      </div>
+            <div class="input-group" id="mainimg">
+	<input type="text" class="form-control" readonly="readonly" id="mainimgname">
+	<div class="input-group-btn">
+	<label class="btn btn-default">찾아보기
+	<input type="file" onchange="javascript:document.getElementById('mainimgname').value=this.value" id="uploadBtn" class="uploadBtn"  name="imgurls" ></label>
+
+			    	
+	</div></div>
+	</div>
+           	 
       
+    </div>
+   
+
       <div class="container">
       <h5>음식 분류</h5>
       <!-- 카테고리. 밸류값 해서 불러오자 -->
          <select id="type" name="type">
-              <option value="구이류" selected="selected">구이</option>
-              <option value="면류">면류</option>
-              <option value="밥류">밥류</option>
-              <option value="샐러드">샐러드</option>
-              <option value="국류">국류</option>
+              <option value="beef" selected="selected">beef</option>
+              <option value="noodle">noodle</option>
+              <option value="rice">rice</option>
+              <option value="salad">salad</option>
+              <option value="soup">soup</option>
          </select>
       </div>
       <br><br>
@@ -106,11 +132,17 @@
             <div class="form-group" >
             	<br>
                <input type="text" class="form-control" name="way_1" placeholder="요리방법 설명" style="width=40%" required="required">
-               <input type="file" align="left" class="form-control" name="way_1_url" placeholder="사진 업로드" name="way1_url"><br>
+                   <div class="input-group">
+			    	<input type="text" class="form-control" readonly="readonly" id="way_1_filename">
+			    	<div class="input-group-btn">
+			    	<label class="btn btn-default">찾아보기
+					<input type="file" onchange="javascript:document.getElementById('way_1_filename').value=this.value" id="uploadBtn" class="uploadBtn"  name="way_1_url" ></label>
+			    	</div></div> 
+	           
             </div>
              
             <div id="field"></div>
-            <input type="hidden" name="count" value="0">
+            <input type="hidden" name="count" id="count" value="1">
             
             <div align="center">
                 <input type="button" value="추가" class="btn btn-primary"  onclick="add_item()">

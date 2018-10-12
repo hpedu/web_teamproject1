@@ -60,5 +60,30 @@ public interface ShowQuery {
 			+ "(SELECT no, title, writer, content, hits, CEIL(rownum/5) as page FROM "
 			+ "(SELECT no, title, writer, content, hits FROM board ORDER BY hits DESC)) "
 			+ "WHERE page=1";
+		
+		//레시피 전체보기
+		String SELECT_SHOWRECIPE2 = "select*from recipe";
+		
+	
+		
+		//헤더에서 레시피 들어갈때 내용보기
+		String SELECT_SHOWPRODUCT2 = "select*from product";
+		
+		//조회수 증가
+		String UPDATE_RECIPEHITS = "UPDATE recipe SET hits=?+1 WHERE no=?";
+		
+		//프로덕트 페이징 + 헤더에서 제품 들어갈때 내용보기
+		String PRODUCTPAGE_LIST = "SELECT name, price, origin, img_urls, content, page FROM"  +
+             "(SELECT name, price, origin, img_urls, content, ceil(rownum/"+CommonConstants.CONTENT_NUMBER_PER_PAGE+") AS page FROM" +
+             "(SELECT name, price, origin, img_urls, content FROM product)) where page=?";
+		String PRODUCTTOTAL_COUNT = "select count(-1) from product";
+		
+		//레시피 페이징 + 헤더에서 레시피 들어갈때 내용보기
+		String RECIPEPAGE_LIST = "SELECT no, name, img_urls, main_ingredients ,descript, page FROM"  +
+		              "(SELECT no, name, img_urls, main_ingredients ,descript, ceil(rownum/"+CommonConstants.CONTENT_NUMBER_PER_PAGE+") AS page FROM" +
+		              "(SELECT no, name, img_urls, main_ingredients ,descript FROM recipe)) where page=?";
+		String RECIPETOTAL_COUNT = "select count(-1) from recipe";
+		
+	
 }
 

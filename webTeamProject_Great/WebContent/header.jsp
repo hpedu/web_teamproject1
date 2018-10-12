@@ -25,7 +25,7 @@
       <div class="container">
       <div class="row" style="margin:auto">
       <div class="col-sm-2">
-         <a class="navbar-brand" href="#" style="padding:0px">
+         <a class="navbar-brand" href="showmain.do	" style="padding:0px">
             <img src="./img/logo_white.png" alt="logo" style="height:100%;">
          </a>
   	</div>
@@ -33,7 +33,7 @@
          <!-- Links -->
          <ul class="nav navbar-nav">
             <li class="nav-item">
-               <a class="nav-link" href="DispatcherServlet?command=search" style="color:white">레시피</a>
+               <a class="nav-link" href="search.do" style="color:white">레시피</a>
             </li>
          
             <li><a class="nav-link" href="#">|</a></li>
@@ -57,41 +57,51 @@
             <li><a class="nav-link" href="#">|</a></li>
             
             <li class="nav-item">
-               <a class="nav-link" href="#" style="color:white">EVENT</a>
+               <a class="nav-link" href="noticeList.do" style="color:white">EVENT</a>
             </li>
          </ul>
          </div>
          <div class="col-sm-2" style="height:50px">
-         <div class="btn-group" >
-            <button type="button" class="btn dropdown-toggle" style="background-color: orange;    padding: 10px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         
+         	<div class="row">
+         	<c:if test="${login != null}">
+         		<div class="col-xs-6">
+         		<button type="button" class="btn" style="background-color: orange;"	onclick="location.href = 'reciperegist.jsp'">
+               	<img src="./img/write.png" alt="logo" style="width:20px; padding-top:10px">
+            	</button>
+            	</div>
+            	
+           	</c:if>
+             <div class="dropdown col-xs-6">
+            <button type="button" class="btn dropdown-toggle" style="background-color: orange; padding: 10px;" data-toggle="dropdown">
                <img src="./img/member.png" alt="logo" style="width:20px;">
             </button>
-            <c:choose>
-               <c:when test="${login != null}">
-                  <div class="dropdown-menu">
-                     <a class="dropdown-item" href="#">장바구니</a>
-                     <a class="dropdown-item" href="DispatcherServlet?command=logout">로그아웃</a>
-                     
-                  </div>
-               </c:when>
-               <c:otherwise>
-                  <div class="dropdown-menu">
-                     <a class="dropdown-item" href="loginForm.jsp">로그인</a>
-                     <a class="dropdown-item" href="registerForm.jsp">회원가입</a>
-                     <div class="dropdown-divider"></div>
-                     <a class="dropdown-item" href="#" onclick="alert('준비중입니다.')">ID/PW 찾기</a>
-                  </div>
-               </c:otherwise>
-            </c:choose>
+            
+            
+              
+                  <ul class="dropdown-menu">
+                  <c:choose>
+                   <c:when test="${login != null}">
+                    <li>  <a class="dropdown-item" href="loginForm.jsp">장바구니</a></li> 
+                     <li> <a class="dropdown-item" href="logout.do">로그아웃</a></li>
+             		 </c:when>
+             		 <c:otherwise>
+             		 <li><a class="dropdown-item" href="loginForm.jsp">로그인</a></li>
+                  	 <li><a class="dropdown-item" href="registerForm.jsp">회원가입</a></li>
+                     <li class="divider"></li>
+                  	 <li><a class="dropdown-item" href="#" onclick="alert('준비중입니다.')">ID/PW 찾기</a></li>
+             		  </c:otherwise>
+            		</c:choose>
+             	 	</ul>
+               
+              
+            </div>
+         </div>
+         </div>
          </div>
       </div>
-      </div>
-      </div>
+   
    </nav>
-   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-      <button class="dropdown-item" type="button">Action</button>
-      <button class="dropdown-item" type="button">Another action</button>
-      <button class="dropdown-item" type="button">Something else here</button>
-   </div>
+  
 </body>
 </html>

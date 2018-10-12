@@ -86,7 +86,7 @@ public class ShowDao {
 	      }
 	      return vo;
   }
-
+   
    public ArrayList<RecipeVO> showRecipeHot() throws SQLException {
       Connection conn = null;
       PreparedStatement ps = null;
@@ -152,6 +152,136 @@ public class ShowDao {
       }
       return list;
    }
+   
+   public ArrayList<ProductVO> showProduct2() throws SQLException {
+	      Connection conn = null;
+	      PreparedStatement ps = null;
+	      ResultSet rs = null;
+	      ArrayList<ProductVO> list = new ArrayList<ProductVO>();
+	      try {
+	         conn = getConnection();
+	         ps = conn.prepareStatement(ShowQuery.SELECT_SHOWPRODUCT2);
+	         rs = ps.executeQuery();
+	         while (rs.next()) {
+	            list.add(new ProductVO(rs.getString("name"), rs.getInt("price"), rs.getString("origin"),
+	                  rs.getString("img_urls"), rs.getString("content"), rs.getString("type"), rs.getString("brand"),
+	                  rs.getInt("sales_volume"), rs.getString("recommend"), rs.getString("amount")));
+	         }
+	      } finally {
+	         closeAll(rs, ps, conn);
+	      }
+	      return list;
+	   }
+
+public ArrayList<RecipeVO> showRecipe2() throws SQLException {
+	      Connection conn = null;
+	      PreparedStatement ps = null;
+	      ResultSet rs = null;
+	      ArrayList<RecipeVO> list = new ArrayList<RecipeVO>();
+	      try {
+	         conn = getConnection();
+	         ps = conn.prepareStatement(ShowQuery.SELECT_SHOWRECIPE2);
+	         rs = ps.executeQuery();
+	         while (rs.next()) {
+	            list.add(new RecipeVO(rs.getInt("no"), rs.getString("name"), rs.getString("img_urls"),
+	                  rs.getString("main_ingredients"), rs.getString("sub_ingredients"), rs.getString("writer"),
+	                  rs.getString("register_date"), rs.getString("type"), rs.getInt("hits"),
+	                  rs.getString("descript"), rs.getString("content"), rs.getString("tip"),
+	                  rs.getString("recommend")));
+	         }
+	      } finally {
+	         closeAll(rs, ps, conn);
+	      }
+	      return list;
+	   }
+
+
+public ArrayList<ProductVO> getProductList(int pageNo)throws Exception{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
+		try {
+			conn=  getConnection();
+			ps = conn.prepareStatement(ShowQuery.PRODUCTPAGE_LIST);
+			ps.setInt(1, pageNo);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new ProductVO(rs.getString("name"), rs.getInt("price"), rs.getString("origin"),
+		                  rs.getString("img_urls"), rs.getString("content")));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+
+public int getTotalProductCount() throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps =null;
+		ResultSet rs=  null;
+		int count=-1;
+		try{
+			conn=  getConnection();
+			ps = conn.prepareStatement(ShowQuery.PRODUCTTOTAL_COUNT);
+			rs = ps.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		}finally{
+			closeAll(rs, ps, conn);
+		}
+		return count;
+	}
+
+public ArrayList<RecipeVO> getRecipeList(int pageNo)throws Exception{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<RecipeVO> list = new ArrayList<RecipeVO>();
+		try {
+			conn=  getConnection();
+			ps = conn.prepareStatement(ShowQuery.RECIPEPAGE_LIST);
+			ps.setInt(1, pageNo);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new RecipeVO(rs.getInt("no"), rs.getString("name"), rs.getString("img_urls"),
+		                  rs.getString("main_ingredients"), rs.getString("descript")));
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+
+public int getTotalRecipeCount() throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps =null;
+		ResultSet rs=  null;
+		int count=-1;
+		try{
+			conn=  getConnection();
+			ps = conn.prepareStatement(ShowQuery.RECIPETOTAL_COUNT);
+			rs = ps.executeQuery();
+			if(rs.next()) count = rs.getInt(1);
+		}finally{
+			closeAll(rs, ps, conn);
+		}
+		return count;
+	}
+
+public void updateHits(int no, int hits)throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			ps = conn.prepareStatement(ShowQuery.UPDATE_RECIPEHITS);
+			ps.setInt(1, hits);
+			ps.setInt(2, no);
+			int row = ps.executeUpdate();
+			System.out.println(row+"ROW updateHits");
+		}finally {
+			closeAll(ps, conn);
+		}
+	}
 
    public ArrayList<ProductVO> showProductHot() throws SQLException {
       Connection conn = null;

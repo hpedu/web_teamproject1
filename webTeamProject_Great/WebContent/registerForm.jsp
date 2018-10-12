@@ -88,7 +88,7 @@
 		}
 	}
 	function idcheck() {
-		window.open("DispatcherServlet?command=idcheck&&id=" + $('#id').val(), "Window Title", "width=300, height=200, top=100, left=400"); 
+		window.open("idcheck.do?id=" + $('#id').val(), "Window Title", "width=300, height=200, top=100, left=400"); 
 	}
 /* 
 	function idcheck() {
@@ -114,7 +114,7 @@
 	<br><br>
 	<h2 align="center">회원가입 폼</h2>
 	
-	<form action="DispatcherServlet" method="post" name="registerFrm" onsubmit="return passcheck()">
+	<form action="register.do" method="post" name="registerFrm" onsubmit="return passcheck()">
 
 		<div class="registercontainer">
 			<div id="register">

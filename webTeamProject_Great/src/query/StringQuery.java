@@ -85,5 +85,10 @@ public interface StringQuery {
 		           + "WHERE id=? AND password=?";
 
 	String SEARCH_MEMBER = "SELECT id, password FROM member WHERE id=?";
+	
+	
+	String UPDATE_HITS = "UPDATE notice SET hits=?+1 WHERE no=?";
+	
+	String SELECT_NOTICE = "SELECT no, writer, register_date, title, hits, content FROM notice WHERE no=?";
 		
 }

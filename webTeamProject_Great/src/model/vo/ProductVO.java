@@ -13,7 +13,20 @@ public class ProductVO {
 	private String recommend;
 	private String amount;
 	
+
 	
+	
+
+	
+	public ProductVO(String name, int price, String origin, String img_urls, String content) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.origin = origin;
+		this.img_urls = img_urls;
+		this.content = content;
+	}
+
 	
 	
 	public ProductVO(String name, String img_urls) {
