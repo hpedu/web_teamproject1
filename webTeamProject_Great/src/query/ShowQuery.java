@@ -22,12 +22,12 @@ public interface ShowQuery {
 				+ "hits, descript, content, tip, recommend from recipe where recommend='true' AND ROWNUM<=4";
 
 		// 판매량 순 내림차순 정렬후 상위 4개 상품 검색
-		String SELECT_SHOWHOTPRODUCT = "SELECT name, price ,origin ,imgurls, content, type,"
+		String SELECT_SHOWHOTPRODUCT = "SELECT name, price ,origin ,img_urls, content, type,"
 				+ "brand, sales_volume,recommend, amount from product "
 				+ "WHERE ROWNUM<=3";
 
 		// 추천 상품 관리자가 지정해서 추천 레서피 2개
-		String SELECT_SHOWRECOMMENDPRODUCT = "SELECT name, price ,origin ,imgurls, content, type,"
+		String SELECT_SHOWRECOMMENDPRODUCT = "SELECT name, price ,origin ,img_urls, content, type,"
 				+ "brand, sales_volume,recommend, amount from product WHERE recommend='true' AND ROWNUM<=2";
 
 		// 레시피의 상품들 :: no번호 상품의 서브재료들의 상품을 전부 검색 하는 쿼리 ( 서브재료 등록시 , 로 구분해서 등록해야 하고 부재료 이름과 제품이름이 동일해야함.)
@@ -56,9 +56,34 @@ public interface ShowQuery {
 	
 	String NOTICE_TOTAL_COUNT = "select count(-1) from notice";
 	
-	String RECOMMEND_RECIPE = "SELECT no, title, writer, content, hits FROM "
+	String RECOMMEND_RECIPE = "SELECT no, name, writer,register_date, content, hits FROM "
 			+ "(SELECT no, title, writer, content, hits, CEIL(rownum/5) as page FROM "
 			+ "(SELECT no, title, writer, content, hits FROM board ORDER BY hits DESC)) "
 			+ "WHERE page=1";
+		
+		//레시피 전체보기
+		String SELECT_SHOWRECIPE2 = "select*from recipe";
+		
+	
+		
+		//헤더에서 레시피 들어갈때 내용보기
+		String SELECT_SHOWPRODUCT2 = "select*from product";
+		
+		//조회수 증가
+		String UPDATE_RECIPEHITS = "UPDATE recipe SET hits=?+1 WHERE no=?";
+		
+		//프로덕트 페이징 + 헤더에서 제품 들어갈때 내용보기
+		String PRODUCTPAGE_LIST = "SELECT name, price, origin, img_urls, content, page FROM"  +
+             "(SELECT name, price, origin, img_urls, content, ceil(rownum/"+CommonConstants.CONTENT_NUMBER_PER_PAGE+") AS page FROM" +
+             "(SELECT name, price, origin, img_urls, content FROM product)) where page=?";
+		String PRODUCTTOTAL_COUNT = "select count(-1) from product";
+		
+		//레시피 페이징 + 헤더에서 레시피 들어갈때 내용보기
+		String RECIPEPAGE_LIST = "SELECT no, name, img_urls, main_ingredients ,descript, page FROM"  +
+		              "(SELECT no, name, img_urls, main_ingredients ,descript, ceil(rownum/"+CommonConstants.CONTENT_NUMBER_PER_PAGE+") AS page FROM" +
+		              "(SELECT no, name, img_urls, main_ingredients ,descript FROM recipe)) where page=?";
+		String RECIPETOTAL_COUNT = "select count(-1) from recipe";
+		
+	
 }
 

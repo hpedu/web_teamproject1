@@ -96,11 +96,11 @@
       <div id ="div1">
          <img alt="logo" src="img/logo.png" id="logo">
                
-         <form action="DispatcherServlet?command=SerchRecipe">
+         <form action="SerchRecipe.do">
             <div class="input-group mb-3">
                 <span id="home" class="btn btn-outline-secondary">
                    <!-- home 페이지 연결 -->
-                    <a href="DispatcherServlet?command=showmain"><input type="button" id="homeBtn"></a>
+                    <a href="showmain.do"><input type="button" id="homeBtn"></a>
                  </span>
                  
                 <input type="text" placeholder="Search..." id="myInput" name="search">

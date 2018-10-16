@@ -6,8 +6,8 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -38,6 +38,9 @@
 			<div class="col-sm-8" style="padding: 20px;">
 				<H3>
 					레서피 이름 : &nbsp;&nbsp;&nbsp; <b>${rvo.name}<%-- ${recipe.name} --%></b>
+					<c:if test="${login.id ==rvo.writer }">
+						<a class="btn btn-primary" href="deleterecipe.do?no=${rvo.num}" onclick="if(!confirm('정말 삭제하시겠습니까?')){return false}">삭제하기</a>
+					</c:if>
 				</H3>
 				<hr color="orange">
 				<table style="width: 100%; height: 250px">
@@ -67,46 +70,57 @@
 		</div>
 		<br>
 		<br>
-		
+		<br>
+		<br><br>
+		<br>
 		<div style="text-align: center">
 			<h4> <b>- 조리 방법 -</b> </h4>
 		</div>
 		
 		<!-- 조리방법이 나타날 공간입니다.  -->
 		<div class="" style="">
-		
-			<c:forEach var="list" items="${contents}" varStatus="status">
-				<div>
-					<table>
+			<div>
+					<table align="center" >
+			<c:forEach var="list" items="${dlist}" varStatus="status">
+				
 						<tr>
 							<td>
+							<br>
+							<br>
 								${status.count} .
 							</td>
 							<td>
-								${list}
+							<br>
+							<br>
+								${list.discript}
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><img src="img/1.jpg" width="600" height="300"></td>
+							<td colspan="2" align="center">
+							<br>
+							<img src="${list.urls}" width="600" align="center"></td>
+							
 							<%-- ${list.img_urls} --%>
 						</tr>
-					</table>
-				</div>
+					
 			</c:forEach> 
 			<!-- 일단 틀만 잡아놓습니다. -->
-			
+			</table>
+			</div>
 
 		</div>
 		
 		<!-- 레시피 재료  -->
-		<div style="padding-top: 80px;">
+		<div style="padding-top: 80px; text-align: center">
 		    <div>
 			<h5> <b>레시피 재료</b> </h5>
 		    </div>
-			<table style="margin: auto;">
+		    ${rvo.main_ingredientents}<br>
+		    ${rvo.sub_ingredientents}
+			<!-- <table style="margin: auto;">
 			<tr><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td></tr>
 			<tr><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td></tr>
-			</table>
+			</table> -->
 			</div>
 		
 		
@@ -152,7 +166,7 @@
 	
 
 	</div>
-
+	<c:import url="footer.jsp"></c:import>
 
 
 </body>

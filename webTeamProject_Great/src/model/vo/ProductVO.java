@@ -13,6 +13,46 @@ public class ProductVO {
 	private String recommend;
 	private String amount;
 	
+
+	  
+	  
+
+	  
+	   
+	   //상품 상세보기
+	   public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand,
+	         String amount) {
+	      super();
+	      this.name = name;
+	      this.price = price;
+	      this.origin = origin;
+	      this.img_urls = img_urls;
+	      this.content = content;
+	      this.type = type;
+	      this.brand = brand;
+	      this.amount = amount;
+	   }
+
+	
+
+	
+	public ProductVO(String name, int price, String origin, String img_urls, String content) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.origin = origin;
+		this.img_urls = img_urls;
+		this.content = content;
+	}
+
+	
+	
+	public ProductVO(String name, String img_urls) {
+		super();
+		this.name = name;
+		this.img_urls = img_urls;
+	}
+
 	public String getAmount() {
 		return amount;
 	}

@@ -5,30 +5,34 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+
+	
+</style>
 </head>
 <body>
-<div class="bg-dark">
+<div style="background-color:#3f3f3f;">
 		<div class="container">
-				<a class="text-light" style="color:gray" href="#">개인정보 취급방침</a> |
-				<a class="text-light" style="color:gray" href="#">이용약관</a> |
-				<a class="text-light" style="color:gray" href="#">법적고지</a> |
-				<a class="text-light" style="color:gray" href="#">오시는길</a>
+				<a style="color:#e0e0e0" href="#">개인정보 취급방침</a> |
+				<a style="color:#e0e0e0" href="#">이용약관</a> |
+				<a style="color:#e0e0e0" href="#">법적고지</a> |
+				<a style="color:#e0e0e0" href="#">오시는길</a>
 		
 		</div>
 	</div>
 	<div style="background-color:#495057;">
 		<div class="container">
-		<div class="row align-items-center">
-			<div class="col-sm-1 justified"> <img src="./img/logo.png" alt="logo" width="100px"></div>
-			<div class="col-sm-8" style="margin-left:20px">
-				<a class="text-light" href="#">고객센터</a> | 
-				<a class="text-light" href="#">파트너사 모집</a> | 
-				<a class="text-light" href="#">사이트맵</a> | 
-				<a class="text-light" href="#">관련사이트</a>
+		<div class="row" >
+			<div class="col-sm-2" style="align:center"> <img src="./img/logo.png" alt="logo" width="100px"></div>
+			<div class="col-sm-8" style="margin-left:20px; margin-top:15px">
+			 <ul class="list-inline" style="margin:auto">
+			    <li><a style="color:#e0e0e0" href="#">고객센터</a> |</li>
+			    <li><a style="color:#e0e0e0" href="#">파트너사 모집</a> | </li>
+			    <li><a style="color:#e0e0e0" href="#">사이트맵</a> | </li>
+			    <li><a style="color:#e0e0e0" href="#">관련사이트</a></li>
+			  </ul>
+			
 			</div>
 		</div>
 		<div style="color:darkgray">

@@ -1,24 +1,27 @@
 package model.vo;
 
 public class CartVO {
-	private String id;
-	private String product_name;
-	private int quantity;
-	@Override
-	public String toString() {
-		return "CartVO [id=" + id + ", product_name=" + product_name + ", quantity=" + quantity + "]";
+	 private String img_urls;
+	 private String name;
+	 private int price;
+	 private int quantity;
+	public String getImg_urls() {
+		return img_urls;
 	}
-	public String getId() {
-		return id;
+	public void setImg_urls(String img_urls) {
+		this.img_urls = img_urls;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public String getName() {
+		return name;
 	}
-	public String getProduct_name() {
-		return product_name;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public int getQuantity() {
 		return quantity;
@@ -26,14 +29,17 @@ public class CartVO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public CartVO(String id, String product_name, int quantity) {
+	@Override
+	public String toString() {
+		return "CartVO [img_urls=" + img_urls + ", name=" + name + ", price=" + price + ", quantity=" + quantity + "]";
+	}
+	public CartVO(String img_urls, String name, int price, int quantity) {
 		super();
-		this.id = id;
-		this.product_name = product_name;
+		this.img_urls = img_urls;
+		this.name = name;
+		this.price = price;
 		this.quantity = quantity;
 	}
-	public CartVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	 
+	public CartVO() {}
 }

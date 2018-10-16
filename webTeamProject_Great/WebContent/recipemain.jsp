@@ -7,9 +7,9 @@
 <title>main페이지</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
 <style type="text/css">
 
    /* 검색창 top에서 부터 얼마나 떨어지는가 */
@@ -186,31 +186,13 @@
    ul.ultable-bordered { border: 1px solid #ddd; }
    ul.ultable-bordered li ul li { border: 1px solid #ddd; }
    ul.ultable-hover li:last-child ul:hover { background-color: #f5f5f5}
-
+   
+   
 </style>
 
 </head>
 <body>
-<!--    <nav id="nav" class="navbar navbar">
-      <div id="navDiv" class="container-fluid">
-         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-               <img alt="logo" src="img/logo_white.png" id="logo">
-            </a>
-         </div>
-         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">레시피</a></li>
-            <li><a href="#">나만의 레시피</a></li>
-            <li><a href="#">레시피 토크</a></li>
-            <li><a href="#">쇼핑몰</a></li>
-            <li><a href="#">이벤트</a></li>
-         </ul>
-         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-         </ul>
-      </div>
-   </nav> -->
+
 <c:import url="header.jsp"></c:import>
    <div align="center">
       <div id ="div1">
@@ -232,7 +214,7 @@
    </div>
    
    <div id="recipe_ad" align="center">
-      <img alt="" src="img/main_2.PNG" width="1024px" height="500px">
+      <img alt="" src="img/main_2.PNG" width="1024px" height="280px">
    </div>
    
    <div id="main_div1" align="center">
@@ -276,8 +258,8 @@
             <div class="hotMenu1">
             <c:forEach var="rrvo" items="${RecommendRlist}">
                <div class="hotMenu2">
-                  <a href="DispatcherServlet?command=showrecipedetail&&num=${rrvo.num}"><img alt="" src="${rrvo.imgurls}"></a><br><br>
-                  <p>${rrvo.name}</p>
+                  <a href="showrecipedetail.do?num=${rrvo.num}"><img alt="" src="${rrvo.imgurls}"><br><br>
+                  <p>${rrvo.name}</p></a>
                </div>
                </c:forEach>
             </div>
@@ -326,8 +308,8 @@
             <div class="hotMenu1">
             <c:forEach var="hrvo" items="${HotRlist}">
                <div class="hotMenu2">
-                  <a href="DispatcherServlet?command=showrecipedetail&&num=${hrvo.num}"><img alt="" src="${hrvo.imgurls}"></a><br><br>
-                  <p>${hrvo.name}</p>
+                  <a href="showrecipedetail.do?num=${hrvo.num}"><img alt="" src="${hrvo.imgurls}"><br><br>
+                  <p>${hrvo.name}</p></a>
                </div>
                </c:forEach>
             </div>
@@ -337,17 +319,17 @@
    </div>
    
    <div id="ingredient_ad" align="center">
-      <img alt="" src="img/main_2.PNG" width="1024px" height="500px">
+      <img alt="" src="img/main_2.PNG" width="1024px" height="280px">
    </div>
    
    <div id="main_div3" align="center">
       <div id="main_div3_div1" align="center">
          <div id="inMenu추천">
             <h3 align="left">추천 상품</h3><br>
-            <div id="inMenu2">
+            <div id="inMenu2">    
             <c:forEach var="rpvo" items="${RecommendPlist}">
                <div class="hotMenu2">
-                  <a href="DispatcherServlet?command=showproductdetail&&name=${rpvo.name}"><img alt="" src="${rpvo.img_urls}"></a><br><br>
+                  <a href="showproductdetail.do?name=${rpvo.name}"><img alt="" src="${rpvo.img_urls}"></a><br><br>
                   <p>이름 : ${rpvo.name}</p>
                   <p>가격 : ${rpvo.price}</p>
                </div>
@@ -360,7 +342,7 @@
             <div id="inMenu1">
             <c:forEach var="hpvo" items="${HotPlist}">
                <div class="hotMenu2">
-                  <a href="DispatcherServlet?command=showproductdetail&&name=${hpvo.name}"><img alt="" src="${hpvo.img_urls}"></a><br><br>
+                  <a href="showproductdetail.do?name=${hpvo.name}"><img alt="" src="${hpvo.img_urls}"></a><br><br>
                   <p>이름 : ${hpvo.name}</p>
                   <p>가격 : ${hpvo.price}</p>
                </div>
@@ -371,8 +353,7 @@
       </div>
    </div>
    
-   <div style="height: 200px; background-color: #ccc">
-   이곳은 제일 밑
+ <c:import url="footer.jsp"></c:import>
    </div>
    
 </body>
