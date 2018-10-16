@@ -37,6 +37,10 @@ public class RecipeDAO {
 		closeAll(ps, conn);
 	}
 	
+	
+	
+	
+	
 	//레시피 등록
 		public void registerRecipe(RecipeVO mvo) throws SQLException{
 			Connection conn = null;
@@ -48,8 +52,8 @@ public class RecipeDAO {
 				ps.setInt(1, 1);
 				ps.setString(2, mvo.getName());
 				ps.setString(3, mvo.getImgurls());
-				ps.setString(4, mvo.getMain_ingredientents());
-				ps.setString(5, mvo.getSub_ingredientents());
+				ps.setString(4, mvo.getMain_ingredients());
+				ps.setString(5, mvo.getSub_ingredients());
 				ps.setString(6, mvo.getWriter());
 				ps.setString(7, mvo.getDate());
 				ps.setString(8, mvo.getType());
@@ -88,8 +92,8 @@ public class RecipeDAO {
 				this.tip = tip;*/
 				ps.setString(1, vo.getName());
 				ps.setString(2, vo.getImgurls());
-				ps.setString(3, vo.getMain_ingredientents());
-				ps.setString(4, vo.getSub_ingredientents());
+				ps.setString(3, vo.getMain_ingredients());
+				ps.setString(4, vo.getSub_ingredients());
 				ps.setString(5, vo.getWriter());
 				ps.setString(6, vo.getType());
 				ps.setString(7, vo.getDescript());			
@@ -141,8 +145,8 @@ public class RecipeDAO {
 				
 				ps.setString(1, vo.getName());
 				ps.setString(2, vo.getImgurls());
-				ps.setString(3, vo.getMain_ingredientents());
-				ps.setString(4, vo.getSub_ingredientents());
+				ps.setString(3, vo.getMain_ingredients());
+				ps.setString(4, vo.getSub_ingredients());
 				ps.setString(5, vo.getWriter());
 				
 				ps.setString(6, vo.getType());

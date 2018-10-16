@@ -48,8 +48,14 @@ public class HandlerMapping {
 			System.out.println("NoticeListController 持失....");
 		}else if(command.equals("deleterecipe.do")) {
 			controller = new DeleteRecipeController();
-			System.out.println("NoticeListController 持失....");
-		}
+			System.out.println("DeleteRecipeController 持失....");
+		}else if(command.equals("serchmyrecipe.do")) {
+			controller = new SerchMyRecipeController();
+			System.out.println("SerchMyRecipeController 持失....");
+		}else if(command.equals("showProductDetail.do")) {
+	         controller = new ProductDetailController();
+	         System.out.println("productDetail 持失....");
+	      }
 		
 		return controller;
 	}

@@ -20,7 +20,7 @@ public class ShowRecipeController implements Controller {
 		RecipeVO rvo = RecipeDAO.getInstance().showRecipe(num);
 		
 		ArrayList<RecipeVO> llist = RecipeDAO.getInstance().showRelatedRecipe(num);
-		ArrayList<ProductVO> plist = RecipeDAO.getInstance().showRelatedProduct(rvo.getMain_ingredientents());
+		ArrayList<ProductVO> plist = RecipeDAO.getInstance().showRelatedProduct(rvo.getMain_ingredients());
 				System.out.println("¿©±ä°¡");
 		String[] contents =  rvo.getContent().split("///");
 		ArrayList<DiscriptVO>  dlist = new ArrayList<DiscriptVO>();

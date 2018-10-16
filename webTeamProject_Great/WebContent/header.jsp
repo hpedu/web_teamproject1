@@ -33,19 +33,19 @@
          <!-- Links -->
          <ul class="nav navbar-nav">
             <li class="nav-item">
-               <a class="nav-link" href="search.do" style="color:white">레시피</a>
+               <a class="nav-link" href="search.do?page=1" style="color:white">레시피</a>
             </li>
          
             <li><a class="nav-link" href="#">|</a></li>
          
             <li class="nav-item">
-               <a class="nav-link" href="#" style="color:white">나만의 레시피</a>
+               <a class="nav-link" href="serchmyrecipe.do" style="color:white">나만의 레시피</a>
             </li>
             
             <li><a class="nav-link" href="#">|</a></li>
             
             <li class="nav-item">
-               <a class="nav-link" href="#" style="color:white">레시피 Talk</a>
+               <a class="nav-link" href="noticeList.do" style="color:white">레시피 Talk</a>
             </li>
          
             <li><a class="nav-link" href="#">|</a></li>

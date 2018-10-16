@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import config.OracleInfo;
+import model.dao.CommonConstants;
 import model.vo.BoardVO1;
 import model.vo.ProductVO;
 import model.vo.RecipeVO;
@@ -54,7 +55,8 @@ public class SearchDao {
 		closeAll(ps, conn);
 	}
 	
-	public ArrayList<RecipeVO> searchRecipe(String[] words) throws SQLException {
+	public ArrayList<RecipeVO> searchRecipe(String[] words, int page) throws SQLException {
+		System.out.println("searchrecipe words");
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -62,14 +64,157 @@ public class SearchDao {
 		try {
 			conn= getConnect();
 			for(int i=0; i <= words.length-1;i++) {
-				String query = "SELECT no, name, writer,name,imgurls, writer,register_date, type, hits FROM recipe WHERE name LIKE '%"+words[i]+"%'"
-						+ " OR content LIKE '%"+words[i]+"%' ORDER BY hits DESC";
-				ps = conn.prepareStatement(query);
+				String query = "SELECT no, name, img_urls, main_ingredients, writer,register_date, type, hits FROM";
+				query += "(SELECT no, name, img_urls, main_ingredients ,writer,register_date, type, hits, ceil(rownum/6) AS page FROM ";
+				
+				if(words[i]!=" "&i==0) {
+					query += "recipe) WHERE name LIKE '%"+words[i]+"%' order by hits desc";
+					ps = conn.prepareStatement(query);}
+					
+				else if(words[i]!=" "&i!=0) {
+					query += "or name LIKE '%"+words[i]+"%' order by hits desc";
+					ps = conn.prepareStatement(query);}
+				else {
+					query += "(SELECT no, name, img_urls, main_ingredients ,writer,register_date, type, hits FROM recipe order by no desc)) where page=?";
+					ps = conn.prepareStatement(query);
+					ps.setInt(1, page);
+				}
+				System.out.println(query);
+				
 				
 				rs = ps.executeQuery();
 				while(rs.next()) {
-					list.add(new RecipeVO(rs.getInt("no"),rs.getString("name"),rs.getString("imgurls"),
+					list.add(new RecipeVO(rs.getInt("no"),rs.getString("name"),rs.getString("img_urls"),rs.getString("main_ingredients"),
 							rs.getString("writer"), rs.getString("register_date"),rs.getString("type"),rs.getInt("hits")));
+				}
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		System.out.println("return list");
+		return list;
+	}
+	
+	public int countSearchRecipe(String[] words, int page) throws SQLException {
+		System.out.println("searchrecipe words");
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int count=0;
+		
+		try {
+			conn= getConnect();
+			for(int i=0; i <= words.length-1;i++) {
+				String query = "SELECT count(-1) FROM";
+				query += "(SELECT no, name, img_urls, main_ingredients ,writer,register_date, type, hits, ceil(rownum/6) AS page FROM ";
+				
+				if(words[i]!=" "&i==0) {
+					query += "recipe) WHERE name LIKE '%"+words[i]+"%' order by hits desc";
+					ps = conn.prepareStatement(query);}
+					
+				else if(words[i]!=" "&i!=0) {
+					query += "or name LIKE '%"+words[i]+"%' order by hits desc";
+					ps = conn.prepareStatement(query);}
+				else {
+					query += "(SELECT no, name, img_urls, main_ingredients ,writer,register_date, type, hits FROM recipe order by no desc))";
+					ps = conn.prepareStatement(query);
+					
+				}
+				System.out.println(query);
+				
+				
+				rs = ps.executeQuery();
+				if(rs.next())count += rs.getInt(1);
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		System.out.println("return recipe count");
+		return count;
+	}
+	public ArrayList<RecipeVO> searchRecipeByWriter(String writer ,  int page) throws SQLException {
+		System.out.println("searchrecipe writer");
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<RecipeVO> list = new ArrayList<RecipeVO>();
+		try {
+				conn= getConnect();
+			
+				String query = "SELECT no, name, writer,name,img_urls,main_ingredients, writer,register_date, type, hits FROM ";
+				query += "(SELECT no, name, writer,name,img_urls,main_ingredients, writer,register_date, type, hits, ceil(rowrum/6) AS page FROM";
+				query += "(SELECT no, name, writer,name,img_urls,main_ingredients, writer,register_date, type, hits FROM recipe WHERE writer = '%"+writer+"%' ORDER BY no DESC) where page=?";
+				
+				System.out.println(query);
+				ps = conn.prepareStatement(query);
+				ps.setInt(1, page);
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					list.add(new RecipeVO(rs.getInt("no"),rs.getString("name"),rs.getString("img_urls"),rs.getString("main_ingredients"),
+							rs.getString("writer"), rs.getString("register_date"),rs.getString("type"),rs.getInt("hits")));
+				
+			}
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return list;
+	}
+	public int countSearchRecipeByWriter(String writer ,  int page) throws SQLException {
+		System.out.println("countrecipe writer");
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int count=0;
+		try {
+				conn= getConnect();
+			
+				String query = "SELECT count(-1) FROM ";
+				query += "(SELECT no, name, writer,name,img_urls,main_ingredients, writer,register_date, type, hits, ceil(rowrum/6) AS page FROM";
+				query += "(SELECT no, name, writer,name,img_urls,main_ingredients, writer,register_date, type, hits FROM recipe WHERE writer = '%"+writer+"%' ORDER BY no DESC)";
+				
+				System.out.println(query);
+				ps = conn.prepareStatement(query);
+				rs = ps.executeQuery();
+				if(rs.next()) count += rs.getInt(1);
+				
+			
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		return count;
+	}
+	public ArrayList<ProductVO> searchProduct(String[] words , int page) throws SQLException {
+		System.out.println("searchproduct words");
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
+		
+		try {
+			conn= getConnect();
+			String query = "SELECT name, price, img_urls, type FROM  ";
+			query += "(SELECT name, price, img_urls, type,sales_volume, ceil(rownum/5) AS page FROM ";
+			for(int i=0; i <= words.length-1;i++) {
+					if(words[i]!=" "&i==0) {
+						query += "product) WHERE name LIKE '%"+words[i]+"%' order by sales_volume desc";
+						ps = conn.prepareStatement(query);}
+						
+					else if(words[i]!=" "&i!=0) {
+						query += "or name LIKE '%"+words[i]+"%' order by sales_volume desc";
+						ps = conn.prepareStatement(query);}
+					else {
+						
+						query += "(SELECT name, price, img_urls,sales_volume, type FROM product order by sales_volume)) where page=?";
+						ps = conn.prepareStatement(query);
+						ps.setInt(1, page);
+					}
+						
+						System.out.println(query);
+				
+				rs = ps.executeQuery();
+				while(rs.next()) {
+					list.add(new ProductVO(rs.getString("name"), rs.getInt("price"), rs.getString("img_urls"), rs.getString("type")));
 				}
 			}
 		}finally {
@@ -78,29 +223,48 @@ public class SearchDao {
 		return list;
 	}
 	
-	public ArrayList<ProductVO> serchRecipeProduct(String word) throws SQLException {
+	public int countSearchProduct(String[] words , int page) throws SQLException {
+		System.out.println("countsearchproduct");
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
-		String[] words = word.split(",");
+		System.out.println("a "+words);
+		int count = 0;
+		
 		try {
 			conn= getConnect();
+			System.out.println("뭐지?");
+			String query = "SELECT count(-1) FROM ";
+			query += "(SELECT name, price, img_urls, type,sales_volume, ceil(rownum/5) AS page FROM ";
 			for(int i=0; i <= words.length-1;i++) {
-				String query = "SELECT name, price, imgurls, type FROM product WHERE name LIKE '%"+words[i]+"%'"
-						+ " OR content LIKE '%"+words[i]+"%' order by hits desc ";
-				ps = conn.prepareStatement(query);
+					if(words[i]!=" "&i==0) {
+						query += "product) WHERE name LIKE '%"+words[i]+"%' order by sales_volume desc";
+						ps = conn.prepareStatement(query);
+						System.out.println("aa "+words);
+					}	else if(words[i]!=" "&i!=0) {
+						query += "or name LIKE '%"+words[i]+"%' order by sales_volume desc";
+						System.out.println("aaa "+words);
+						ps = conn.prepareStatement(query);}
+					else {
+						
+						query += "(SELECT name, price, img_urls,sales_volume, type FROM product order by sales_volume))";
+						System.out.println("aaaaa "+words);
+						ps = conn.prepareStatement(query);
+					}
+						
+						System.out.println(query);
 				
 				rs = ps.executeQuery();
-				while(rs.next()) {
-					list.add(new ProductVO(rs.getString("name"), rs.getInt("price"), rs.getString("imgurls"), rs.getString("type")));
-				}
+				if(rs.next()) count+=rs.getInt(1);
 			}
 		}finally {
 			closeAll(rs, ps, conn);
 		}
-		return list;
+		System.out.println("product count return");
+		return count;
 	}
+	
+	
 	// hits순 상위 5개만 보여지게
 	public ArrayList<BoardVO1> showRecommandRecipe() throws SQLException {
 		Connection conn = null;

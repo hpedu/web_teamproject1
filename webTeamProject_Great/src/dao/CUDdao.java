@@ -60,8 +60,8 @@ public class CUDdao {
 			ps.setInt(1, vo.getNum());
 			ps.setString(2, vo.getName());
 			ps.setString(3, vo.getImgurls());
-			ps.setString(4, vo.getMain_ingredientents());
-			ps.setString(5, vo.getSub_ingredientents());
+			ps.setString(4, vo.getMain_ingredients());
+			ps.setString(5, vo.getSub_ingredients());
 			ps.setString(6, vo.getWriter());
 			
 			ps.setString(7, vo.getType());
@@ -184,8 +184,8 @@ public class CUDdao {
 			
 			ps.setString(1, vo.getName());
 			ps.setString(2, vo.getImgurls());
-			ps.setString(3, vo.getMain_ingredientents());
-			ps.setString(4, vo.getSub_ingredientents());
+			ps.setString(3, vo.getMain_ingredients());
+			ps.setString(4, vo.getSub_ingredients());
 			ps.setString(5, vo.getWriter());
 			
 			ps.setString(6, vo.getType());

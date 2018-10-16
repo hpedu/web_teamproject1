@@ -41,11 +41,12 @@ public class RecipeVO {
 	}
 
 	
-	public RecipeVO(int num, String name, String imgurls, String writer, String date, String type, int hits) {
+	public RecipeVO(int num, String name, String imgurls, String main_ingredients,String writer, String date, String type, int hits) {
 			super();
 			this.num = num;
 			this.name = name;
 			this.imgurls = imgurls;
+			this.main_ingredients= main_ingredients;
 			this.writer = writer;
 			this.date = date;
 			this.type = type;
@@ -136,19 +137,19 @@ public class RecipeVO {
 		this.imgurls = imgurls;
 	}
 
-	public String getMain_ingredientents() {
+	public String getMain_ingredients() {
 		return main_ingredients;
 	}
 
-	public void setMain_ingredientents(String main_ingredients) {
+	public void setMain_ingredients(String main_ingredients) {
 		this.main_ingredients = main_ingredients;
 	}
 
-	public String getSub_ingredientents() {
+	public String getSub_ingredients() {
 		return sub_ingredients;
 	}
 
-	public void setSub_ingredientents(String sub_ingredients) {
+	public void setSub_ingredients(String sub_ingredients) {
 		this.sub_ingredients = sub_ingredients;
 	}
 
