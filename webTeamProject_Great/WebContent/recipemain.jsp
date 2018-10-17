@@ -329,7 +329,7 @@
             <div id="inMenu2">    
             <c:forEach var="rpvo" items="${RecommendPlist}">
                <div class="hotMenu2">
-                  <a href="showproductdetail.do?name=${rpvo.name}"><img alt="" src="${rpvo.img_urls}"></a><br><br>
+                  <a href="showProductDetail.do?name=${rpvo.name}"><img alt="" src="${rpvo.img_urls}"></a><br><br>
                   <p>이름 : ${rpvo.name}</p>
                   <p>가격 : ${rpvo.price}</p>
                </div>
@@ -342,7 +342,7 @@
             <div id="inMenu1">
             <c:forEach var="hpvo" items="${HotPlist}">
                <div class="hotMenu2">
-                  <a href="showproductdetail.do?name=${hpvo.name}"><img alt="" src="${hpvo.img_urls}"></a><br><br>
+                  <a href="showProductDetail.do?name=${hpvo.name}"><img alt="" src="${hpvo.img_urls}"></a><br><br>
                   <p>이름 : ${hpvo.name}</p>
                   <p>가격 : ${hpvo.price}</p>
                </div>

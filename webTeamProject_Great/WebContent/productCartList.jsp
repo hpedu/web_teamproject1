@@ -6,10 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="./slick/slick.css">
-<link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+
 <style type="text/css">
 .slider {
    width: 50%;

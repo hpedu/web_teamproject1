@@ -34,8 +34,8 @@
 			</tr>
 			<tr>
 				<td valign="middle">
-				<a href="DispatcherServlet?command=ShowList&&pageNo=1">
-				<img alt="목록" src="img/list_btn.jpg" border="0"></a>
+				<button type="button" class="btn btn-primary" style="background-color:orange; border:0px"
+					onclick = "location.href='noticeList.do?page=${page}'">목록으로 돌아가기</button>
 				</td>			
 			</tr>
 		</table>

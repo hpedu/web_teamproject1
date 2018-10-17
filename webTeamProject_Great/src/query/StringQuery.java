@@ -6,11 +6,11 @@ public interface StringQuery {
 
 	String NOTICE = "SELECT no, writer, img_urls, register_date, content FROM notice";
 	
-	String PAGE_LIST = "SELECT no, writer, img_urls,register_date, content" +
-            "(SELECT no, writer, img_urls,register_date, content, ceil(rownum/"+CommonConstants.CONTENT_NUMBER_PER_PAGE+") AS page FROM" +
-            "(SELECT no, writer, img_urls,to_char(time_posted, 'YYYY.MM.DD') register_date, content FROM board order by no desc)) where page=?";
+	String PAGE_LIST = "SELECT no, writer, TITLE ,register_date, content,HITS FROM" +
+            "(SELECT no, writer, TITLE ,register_date, content, HITS,  ceil(rownum/"+CommonConstants.CONTENT_NUMBER_PER_PAGE+") AS page FROM" +
+            "(SELECT no, writer, TITLE, to_char(register_date, 'YYYY.MM.DD') register_date, content,hits FROM notice order by no desc)) where page=?";
 
-	String TOTAL_COUNT = "select count(-1) from board";
+	String TOTAL_COUNT = "select count(-1) from notice";
 	
 	//조회수 순으로 내림차순 정렬후 상위 4개의 레서피를 검색합니다.
 	String SELECT_SHOWHOTRECIPE = "SELECT no, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n" + 
@@ -46,9 +46,7 @@ public interface StringQuery {
 				+ " VALUES(recipe_seq.nextVal,?, ?, ?, ?, ?, sysdate, ?, 1000, ?, ?, ?,'true' )";
 	
 	String CURRENT_RECIPE="select recipe_seq.currVal from dual";	
-	String INSERT_REVIEW = 
-				"INSERT INTO REVIEW (no ,writer ,img_urls ,register_date ,content)"
-				+ " VALUES(?, ?, ?, sysdate, ?)";
+	
 		
 	String INSERT_PRODUCT = 
 				"INSERT INTO PRODUCT (name ,price ,origin ,imgurls ,content ,type ,brand, sales_volume , recommend )"

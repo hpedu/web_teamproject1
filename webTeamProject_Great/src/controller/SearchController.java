@@ -6,11 +6,8 @@ import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.SearchDao;
 import model.dao.ProductDAO;
-import model.vo.BoardVO1;
 import model.vo.ProductVO;
-import model.vo.RecipeVO;
 import service.PListVO;
 import service.RListVO;
 import service.RPService;

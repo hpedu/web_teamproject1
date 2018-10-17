@@ -9,6 +9,8 @@ import model.dao.RecipeDAO;
 import model.vo.DiscriptVO;
 import model.vo.ProductVO;
 import model.vo.RecipeVO;
+import service.BoardService;
+import service.ReviewListVO;
 
 
 public class ShowRecipeController implements Controller {
@@ -35,6 +37,15 @@ public class ShowRecipeController implements Controller {
 				}
 
 		}
+		
+		String pageNo ="1";
+		pageNo= request.getParameter("page");
+		System.out.println(pageNo+ " What page is it? ");
+		
+		ReviewListVO lvo = BoardService.getInstance().showReview(pageNo,num+"");
+		
+		request.setAttribute("lvo", lvo);
+		
 		
 		request.setAttribute("rvo", rvo);
 		

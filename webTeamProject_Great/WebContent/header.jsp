@@ -39,13 +39,13 @@
             <li><a class="nav-link" href="#">|</a></li>
          
             <li class="nav-item">
-               <a class="nav-link" href="serchmyrecipe.do" style="color:white">나만의 레시피</a>
+               <a class="nav-link" href="serchmyrecipe.do?page=1" style="color:white">나만의 레시피</a>
             </li>
             
             <li><a class="nav-link" href="#">|</a></li>
             
             <li class="nav-item">
-               <a class="nav-link" href="noticeList.do" style="color:white">레시피 Talk</a>
+               <a class="nav-link" href="reviewlist.do?page=1" style="color:white">레시피 Talk</a>
             </li>
          
             <li><a class="nav-link" href="#">|</a></li>
@@ -57,7 +57,7 @@
             <li><a class="nav-link" href="#">|</a></li>
             
             <li class="nav-item">
-               <a class="nav-link" href="noticeList.do" style="color:white">EVENT</a>
+               <a class="nav-link" href="noticeList.do?page=1" style="color:white">EVENT</a>
             </li>
          </ul>
          </div>

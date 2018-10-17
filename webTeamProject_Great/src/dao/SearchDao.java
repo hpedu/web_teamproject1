@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import config.OracleInfo;
 import model.dao.CommonConstants;
-import model.vo.BoardVO1;
+
 import model.vo.ProductVO;
 import model.vo.RecipeVO;
 import query.ShowQuery;
@@ -141,9 +141,9 @@ public class SearchDao {
 		try {
 				conn= getConnect();
 			
-				String query = "SELECT no, name, writer,name,img_urls,main_ingredients, writer,register_date, type, hits FROM ";
-				query += "(SELECT no, name, writer,name,img_urls,main_ingredients, writer,register_date, type, hits, ceil(rowrum/6) AS page FROM";
-				query += "(SELECT no, name, writer,name,img_urls,main_ingredients, writer,register_date, type, hits FROM recipe WHERE writer = '%"+writer+"%' ORDER BY no DESC) where page=?";
+				String query = "SELECT no, name, img_urls,main_ingredients, register_date, type, hits FROM ";
+				query += "(SELECT no, name, img_urls,main_ingredients, register_date, type, hits, ceil(rownum/6) AS page FROM";
+				query += "(SELECT no, name, img_urls,main_ingredients, register_date, type, hits FROM recipe WHERE writer = '%"+writer+"%' ORDER BY no DESC)) where page=?";
 				
 				System.out.println(query);
 				ps = conn.prepareStatement(query);
@@ -170,8 +170,8 @@ public class SearchDao {
 				conn= getConnect();
 			
 				String query = "SELECT count(-1) FROM ";
-				query += "(SELECT no, name, writer,name,img_urls,main_ingredients, writer,register_date, type, hits, ceil(rowrum/6) AS page FROM";
-				query += "(SELECT no, name, writer,name,img_urls,main_ingredients, writer,register_date, type, hits FROM recipe WHERE writer = '%"+writer+"%' ORDER BY no DESC)";
+				query += "(SELECT no, name, img_urls,main_ingredients, register_date, type, hits, ceil(rownum/6) AS page FROM";
+				query += "(SELECT no, name, img_urls,main_ingredients, register_date, type, hits FROM recipe WHERE writer = '%"+writer+"%' ORDER BY no DESC))";
 				
 				System.out.println(query);
 				ps = conn.prepareStatement(query);
@@ -266,7 +266,7 @@ public class SearchDao {
 	
 	
 	// hits순 상위 5개만 보여지게
-	public ArrayList<BoardVO1> showRecommandRecipe() throws SQLException {
+	/*public ArrayList<BoardVO1> showRecommandRecipe() throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -287,7 +287,7 @@ public class SearchDao {
 		}
 		return list;
 	}
-	
+	*/
 	
 	public static void main(String[] args) throws SQLException {
 

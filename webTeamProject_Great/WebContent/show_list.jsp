@@ -6,12 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <title>boardList</title>
 </head>
 <body>
@@ -43,7 +41,7 @@
 									<c:forEach var="blist" items="${lvo.list}">
 										<tr>
 											<td>${blist.no}</td>
-											<td><a class="" style="color:black;" href="DispatcherServlet?command=showContent&&no=${blist.no}">${blist.title}</a></td>
+											<td><a class="" style="color:black;" href="noticedetail.do?no=${blist.no}&&nowpage=${lvo.pagingBean.nowPage}">${blist.title}</a></td>
 											<td>${blist.writer}</td>
 											<td>${blist.register_date}</td>
 											<td>${blist.hits}</td>
@@ -61,7 +59,7 @@
 	<c:set var="blist" value="${lvo.pagingBean}"></c:set>
 	<c:if test="${blist.previousPageGroup}">
 		<a
-			href="DispatcherServlet?command=ShowList&pageNo=${blist.startPageOfPageGroup-1}">
+			href="noticeList.do?page=${blist.startPageOfPageGroup-1}">
 			<img src="img/left_arrow_btn.gif">
 		</a>
 	</c:if>
@@ -70,7 +68,7 @@
 			end="${blist.endPageOfPageGroup}">
 			<c:choose>
 				<c:when test="${blist.nowPage!=i}">
-					<a href="DispatcherServlet?command=ShowList&pageNo=${i}" style="font-size: 15px">${i}</a>
+					<a href="noticeList.do?page=${i}" style="font-size: 15px">${i}</a>
 				</c:when>
 				<c:otherwise>
 	${i}
@@ -81,7 +79,7 @@
 	</div>
 	<c:if test="${requestScope.lvo.pagingBean.nextPageGroup}">
 		<a
-			href="DispatcherServlet?command=ShowList&pageNo=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}">
+			href="noticeList.do?page=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}">
 			<img src="img/right_arrow_btn.gif">
 		</a>
 	</c:if>
