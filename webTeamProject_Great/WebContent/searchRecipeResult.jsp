@@ -188,8 +188,8 @@
               	<tr><td colspan=2><h2>추천 상품</h2></td></tr>
               	<tr>
               	<c:forEach var="hotp" items="${HotPlist}">
-                     	<td style="width:150px; padding:10px"><a href="showProductDetail.do?name=${product.name}">
-                           <img src="${hotp.img_urls }" width="150px"></a>>
+                     	<td style="width:150px; padding:10px"><a href="showProductDetail.do?name=${hotp.name}">
+                           <img src="${hotp.img_urls }" width="150px"></a>
                              <div>
 								<span style="color:#a0a0a0;font-size:1">${hotp.type }</span><br>
 								<span style="font-size:1.2em">${hotp.name }</span><br>
@@ -220,7 +220,7 @@
                   HOT 상품<span class="badge badge-secondary">HOT</span>   </h2></td></tr>
               	<tr>
               	<c:forEach var="recommendp" items="${RecommendPlist}">
-                     	<td style="width:150px; padding:10px"><a href="showProductDetail.do?name=${product.name}">
+                     	<td style="width:150px; padding:10px"><a href="showProductDetail.do?name=${recommendp.name}">
                            <img src="${recommendp.img_urls }" width="150px"></a>
                              <div>
 								<span style="color:#a0a0a0;font-size:1">${recommendp.type }</span><br>

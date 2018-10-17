@@ -21,7 +21,7 @@ public class ShowProductController implements Controller {
 		
 		ModelAndView mv = new ModelAndView();
 		System.out.println("ModelAndView...»ý¼º...");
-		mv.setPath("prodjuctdeatails.jsp");
+		mv.setPath("productdeatails.jsp");
 		return mv;
 	}
 

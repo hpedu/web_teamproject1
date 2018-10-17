@@ -9,7 +9,7 @@ import dao.ShowDao;
 import model.vo.ProductVO;
 import model.vo.RecipeVO;
 import service.BoardService;
-import service.ListVO;
+import service.NoticeListVO;
 import service.PListVO;
 import service.RPService;
 

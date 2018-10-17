@@ -46,7 +46,10 @@ public class HandlerMapping {
 		}else if(command.equals("noticeList.do")) {
 			controller = new NoticeListController();
 			System.out.println("NoticeListController 持失....");
-		}else if(command.equals("deleterecipe.do")) {
+		}else if(command.equals("noticedetail.do")) {
+	         controller = new NoticeDetailController();
+	         System.out.println("NoticeShowContentController 持失....");
+	}else if(command.equals("deleterecipe.do")) {
 			controller = new DeleteRecipeController();
 			System.out.println("DeleteRecipeController 持失....");
 		}else if(command.equals("serchmyrecipe.do")) {
@@ -55,7 +58,17 @@ public class HandlerMapping {
 		}else if(command.equals("showProductDetail.do")) {
 	         controller = new ProductDetailController();
 	         System.out.println("productDetail 持失....");
-	      }
+	     }else if(command.equals("writeReview.do")) {
+		         controller = new WriteController();
+		         System.out.println("WriteController 持失....");
+		}else if(command.equals("reviewdetail.do")) {
+	         controller = new ReviewDetailController();
+	         System.out.println("ReviewDetailController 持失....");
+		}else if(command.equals("reviewlist.do")) {
+	         controller = new ReviewListController();
+	         System.out.println("ReviewDetailController 持失....");
+		}
+		
 		
 		return controller;
 	}

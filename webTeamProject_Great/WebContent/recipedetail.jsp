@@ -46,11 +46,11 @@
 				<table style="width: 100%; height: 250px">
 					<tr>
 						<td width="100px" height="5px"><b>주 재료 :</b></td>
-						<td>${rvo.main_ingredientents} <%-- ${recipe.main_ingredients} --%></td>
+						<td>${rvo.main_ingredients} <%-- ${recipe.main_ingredients} --%></td>
 					</tr>
 					<tr>
 						<td><b>재료 :</b></td>
-						<td>${rvo.sub_ingredientents} <%-- ${recipe.sub_ingredients} --%>
+						<td>${rvo.sub_ingredients} <%-- ${recipe.sub_ingredients} --%>
 						</td>
 					</tr>
 					<tr>
@@ -115,8 +115,8 @@
 		    <div>
 			<h5> <b>레시피 재료</b> </h5>
 		    </div>
-		    ${rvo.main_ingredientents}<br>
-		    ${rvo.sub_ingredientents}
+		    ${rvo.main_ingredients}<br>
+		    ${rvo.sub_ingredients}
 			<!-- <table style="margin: auto;">
 			<tr><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td></tr>
 			<tr><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td><td><img src="img/pig.jpg" width="100%"></td></tr>
@@ -132,12 +132,66 @@
 		<h2 style="padding: 15px; text-align: center;"><b>Tip</b></h2>
 		</div>
 		<div class="col-sm-10" style="margin:auto; padding : 15px">
-		<p>${rvo.tip}<br><br><br>f<br>d<br>s<br>a</p><!--${recipe.tip}-->
+		<p>${rvo.tip}<br></p><!--${recipe.tip}-->
 		</div>
 		</div>
 		
 		<!-- 레시피 관련 상품들 주재료나 재료에서 따오는?? -->
 		
+		<br><br><br><br><br>
+  <h4>후기 게시판</h4>
+             
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="30px">no</th>
+        <th width="500px">제목</th>
+        <th width="100px">작성자</th>
+        <th width="100px">작성시간</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<c:forEach var="review" items="${lvo.list}">
+      <tr>
+        <td>${review.no }</td>
+        <td><a class="" style="color:black;" href="reviewdetail.do?no=${review.no}&&nowpage=${lvo.pagingBean.nowPage}&&about=re${rvo.num}">${review.title}</a></td>
+        <td>${review.writer }</td>
+        <td>${review.register_date }</td>
+      </tr>
+      </c:forEach>
+    
+    </tbody>
+  </table>
+
+<c:set var="blist" value="${lvo.pagingBean}"></c:set>
+	<c:if test="${blist.previousPageGroup}">
+		<a
+			href="showrecipedetail.do?num=${rvo.num }&&page=${blist.startPageOfPageGroup-1}">
+			<img src="img/left_arrow_btn.gif">
+		</a>
+	</c:if>
+	<div style="text-align: center">
+		<c:forEach var="i" begin="${blist.startPageOfPageGroup}"
+			end="${blist.endPageOfPageGroup}">
+			<c:choose>
+				<c:when test="${blist.nowPage!=i}">
+					<a href="showrecipedetail.do?num=${rvo.num }&&page=${i}" style="font-size: 15px">${i}</a>
+				</c:when>
+				<c:otherwise>
+	${i}
+	</c:otherwise>
+			</c:choose>
+	&nbsp;
+	</c:forEach>
+	
+	<c:if test="${requestScope.lvo.pagingBean.nextPageGroup}">
+		<a
+			href="showrecipedetail.do?num=${rvo.num }&&page=${requestScope.lvo.pagingBean.endPageOfPageGroup+1}">
+			<img src="img/right_arrow_btn.gif">
+		</a>
+	</c:if>
+		</div>
+		<br><br><br><br><br>
 		<h6 style="margin-top: 40px"><b>레시피 상품</b></h6>
 		<div class="row">
 		<c:forEach var="list" items="${plist }">
