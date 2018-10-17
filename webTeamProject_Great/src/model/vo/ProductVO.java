@@ -12,12 +12,7 @@ public class ProductVO {
 	private int sales_volume;
 	private String recommend;
 	private String amount;
-	
 
-	  
-	  
-
-	  
 	   
 	   //상품 상세보기
 	   public ProductVO(String name, int price, String origin, String img_urls, String content, String type, String brand,

@@ -1,16 +1,16 @@
 package query;
 
-import model.dao.CommonConstants;
+import dao.CommonConstants;
 
 public interface StringQuery {
 
 	String NOTICE = "SELECT no, writer, img_urls, register_date, content FROM notice";
 	
-	String PAGE_LIST = "SELECT no, writer, TITLE ,register_date, content,HITS FROM" +
-            "(SELECT no, writer, TITLE ,register_date, content, HITS,  ceil(rownum/"+CommonConstants.CONTENT_NUMBER_PER_PAGE+") AS page FROM" +
-            "(SELECT no, writer, TITLE, to_char(register_date, 'YYYY.MM.DD') register_date, content,hits FROM notice order by no desc)) where page=?";
+	String PAGE_LIST = "SELECT no, writer, img_urls,register_date, content" +
+            "(SELECT no, writer, img_urls,register_date, content, ceil(rownum/"+CommonConstants.CONTENT_NUMBER_PER_PAGE+") AS page FROM" +
+            "(SELECT no, writer, img_urls,to_char(time_posted, 'YYYY.MM.DD') register_date, content FROM board order by no desc)) where page=?";
 
-	String TOTAL_COUNT = "select count(-1) from notice";
+	String TOTAL_COUNT = "select count(-1) from board";
 	
 	//조회수 순으로 내림차순 정렬후 상위 4개의 레서피를 검색합니다.
 	String SELECT_SHOWHOTRECIPE = "SELECT no, name, img_urls ,main_ingredients ,sub_ingredients, writer, register_date, type,\r\n" + 
@@ -42,16 +42,18 @@ public interface StringQuery {
 		
 		
 	String INSERT_RECIPE = 
-				"INSERT INTO RECIPE (no ,name ,img_urls ,main_ingredients ,sub_ingredients ,writer ,register_date ,type ,hits ,descript ,content ,tip,recommend)"
-				+ " VALUES(recipe_seq.nextVal,?, ?, ?, ?, ?, sysdate, ?, 1000, ?, ?, ?,'true' )";
-	
-	String CURRENT_RECIPE="select recipe_seq.currVal from dual";	
-	
+				"INSERT INTO RECIPE (no ,name ,img_urls ,main_ingredients ,sub_ingredients ,writer ,register_date ,type ,hits ,descript ,content ,tip)"
+				+ " VALUES(?,?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?, ? )";
+		
+	String INSERT_REVIEW = 
+				"INSERT INTO REVIEW (no ,writer ,img_urls ,register_date ,content)"
+				+ " VALUES(?, ?, ?, sysdate, ?)";
 		
 	String INSERT_PRODUCT = 
 				"INSERT INTO PRODUCT (name ,price ,origin ,imgurls ,content ,type ,brand, sales_volume , recommend )"
 				+ " VALUES(?, ?, ?, ?, ?, ?, ?,?,?)";
 		
+	String CURRENT_RECIPE="select recipe_seq.currVal from dual";
 	
 	String DELETE_RECIPE="DELETE FROM recipe WHERE no=?";
 		
@@ -66,8 +68,8 @@ public interface StringQuery {
 	String UPDATE_PRODUCT="UPDATE product SET price=? , origin=?, imgurls=?, content=?, type=?, brand=? ,recommend=? ,sales_volume=? WHERE name=?";
 		
 		
-	String INSERT_MEMBER = "INSERT INTO member(id,password,name,email,birthday,address) "
-		            + "VALUES(?,?,?,?,?,?)";
+	String INSERT_MEMBER = "INSERT INTO member "
+		            + "VALUES(?,?,?,?,?,?,?,?)";
 
 	String SELECT_CHECK_ID = "SELECT count(-1) FROM member "
 		              + "WHERE id=?";
@@ -79,14 +81,19 @@ public interface StringQuery {
 
 	String UPDATE_MEMBER = "UPDATE member SET password=?, name=?, nickname=? WHERE id=?";
 
-	String LOGIN_MEMBER = "SELECT id, password, name FROM member "
+	String LOGIN_MEMBER = "SELECT name FROM member "
 		           + "WHERE id=? AND password=?";
 
 	String SEARCH_MEMBER = "SELECT id, password FROM member WHERE id=?";
 	
-	
 	String UPDATE_HITS = "UPDATE notice SET hits=?+1 WHERE no=?";
 	
 	String SELECT_NOTICE = "SELECT no, writer, register_date, title, hits, content FROM notice WHERE no=?";
-		
+	
+	String INSERT_PURCHASE = "INSERT INTO purchase(purchase_date, pro_name, pro_price, pro_amount, img_urls, delivery_date) VALUES "
+			+ "(SYSDATE,?,?,?,?,SYSDATE+3)";
+	
+	String INSERT_CART = "INSERT INTO cart(userId, name, price, quantity, img_urls) VALUES(?,?,?,?,?)";
+	
+	String SEARCH_CART = "SELECT userId, name, price, quantity, img_urls FROM cart WHERE name=?";
 }

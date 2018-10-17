@@ -9,12 +9,14 @@ public class ItemCartQtyUpController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String name = request.getParameter("name");
+		String realName = request.getParameter("name");
+
 		CartBiz cartBiz = new CartBiz();
-		cartBiz.upCartQty(request, name);
+		
+		cartBiz.upCartQty(request, realName);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setPath("DispatcherServlet?command=ItemCart");
+		mv.setPath("ItemCart.do");
 		mv.setRedirect(true);
 		return mv;
 	}

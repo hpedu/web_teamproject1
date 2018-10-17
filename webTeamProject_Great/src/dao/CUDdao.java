@@ -10,7 +10,6 @@ import config.OracleInfo;
 import model.vo.ProductVO;
 import model.vo.RecipeVO;
 import model.vo.ReviewVO;
-import query.ReviewStringQuery;
 import query.StringQuery;
 
 
@@ -89,7 +88,7 @@ public class CUDdao {
 
 		try {
 			conn = getConnect();
-			ps = conn.prepareStatement(ReviewStringQuery.INSERT_REVIEW);
+			ps = conn.prepareStatement(StringQuery.INSERT_REVIEW);
 			
 			ps.setInt(1, vo.getNo());
 			ps.setString(2, vo.getWriter());

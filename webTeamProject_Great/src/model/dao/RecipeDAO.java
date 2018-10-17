@@ -37,10 +37,7 @@ public class RecipeDAO {
 		closeAll(ps, conn);
 	}
 	
-	
-	
-	
-	
+
 	//레시피 등록
 		public void registerRecipe(RecipeVO mvo) throws SQLException{
 			Connection conn = null;

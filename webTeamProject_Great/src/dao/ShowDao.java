@@ -74,6 +74,7 @@ public class ShowDao {
 	      try {
 	         conn = getConnection();
 	         ps = conn.prepareStatement(ShowQuery.SELECT_SHOWPRODUCT);
+	         System.out.println(ShowQuery.SELECT_SHOWPRODUCT);
 	         ps.setString(1, name);
 	         rs = ps.executeQuery();
 	         if (rs.next()) {
@@ -95,6 +96,7 @@ public class ShowDao {
       try {
          conn = getConnection();
          ps = conn.prepareStatement(ShowQuery.SELECT_SHOWHOTRECIPE);
+         System.out.println("SELECT_SHOWHOTRECIPE :: "+ShowQuery.SELECT_SHOWHOTRECIPE);
          rs = ps.executeQuery();
          while (rs.next()) {
             list.add(new RecipeVO(rs.getInt("no"), rs.getString("name"), rs.getString("img_urls"),
@@ -139,6 +141,7 @@ public class ShowDao {
       try {
          conn = getConnection();
          ps = conn.prepareStatement(ShowQuery.SELECT_SHOWRECOMMENDRECIPE);
+         System.out.println("SELECT_SHOWRECOMMENDRECIPE :: "+ShowQuery.SELECT_SHOWRECOMMENDRECIPE);
          rs = ps.executeQuery();
          while (rs.next()) {
             list.add(new RecipeVO(rs.getInt("no"), rs.getString("name"), rs.getString("img_urls"),
@@ -147,6 +150,7 @@ public class ShowDao {
                   rs.getString("descript"), rs.getString("content"), rs.getString("tip"),
                   rs.getString("recommend")));
          }
+         System.out.println("");
       } finally {
          closeAll(rs, ps, conn);
       }
@@ -290,17 +294,13 @@ public void updateHits(int no, int hits)throws SQLException{
       ArrayList<ProductVO> list = new ArrayList<ProductVO>();
       try {
          conn = getConnection();
-         System.out.println("¿©±âµÊ?");
          ps = conn.prepareStatement(ShowQuery.SELECT_SHOWHOTPRODUCT);
-         System.out.println(ShowQuery.SELECT_SHOWHOTPRODUCT);
+         System.out.println("SELECT_SHOWHOTPRODUCT :: " + ShowQuery.SELECT_SHOWHOTPRODUCT);
          rs = ps.executeQuery();
-         System.out.println(rs);
          while (rs.next()) {
-        	 ProductVO pvo =new ProductVO(rs.getString("name"), rs.getInt("price"), rs.getString("origin"),
-                     rs.getString("imgurls"), rs.getString("content"), rs.getString("type"), rs.getString("brand"),
-                     rs.getInt("sales_volume"), rs.getString("recommend"), rs.getString("amount"));
-        	 System.out.println(pvo);
-            list.add(pvo);
+        	 list.add(new ProductVO(rs.getString("name"), rs.getInt("price"), rs.getString("origin"),
+                     rs.getString("img_urls"), rs.getString("content"), rs.getString("type"), rs.getString("brand"),
+                     rs.getInt("sales_volume"), rs.getString("recommend"), rs.getString("amount")));
          }
       } finally {
          closeAll(rs, ps, conn);
@@ -316,11 +316,11 @@ public void updateHits(int no, int hits)throws SQLException{
       try {
          conn = getConnection();
          ps = conn.prepareStatement(ShowQuery.SELECT_SHOWRECOMMENDPRODUCT);
-         System.out.println(ShowQuery.SELECT_SHOWRECOMMENDPRODUCT);
+         System.out.println("SELECT_SHOWRECOMMENDPRODUCT :: " + ShowQuery.SELECT_SHOWRECOMMENDPRODUCT);
          rs = ps.executeQuery();
          while (rs.next()) {
             list.add(new ProductVO(rs.getString("name"), rs.getInt("price"), rs.getString("origin"),
-                  rs.getString("imgurls"), rs.getString("content"), rs.getString("type"), rs.getString("brand"),
+                  rs.getString("img_urls"), rs.getString("content"), rs.getString("type"), rs.getString("brand"),
                   rs.getInt("sales_volume"), rs.getString("recommend"), rs.getString("amount")));
          }
       } finally {

@@ -17,10 +17,11 @@ public class SerchRecipeController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String name = request.getParameter("name");
-		System.out.println("왜안대"+name);
+		System.out.println("왜안대" + name);
+		ProductVO pvo = ShowDao.getInstance().showProduct(name);
 		//ProductVO pvo = RecipeDAO.RecipeDAO();
-		System.out.println("여긴가");
-		//request.setAttribute("pvo", pvo);
+
+		request.setAttribute("product", pvo);
 		
 		
 		ModelAndView mv = new ModelAndView();

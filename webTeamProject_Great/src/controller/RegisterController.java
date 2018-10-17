@@ -17,7 +17,7 @@ public class RegisterController implements Controller{
 		String date = request.getParameter("date");
 		String address = request.getParameter("address");
 		
-		MemberVO vo = new MemberVO(id, password, name, email, date, address);
+		MemberVO vo = new MemberVO(id, password, name, email, date, address, 0 ,null);
 		System.out.println(vo);
 		MemberDAO.getInstance().registerMember(vo);
 		

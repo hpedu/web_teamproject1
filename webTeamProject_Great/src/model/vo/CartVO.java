@@ -1,15 +1,26 @@
 package model.vo;
 
 public class CartVO {
-	 private String img_urls;
-	 private String name;
-	 private int price;
-	 private int quantity;
-	public String getImg_urls() {
-		return img_urls;
-	}
-	public void setImg_urls(String img_urls) {
+	private String userId;
+	private String name;
+	private int price;
+	private int quantity;
+	private String img_urls;
+	 
+	public CartVO() {}
+	public CartVO(String userId, String name, int price, int quantity, String img_urls) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
 		this.img_urls = img_urls;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getName() {
 		return name;
@@ -29,17 +40,19 @@ public class CartVO {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	
+	public String getImg_urls() {
+		return img_urls;
+	}
+	public void setImg_urls(String img_urls) {
+		this.img_urls = img_urls;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "CartVO [img_urls=" + img_urls + ", name=" + name + ", price=" + price + ", quantity=" + quantity + "]";
+		return "CartVO [userId=" + userId + ", name=" + name + ", price=" + price + ", quantity=" + quantity
+			+ ", img_urls=" + img_urls + "]";
 	}
-	public CartVO(String img_urls, String name, int price, int quantity) {
-		super();
-		this.img_urls = img_urls;
-		this.name = name;
-		this.price = price;
-		this.quantity = quantity;
-	}
-	 
-	public CartVO() {}
+	
 }

@@ -12,6 +12,7 @@ package cartbiz;
  */
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,7 +25,8 @@ public class CartBiz {
 	 * 세션에 바인딩된 cartList리스트 정보를 다 받아온다...
 	 */
 	public ArrayList<CartVO> getCartList(HttpServletRequest request){
-		HttpSession session = request.getSession();	
+		/*ServletContext context = request.getServletContext();*/
+		HttpSession session = request.getSession();
 		ArrayList<CartVO> carList= (ArrayList<CartVO>)session.getAttribute("cartList");
 		return carList;
 	}
@@ -62,6 +64,8 @@ public class CartBiz {
 		//세션에 바인딩
 		request.getSession().setAttribute("cartList", cartList);		
 	}//addCart
+	
+	
 	/*
 	 * 세션에 바인딩된 ArrayList를 받아와서
 	 * 이중에서 수량을 증가하려는 name과 일치하는 상품을 받아와서
@@ -87,19 +91,14 @@ public class CartBiz {
 	public void removeCartItem(HttpServletRequest request, String[] names) {
 		ArrayList<CartVO> cartList=
 				(ArrayList<CartVO>)request.getSession().getAttribute("cartList");
-		
-		/*for(String name : names) {
-			for(Cart c : cartList) {
-				if(name.equals(c.getName())) cartList.remove(c);				
-			}//for
-		}*///for
-		
-		for(int i =0; i<names.length; i++) {
-			for(int j=0; j<cartList.size(); j++) {
-				if(names[i].equals(cartList.get(i).getName()))
-					cartList.remove(cartList.get(j));
-			}
-		}
+
+		 for(String name : names) {
+	         Iterator<CartVO> iter = cartList.iterator();
+	         while(iter.hasNext()) {
+	            if(iter.next().getName().equals(name))
+	               iter.remove();
+	         }
+		 }
 	}//removeCartItem
 }
 

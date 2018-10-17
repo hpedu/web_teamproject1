@@ -66,9 +66,11 @@ public class MemberDAO {
 			ps.setString(4, mvo.getEmail());
 			ps.setString(5, mvo.getBirthday());
 			ps.setString(6, mvo.getAddress());
-			if(ps.executeUpdate()!=0){
-				System.out.println(mvo.getName()+" 님 회원가입 성공");
-			}
+			ps.setInt(7, mvo.getPoint());
+			ps.setString(8, mvo.getGrade());
+			ps.executeUpdate();
+			System.out.println(mvo.getName()+" 님 회원가입 성공");
+			
 		}finally{
 			closeAll(ps, conn);
 		}
@@ -86,8 +88,7 @@ public class MemberDAO {
 			ps.setString(2, password);
 			rs=ps.executeQuery();
 			if(rs.next()){
-				mvo = new MemberVO(rs.getString("id"),
-									rs.getString("password")); 
+				mvo = new MemberVO(id,password,rs.getString(1)); 
 			}
 		}finally{
 			closeAll(rs, ps, conn);
@@ -158,8 +159,9 @@ public class MemberDAO {
 		return password;
 	}
 	public static void main(String[] args) throws Exception {
-		MemberVO vo= new MemberVO();
-		MemberDAO.getInstance().login("kh4331","123456");
+		MemberVO vo= new MemberVO("123","123","123","123@123","1111","1234");
+		MemberDAO.getInstance().registerMember(vo);;
 		System.out.println(vo);			 
 	}
+
 }
