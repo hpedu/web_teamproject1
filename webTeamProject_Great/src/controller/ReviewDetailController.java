@@ -18,7 +18,7 @@ public class ReviewDetailController implements Controller {
 				String temp=request.getParameter("about");
 		
 		if(temp.startsWith("re")) {
-			
+			String[] words;
 		}
 		
 		
